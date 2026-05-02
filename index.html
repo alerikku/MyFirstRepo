@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ale & Tia | The Eternal Quest - Platinum Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tuscany: '#FDFCF0',
+                        gold: '#D4AF37',
+                        codec: '#556B2F',
+                        persona: '#D32F2F',
+                        khblue: '#001a4d',
+                        mgsblack: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        garamond: ['Cormorant Garamond', 'serif'],
+                        body: ['EB Garamond', 'serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <style>
+        /* BASE DESIGN PRINCIPLES */
+        body { background-color: #FDFCF0; color: #1A1A1A; scroll-behavior: smooth; font-family: 'EB Garamond', serif; }
+        body.lang-en .it { display: none; }
+        body.lang-it .en { display: none; }
+
+
+        /* GLASSMORPHISM & ELEGANCE */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+
+
+        /* ZELDA: MINIMALIST HEARTS */
+        .heart-empty { color: #e5e7eb; }
+        .heart-full { color: #D32F2F; filter: drop-shadow(0 0 5px rgba(211, 47, 47, 0.4)); }
+
+
+        /* MGS: REFINED CODEC */
+        .codec-border {
+            border: 1px solid #556B2F;
+            background: linear-gradient(180deg, rgba(85, 107, 47, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+        .scanline {
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            position: absolute;
+        }
+
+
+        /* FFX: ETHEREAL FLOW */
+        .flow-line {
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #D4AF37 15%, #D4AF37 85%, transparent);
+        }
+        .node-glow {
+            box-shadow: 0 0 15px #D4AF37;
+        }
+
+
+        /* KH: DIVE TO THE HEART CIRCLES */
+        .stained-glass-css {
+            background: radial-gradient(circle, rgba(0, 26, 77, 0.05) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border: 2px solid #D4AF37;
+        }
+
+
+        /* PERSONA: SHARP TYPOGRAPHY */
+        .p5-skew { transform: skewX(-5deg); }
+        .p5-accent { background: #D32F2F; color: white; padding: 2px 8px; }
+
+
+        /* REVEAL ANIMATION */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="lang-it">
+
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-md py-4 px-8 flex justify-between items-center border-b border-gray-100">
+        <div class="font-cinzel text-xl tracking-[0.3em] font-bold">
+            ALE <span class="text-gold">&</span> TIA
+        </div>
+        <button onclick="toggleLang()" class="font-mono text-xs border border-mgsblack px-4 py-1 hover:bg-mgsblack hover:text-white transition-all">
+            <span class="it">EN</span><span class="en">IT</span>
+        </button>
+    </nav>
+
+
+    <!-- HERO (ZELDA: THE BEGINNING OF A LEGEND) -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-6">
+        <!-- Abstract Watercolor Gradient instead of Stock Photo -->
+        <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(253,252,240,1)_0%,_rgba(242,212,111,0.1)_100%)]"></div>
+        
+        <div class="z-10 reveal active">
+            <h3 class="font-cinzel text-gold text-xs tracking-[0.4em] mb-6 uppercase">
+                <span class="it">Parametri di Missione: Inizio</span>
+                <span class="en">Mission Parameters: Start</span>
+            </h3>
+            <h1 class="font-cinzel text-7xl md:text-9xl font-bold mb-4 text-mgsblack">Ale & Tia</h1>
+            
+            <div class="flex gap-3 justify-center my-8 text-2xl">
+                <i class="fa-solid fa-heart heart-full"></i>
+                <i class="fa-solid fa-heart heart-full"></i>
+                <i class="fa-solid fa-heart heart-full"></i>
+                <i class="fa-solid fa-heart heart-full"></i>
+                <i class="fa-solid fa-heart heart-empty"></i>
+            </div>
+
+
+            <p class="font-cinzel text-2xl tracking-[0.2em] mt-8">4.6.2027</p>
+            <p class="font-garamond italic text-xl text-gray-500 mt-2">Il Grande Prato â€¢ Castelfiorentino</p>
+        </div>
+    </section>
+
+
+    <!-- MISSION BRIEFING (MGS: CODEC) -->
+    <section class="max-w-4xl mx-auto py-24 px-8 reveal">
+        <div class="codec-border p-8 md:p-12 relative overflow-hidden">
+            <div class="scanline"></div>
+            <div class="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+                <div class="text-center md:w-1/3">
+                    <div class="text-codec font-mono text-3xl font-bold">140.96</div>
+                    <div class="h-1 w-full bg-codec/30 my-4 relative overflow-hidden">
+                        <div class="absolute h-full w-1/2 bg-codec animate-[move_2s_infinite]"></div>
+                    </div>
+                    <p class="text-[10px] font-mono tracking-widest uppercase text-gray-400">Secure Comm Link</p>
+                </div>
+                <div class="md:w-2/3 border-l border-codec/40 pl-8">
+                    <h2 class="font-cinzel text-lg font-bold mb-4">
+                        <span class="it">> Briefing del Wedding Planner</span>
+                        <span class="en">> Wedding Planner Briefing</span>
+                    </h2>
+                    <p class="it text-lg leading-relaxed italic">
+                        "L'obiettivo dell'operazione Ã¨ riunire il party per un weekend di celebrazione informale. La location 'Il Grande Prato' Ã¨ stata selezionata per l'alto potenziale di relax e divertimento. Non sono ammesse formalitÃ  non necessarie. Equipaggiatevi per la piscina e preparatevi alla sincronizzazione."
+                    </p>
+                    <p class="en text-lg leading-relaxed italic">
+                        "The operation's goal is to gather the party for an informal weekend of celebration. 'Il Grande Prato' has been selected for its high potential for relaxation and fun. No unnecessary formalities allowed. Equip for the pool and prepare for synchronization."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- STORY (FFX: BONDS OF FATE) -->
+    <section class="py-24 px-8 bg-white/30" id="story">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-cinzel text-4xl font-bold">Jiminy's Journal</h2>
+                <p class="font-garamond italic text-gray-500 mt-2">Chronicles of the Eternal Quest</p>
+            </div>
+
+
+            <div class="relative">
+                <div class="absolute left-1/2 flow-line h-full -translate-x-1/2"></div>
+                
+                <div class="space-y-24">
+                    <!-- 2014 -->
+                    <div class="relative flex items-center justify-between reveal">
+                        <div class="w-5/12 text-right">
+                            <h3 class="font-cinzel text-gold text-xl">2014</h3>
+                            <p class="it font-bold">Spawn Point: Milanofiori</p>
+                            <p class="it text-sm text-gray-600 mt-1">L'incontro alle macchinette del caffÃ¨ e la scintilla scoccata grazie a Pikachu e ai videogiochi.</p>
+                            <p class="en font-bold">Spawn Point: Milanofiori</p>
+                            <p class="en text-sm text-gray-600 mt-1">The meeting at the coffee machines and the spark ignited by Pikachu and videogames.</p>
+                        </div>
+                        <div class="w-4 h-4 bg-gold rounded-full node-glow z-10 border-2 border-white"></div>
+                        <div class="w-5/12"></div>
+                    </div>
+
+
+                    <!-- 2019 -->
+                    <div class="relative flex items-center justify-between reveal">
+                        <div class="w-5/12"></div>
+                        <div class="w-4 h-4 bg-gold rounded-full node-glow z-10 border-2 border-white"></div>
+                        <div class="w-5/12 text-left">
+                            <h3 class="font-cinzel text-gold text-xl">2019</h3>
+                            <p class="it font-bold">New Map: Switzerland</p>
+                            <p class="it text-sm text-gray-600 mt-1">Il party si sposta oltre confine. Nuove missioni e panorami alpini.</p>
+                            <p class="en font-bold">New Map: Switzerland</p>
+                            <p class="en text-sm text-gray-600 mt-1">The party moves across the border. New missions and Alpine views.</p>
+                        </div>
+                    </div>
+
+
+                    <!-- 2022-2025 -->
+                    <div class="relative flex items-center justify-between reveal">
+                        <div class="w-5/12 text-right">
+                            <h3 class="font-cinzel text-gold text-xl">2022 - 2025</h3>
+                            <p class="it font-bold">Party Expansion: Mati & Marghe</p>
+                            <p class="it text-sm text-gray-600 mt-1">L'arrivo delle mini-boss. La squadra Ã¨ ora al completo per la sfida finale.</p>
+                            <p class="en font-bold">Party Expansion: Mati & Marghe</p>
+                            <p class="en text-sm text-gray-600 mt-1">The arrival of the mini-bosses. The squad is now complete for the final challenge.</p>
+                        </div>
+                        <div class="w-4 h-4 bg-gold rounded-full node-glow z-10 border-2 border-white"></div>
+                        <div class="w-5/12"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SCHEDULE (KH: THE COMMAND MENU) -->
+    <section class="py-24 px-8" id="schedule">
+        <div class="max-w-6xl mx-auto text-center reveal">
+            <h2 class="font-cinzel text-4xl font-bold mb-16">Stages of the Feast</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <div class="stained-glass-css p-10 rounded-[40px] flex flex-col items-center">
+                    <span class="font-mono text-xs text-gold uppercase mb-4 tracking-widest">Phase 01</span>
+                    <h3 class="font-cinzel text-2xl mb-4">VenerdÃ¬ 4</h3>
+                    <p class="it text-sm italic text-gray-600">Pizza Party di benvenuto. Caricamento carboidrati (HP Up) nel giardino.</p>
+                    <p class="en text-sm italic text-gray-600">Welcome Pizza Party. Carb loading (HP Up) in the garden.</p>
+                </div>
+
+
+                <div class="stained-glass-css p-10 rounded-[40px] flex flex-col items-center scale-105 border-mgsblack shadow-xl">
+                    <span class="font-mono text-xs text-persona uppercase mb-4 tracking-widest">Phase 02</span>
+                    <h3 class="font-cinzel text-2xl mb-4">Sabato 5</h3>
+                    <p class="it font-bold">Ore 15:00 - Il Patto</p>
+                    <p class="it text-sm text-gray-600">Cerimonia informale, brindisi e celebrazione fino al Game Over temporaneo.</p>
+                    <p class="en font-bold">3:00 PM - The Covenant</p>
+                    <p class="en text-sm text-gray-600">Informal ceremony, toasts, and celebration until temporary Game Over.</p>
+                </div>
+
+
+                <div class="stained-glass-css p-10 rounded-[40px] flex flex-col items-center">
+                    <span class="font-mono text-xs text-gold uppercase mb-4 tracking-widest">Phase 03</span>
+                    <h3 class="font-cinzel text-2xl mb-4">Domenica 6</h3>
+                    <p class="it text-sm italic text-gray-600">Brunch di recupero statistiche. Piscina, tennis e yoga disponibili.</p>
+                    <p class="en text-sm italic text-gray-600">Stats recovery brunch. Pool, tennis, and yoga available.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- EQUIPMENT & RSVP (PERSONA: THE PHANTOM THIEVES) -->
+    <section class="py-24 px-8 bg-persona/5">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+            
+            <!-- Dress Code -->
+            <div class="glass-card p-10 reveal">
+                <h2 class="font-cinzel text-3xl mb-8 p5-skew">
+                    <span class="p5-accent">Equipaggiamento</span> Richiesto
+                </h2>
+                <div class="space-y-6 font-garamond text-xl">
+                    <p class="it"><span class="font-bold text-persona uppercase">Malus:</span> I tacchi a spillo comporteranno un debuff di agilitÃ  -100 sul prato.</p>
+                    <p class="en"><span class="font-bold text-persona uppercase">Malus:</span> Stiletto heels will cause a -100 agility debuff on the grass.</p>
+                    
+                    <div class="flex flex-col gap-3 font-bold">
+                        <span class="text-gold">> SCARPE COMODE</span>
+                        <span class="text-gold">> COSTUME DA BAGNO</span>
+                        <span class="text-gold">> DRESS CODE: TUSCAN CHIC</span>
+                    </div>
+
+
+                    <!-- Gift Registry -->
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <h3 class="font-cinzel text-xl mb-4">Inventory: Nuova Zelanda</h3>
+                        <p class="it text-sm text-gray-600 mb-4">Se desiderate contribuire allo sblocco del DLC Luna di Miele:</p>
+                        <p class="en text-sm text-gray-600 mb-4">If you wish to contribute to unlocking the Honeymoon DLC:</p>
+                        <div class="bg-white p-4 font-mono text-xs text-center border border-gray-200">
+                            IT00 A000 0000 0000 0000 0000 000
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- RSVP -->
+            <div class="glass-card p-10 reveal border-t-8 border-persona">
+                <h2 class="font-cinzel text-3xl mb-4 uppercase tracking-tighter">Save Point</h2>
+                <p class="text-persona font-mono text-xs font-bold mb-8 uppercase tracking-[0.2em]">Deadline: Oct 2026</p>
+                
+                <form class="space-y-8 font-garamond">
+                    <div class="relative border-b border-gray-300">
+                        <label class="text-[10px] uppercase font-bold text-gray-400">Player ID</label>
+                        <input type="text" class="w-full bg-transparent p-2 focus:outline-none focus:border-gold transition-all" required>
+                    </div>
+                    <div class="relative border-b border-gray-300">
+                        <label class="text-[10px] uppercase font-bold text-gray-400">Party Status</label>
+                        <select class="w-full bg-transparent p-2 focus:outline-none focus:border-gold transition-all">
+                            <option class="it">Presente!</option>
+                            <option class="en">Present!</option>
+                            <option class="it">Assente (Game Over)</option>
+                            <option class="en">Absent (Game Over)</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="alert('Partita salvata!')" class="w-full bg-persona text-white font-cinzel font-bold py-4 hover:bg-mgsblack transition-all uppercase tracking-widest text-sm">
+                        Confirm Data Sync
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="py-16 text-center bg-white">
+        <div class="font-cinzel text-2xl tracking-[0.4em] text-gold mb-4">GAME SAVED</div>
+        <p class="font-garamond italic text-gray-400 text-sm">Ale & Tia â€¢ Tuscany 2027</p>
+    </footer>
+
+
+    <script>
+        // Language Toggle
+        function toggleLang() {
+            document.body.classList.toggle('lang-en');
+            document.body.classList.toggle('lang-it');
+        }
+
+
+        // Reveal Animation on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+    </script>
+
+
+    <style>
+        @keyframes move {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+    </style>
+</body>
+</html>
