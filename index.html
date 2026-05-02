@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="light" lang="it">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ale & Tia - The Adventure Begins</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                  surface: "#fbf9f1",
+                  "surface-container": "#f0eee6",
+                  "surface-container-low": "#f5f4ec",
+                  primary: "#535845",
+                  "primary-container": "#6b705c",
+                  secondary: "#735c00",
+                  "secondary-container": "#fed65b",
+                  tertiary: "#ac0043",
+                  "tertiary-container": "#d41a58",
+                  "on-surface": "#1b1c17",
+                  outline: "#77786f"
+              },
+              fontFamily: {
+                  "serif": ["Cormorant Garamond", "serif"],
+                  "sans": ["Be Vietnam Pro", "sans-serif"]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+        body { min-height: 100dvh; background-color: #fbf9f1; }
+        .pixel-border { border: 4px solid black; box-shadow: 8px 8px 0px 0px rgba(0,0,0,1); }
+        .pixel-shadow-sm { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+    </style>
+</head>
+<body class="text-on-surface font-sans overflow-x-hidden pt-[72px] pb-[80px] md:pb-0">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-3 bg-[#F2EFE9] border-b-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+    <div class="flex items-center gap-4">
+        <div class="font-serif italic font-black uppercase tracking-tighter text-2xl md:text-3xl text-black -skew-x-12 bg-white px-2 border-2 border-black">
+            ALE & TIA
+        </div>
+    </div>
+    <div class="hidden md:flex items-center gap-6">
+        <a class="font-bold text-black hover:bg-red-600 hover:text-white transition-colors px-3 py-1" href="#story">STORIA</a>
+        <a class="font-bold text-black hover:bg-red-600 hover:text-white transition-colors px-3 py-1" href="#program">PROGRAMMA</a>
+        <a class="font-bold text-black hover:bg-red-600 hover:text-white transition-colors px-3 py-1" href="#dresscode">DRESS CODE</a>
+        <a class="font-bold text-black hover:bg-red-600 hover:text-white transition-colors px-3 py-1" href="#gifts">REGALI</a>
+        <a class="font-black scale-110 text-red-600 hover:bg-red-600 hover:text-white transition-all px-3 py-1 border-2 border-transparent hover:border-black shadow-none hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" href="#rsvp">RSVP</a>
+    </div>
+    <div class="md:hidden">
+        <a href="#rsvp" class="bg-red-600 text-white border-2 border-black px-4 py-1 font-bold uppercase text-xs tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">RSVP</a>
+    </div>
+</header>
+
+<main class="w-full max-w-5xl mx-auto px-4 space-y-16 py-12">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] flex flex-col justify-center items-center text-center p-8 bg-surface-container-low pixel-border overflow-hidden" id="hero">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at center, #fed65b 2px, transparent 2px); background-size: 24px 24px;"></div>
+        <div class="relative z-10 space-y-6">
+            <h2 class="uppercase tracking-widest text-primary font-bold text-sm">4-6 Giugno 2027 â€¢ Il Grande Prato (FI)</h2>
+            <h1 class="font-serif text-5xl md:text-8xl font-bold text-on-surface drop-shadow-[4px_4px_0px_#fed65b] italic">Ale & Tia</h1>
+            <p class="font-serif text-2xl italic text-primary">A New Adventure Begins</p>
+            
+            <div class="flex justify-center gap-4 pt-6">
+                <div class="flex flex-col items-center bg-surface border-2 border-black px-4 py-2 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-tertiary text-3xl">favorite</span>
+                    <span class="font-bold uppercase text-[10px] mt-1">Ansia: Livello Max</span>
+                </div>
+                <div class="flex flex-col items-center bg-surface border-2 border-black px-4 py-2 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-secondary text-3xl">local_pizza</span>
+                    <span class="font-bold uppercase text-[10px] mt-1">Pizza: In Caricamento</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Story -->
+    <section class="py-8" id="story">
+        <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold border-b-4 border-black inline-block pb-2">Main Quest: La Nostra Storia</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <div class="absolute top-1/2 left-0 w-full h-1 bg-black -translate-y-1/2 hidden md:block"></div>
+            
+            <!-- 2014 -->
+            <div class="flex flex-col items-center text-center group z-10">
+                <div class="w-16 h-16 rounded-full border-4 border-black bg-secondary-container flex items-center justify-center mb-4 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-black">videogame_asset</span>
+                </div>
+                <div class="bg-surface border-2 border-black p-4 pixel-shadow-sm w-full">
+                    <h3 class="font-bold text-primary">2014</h3>
+                    <p class="text-sm mt-2 font-medium">Galeotto fu il caffÃ¨ a Milanofiori e la passione per Pikachu.</p>
+                </div>
+            </div>
+
+            <!-- 2019 -->
+            <div class="flex flex-col items-center text-center group z-10 md:mt-12">
+                <div class="w-16 h-16 rounded-full border-4 border-black bg-white flex items-center justify-center mb-4 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-black">landscape</span>
+                </div>
+                <div class="bg-surface border-2 border-black p-4 pixel-shadow-sm w-full">
+                    <h3 class="font-bold text-secondary">2019</h3>
+                    <p class="text-sm mt-2 font-medium">Trasferimento in Svizzera. Livello di difficoltÃ : Hard. Ma siamo in squadra!</p>
+                </div>
+            </div>
+
+            <!-- 2022 -->
+            <div class="flex flex-col items-center text-center group z-10">
+                <div class="w-16 h-16 rounded-full border-4 border-black bg-white flex items-center justify-center mb-4 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-tertiary">baby_changing_station</span>
+                </div>
+                <div class="bg-surface border-2 border-black p-4 pixel-shadow-sm w-full">
+                    <h3 class="font-bold text-tertiary">2022</h3>
+                    <p class="text-sm mt-2 font-medium">Arriva la piccola Mati. Il party si espande.</p>
+                </div>
+            </div>
+
+            <!-- 2025 -->
+            <div class="flex flex-col items-center text-center group z-10 md:mt-12">
+                <div class="w-16 h-16 rounded-full border-4 border-black bg-white flex items-center justify-center mb-4 pixel-shadow-sm">
+                    <span class="material-symbols-outlined text-black">child_care</span>
+                </div>
+                <div class="bg-surface border-2 border-black p-4 pixel-shadow-sm w-full">
+                    <h3 class="font-bold text-primary">2025</h3>
+                    <p class="text-sm mt-2 font-medium">Benvenuta Margherita. Squadra al completo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section class="py-8" id="program">
+        <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold border-b-4 border-black inline-block pb-2">Side Quests: Il Weekend</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white border-4 border-black p-6 pixel-shadow-sm">
+                <span class="material-symbols-outlined text-4xl mb-4 text-primary">local_pizza</span>
+                <h3 class="font-bold uppercase mb-2">VenerdÃ¬</h3>
+                <p class="text-sm">Pizza Party con forno a legna. Carichiamo le energie (e i carboidrati).</p>
+            </div>
+            <div class="bg-secondary-container border-4 border-black p-6 pixel-border">
+                <span class="material-symbols-outlined text-4xl mb-4 text-black">favorite</span>
+                <h3 class="font-bold uppercase mb-2">Sabato - 15:00</h3>
+                <p class="text-sm font-bold italic">La Sfida Finale: Ci sposiamo sul prato!</p>
+                <p class="text-sm mt-2 italic">A seguire festa, brindisi e balli fino al Game Over.</p>
+            </div>
+            <div class="bg-white border-4 border-black p-6 pixel-shadow-sm">
+                <span class="material-symbols-outlined text-4xl mb-4 text-blue-500">pool</span>
+                <h3 class="font-bold uppercase mb-2">Domenica</h3>
+                <p class="text-sm">Brunch, piscina, yoga e tennis. Ripristino HP prima di tornare a casa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code -->
+    <section class="py-8" id="dresscode">
+        <div class="bg-tertiary-container text-white border-4 border-black p-8 pixel-border flex flex-col md:flex-row items-center gap-8">
+            <span class="material-symbols-outlined text-7xl">warning</span>
+            <div>
+                <h2 class="font-serif text-3xl font-bold mb-4 uppercase italic">Equipaggiamento Richiesto</h2>
+                <p class="mb-4">Il matrimonio Ã¨ informale. Saremo su prato e sassolini.</p>
+                <ul class="space-y-2 font-bold italic">
+                    <li class="flex items-center gap-2 text-yellow-300 underline">
+                        <span class="material-symbols-outlined">close</span> TACCHI A SPILLO: Vietati (Malus AgilitÃ  -100)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined">check</span> SCARPE COMODE: Caldamente raccomandate
+                    </li>
+                    <li class="flex items-center gap-2 text-cyan-300">
+                        <span class="material-symbols-outlined">waves</span> COSTUME DA BAGNO: Obbligatorio per la piscina
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registry & RSVP -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
+        <!-- Registry -->
+        <section id="gifts" class="bg-white border-4 border-black p-8 pixel-shadow-sm">
+            <h2 class="font-serif text-3xl font-bold mb-4 border-b-2 border-black inline-block">Inventory: Lista Nozze</h2>
+            <p class="mb-6 text-sm">Aiutateci a sbloccare il livello finale: <strong>Luna di Miele in Nuova Zelanda!</strong></p>
+            <div class="bg-surface-container-low border-2 border-dashed border-black p-4 text-center">
+                <p class="font-mono font-bold text-sm break-all uppercase">IT00 A000 0000 0000 0000 0000 000</p>
+                <p class="text-[10px] uppercase mt-2 font-bold opacity-60">Intestatario: Ale & Tia â€¢ Causale: Nuova Zelanda</p>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section id="rsvp" class="bg-surface-container border-4 border-black p-8 pixel-shadow-sm">
+            <h2 class="font-serif text-3xl font-bold mb-4 border-b-2 border-black inline-block">Save Point (RSVP)</h2>
+            <p class="text-sm mb-6 font-medium">Confermate entro <strong>Ottobre 2026</strong> per non finire nella lista degli esclusi dal boss finale!</p>
+            <form class="space-y-4">
+                <input type="text" placeholder="Nome Giocatore" class="w-full border-2 border-black p-2 focus:ring-2 focus:ring-secondary-container outline-none" required>
+                <select class="w-full border-2 border-black p-2 focus:ring-2 focus:ring-secondary-container outline-none" required>
+                    <option value="" disabled selected>Parteciperai?</option>
+                    <option>SÃ¬, porto il costume!</option>
+                    <option>No, Game Over.</option>
+                </select>
+                <button type="submit" class="w-full bg-black text-white font-bold uppercase p-3 border-2 border-black hover:bg-secondary-container hover:text-black transition-colors">Salva Partita</button>
+            </form>
+        </section>
+    </div>
+
+</main>
+
+<!-- Bottom Nav Mobile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center py-3 bg-[#F2EFE9] border-t-4 border-black md:hidden">
+    <a href="#story" class="flex flex-col items-center gap-1"><span class="material-symbols-outlined">history_edu</span><span class="text-[9px] font-bold">STORIA</span></a>
+    <a href="#program" class="flex flex-col items-center gap-1"><span class="material-symbols-outlined">map</span><span class="text-[9px] font-bold">MAPPA</span></a>
+    <a href="#dresscode" class="flex flex-col items-center gap-1"><span class="material-symbols-outlined">checkroom</span><span class="text-[9px] font-bold">OUTFIT</span></a>
+    <a href="#rsvp" class="bg-red-600 text-white p-2 border-2 border-black -translate-y-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"><span class="material-symbols-outlined">mail</span></a>
+</nav>
+
+<!-- Footer -->
+<footer class="py-12 bg-black text-white text-center border-t-8 border-double border-white mb-[80px] md:mb-0">
+    <div class="font-serif italic text-2xl mb-2">ALE & TIA</div>
+    <p class="font-serif italic text-lg opacity-70">GAME SAVED â€¢ TUSCANY 2027</p>
+</footer>
+
+</body>
+</html>
