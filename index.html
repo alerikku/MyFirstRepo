@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ale & Tia - The Eternal Quest | Simple and Clean</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Niconne&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        khblue: "#001a4d",
+                        khgold: "#ffd700",
+                        nomurasilver: "#b0b0b0",
+                        tuscanycream: "#fbf9f1",
+                        ffprimary: "#007fff",
+                        codecgreen: "#4af04a",
+                    },
+                    fontFamily: {
+                        serif: ["Cormorant Garamond", "serif"],
+                        cinzel: ["Cinzel", "serif"],
+                        body: ["EB Garamond", "serif"],
+                        mono: ["Share Tech Mono", "monospace"],
+                        script: ["Niconne", "cursive"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Setup: Tuscany Chic + Nomura Silver */
+        body { background-color: #fbf9f1; color: #1a1a1a; font-family: 'EB Garamond', serif; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        
+        /* Language Toggle */
+        body.lang-en .it { display: none; }
+        body.lang-it .en { display: none; }
+
+
+        /* General UI Nomura/KH Style: Light, transparent, silver border */
+        .nomura-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 2px solid #b0b0b0;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .nomura-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: #ffd700; }
+
+
+        /* ZELDA: Breath of Tuscany Chic */
+        .botw-quest { background: rgba(0,0,0,0.7); color: #fff; padding: 10px 20px; border-radius: 4px; display: inline-block; }
+        .botw-quest::before { content: '♦'; color: #ffd700; margin-right: 10px; }
+        .zelda-heart { color: #ff3333; }
+
+
+        /* MGS: Codec Breed (Tuscany-style) */
+        .codec-box { border: 2px solid #556B2F; background: rgba(85, 107, 47, 0.05); position: relative; }
+        .codec-scanline { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 50%, rgba(85,107,47,0.05) 50%); background-size: 100% 4px; pointer-events: none; }
+
+
+        /* NOMURA HISTORY FLOW (Replacing Grid) */
+        .history-flow-container { position: relative; max-width: 900px; margin: 0 auto; }
+        .history-flow-line { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: #ddd; z-index: 1; }
+        .history-flow-node { position: relative; z-index: 2; margin-bottom: 4rem; display: flex; align-items: center; justify-content: center; }
+        .history-flow-dot { width: 14px; height: 14px; border-radius: 50%; background: #b0b0b0; border: 3px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        .history-flow-node.activated .history-flow-dot { background: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        .history-flow-content { width: 42%; padding: 1.5rem; background: rgba(255,255,255,0.7); border: 1px solid #ddd; backdrop-filter: blur(4px); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .history-flow-node:nth-child(even) .history-flow-content { margin-right: 58%; text-align: right; }
+        .history-flow-node:nth-child(odd) .history-flow-content { margin-left: 58%; text-align: left; }
+
+
+        /* DIVE TO THE TUSCANY HEART (KH Edition) */
+        .stained-glass-container { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+        .stained-glass-outer {
+            position: absolute; inset: 0;
+            border-radius: 50%; border: 6px solid #b0b0b0;
+            background: conic-gradient(from 0deg, #b0b0b0, #ffd700, #fff, #b0b0b0);
+            mix-blend-mode: multiply; opacity: 0.3;
+        }
+        .stained-glass-inner {
+            position: absolute; inset: 10px;
+            border-radius: 50%;
+            background-image: url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80');
+            background-size: cover; background-position: center;
+            filter: luminosity; border: 4px solid #fff;
+        }
+    </style>
+</head>
+<body class="lang-it">
+
+
+    <!-- Language Toggle -->
+    <div class="fixed top-4 right-4 z-[100]">
+        <button onclick="document.body.classList.toggle('lang-en'); document.body.classList.toggle('lang-it');" 
+                class="nomura-card px-4 py-1 text-xs font-bold uppercase tracking-widest text-mgsblack">
+            <span class="it">EN</span><span class="en">IT</span>
+        </button>
+    </div>
+
+
+    <!-- 1. ZELDA: BREATH OF TUSCANY -->
+    <header class="min-h-screen relative flex flex-col items-center justify-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(251, 249, 241, 0.7), rgba(251, 249, 241, 0.85)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1920&q=80');">
+        <div class="botw-quest font-cinzel tracking-widest text-sm mb-6">
+            <span class="it">MAIN QUEST AGGIORNATA</span><span class="en">MAIN QUEST UPDATED</span>
+        </div>
+        <h1 class="font-cinzel text-6xl md:text-8xl font-bold text-gray-900 drop-shadow-[0_2px_10px_rgba(255,215,0,0.3)] italic">
+            Ale & Tia
+        </h1>
+        <div class="zelda-hearts text-3xl my-6 flex gap-2 justify-center">
+            <i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-regular fa-heart"></i>
+        </div>
+        <p class="font-cinzel text-xl tracking-widest uppercase">4-6 <span class="it">Giugno</span><span class="en">June</span> 2027</p>
+        <p class="italic text-xl mt-2 text-gray-600">Il Grande Prato • Castelfiorentino (FI)</p>
+    </header>
+
+
+    <!-- 2. MGS: TUSCANY CODEC (briefing) -->
+    <section class="py-16 px-6" id="codec">
+        <div class="max-w-4xl mx-auto codec-box p-6 md:p-10 font-mono">
+            <div class="codec-scanline"></div>
+            <div class="flex flex-col md:flex-row gap-8 items-center relative z-10">
+                <div class="text-center md:w-1/3">
+                    <i class="fa-solid fa-satellite-dish text-codecgreen text-6xl mb-4 animate-pulse"></i>
+                    <p class="text-codecgreen font-bold text-2xl">140.96</p>
+                </div>
+                <div class="md:w-2/3 border-l-2 border-codecgreen pl-8">
+                    <h2 class="text-2xl font-bold mb-4 text-mgsblack uppercase"><span class="it">> Briefing Missione</span><span class="en">> Mission Briefing</span></h2>
+                    <p class="it">"Snake... ehm, Ospite. Non è un matrimonio formale. Weekend epico in Toscana. Pizza, piscina, vino e zero stress. Equipaggia il costume, prepara il salvataggio dati. Passo."</p>
+                    <p class="en">"Snake... Guest. No formal wedding. Epic weekend in Tuscany. Pizza, pool, wine, and zero stress. Gear up, prepare the save point. Over."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. NOMURA HISTORY FLOW (Replacing Grid) -->
+    <section class="py-20 px-6 bg-white/50 border-y-2 border-gray-100" id="story">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-cinzel text-4xl font-bold text-gray-900 uppercase">Jiminy's Journal (Tuscany Chapter)</h2>
+                <p class="font-garamond italic mt-2 text-gray-600">Simple and Clean — Our Journey So Far</p>
+            </div>
+
+
+            <div class="history-flow-container">
+                <div class="history-flow-line"></div>
+
+
+                <!-- 2014 -->
+                <div class="history-flow-node activated">
+                    <div class="history-flow-dot"></div>
+                    <div class="history-flow-content nomura-card">
+                        <h3 class="font-cinzel text-gray-900 font-bold">2014 - Milanofiori</h3>
+                        <p class="it text-sm mt-1">Spawn Point. Tia faceva il caffè, Ale lo beveva. Uniti da Pikachu e videogiochi.</p>
+                        <p class="en text-sm mt-1">Spawn Point. Tia made coffee, Ale drank it. United by Pikachu and gaming.</p>
+                    </div>
+                </div>
+
+
+                <!-- 2019 -->
+                <div class="history-flow-node">
+                    <div class="history-flow-dot"></div>
+                    <div class="history-flow-content nomura-card">
+                        <h3 class="font-cinzel text-gray-900 font-bold">2019 - Svizzera</h3>
+                        <p class="it text-sm mt-1">New World Unlocked. Il party si trasferisce oltre confine per nuove missioni.</p>
+                        <p class="en text-sm mt-1">New World Unlocked. The party moves across the border for new missions.</p>
+                    </div>
+                </div>
+
+
+                <!-- 2022 -->
+                <div class="history-flow-node activated">
+                    <div class="history-flow-dot"></div>
+                    <div class="history-flow-content nomura-card">
+                        <h3 class="font-cinzel text-gray-900 font-bold">2022 - Mati</h3>
+                        <p class="it text-sm mt-1">Party Expanded. Spawn della prima Mini-Boss. Livello di gioia MAX.</p>
+                        <p class="en text-sm mt-1">Party Expanded. First Mini-Boss spawned. Joy level MAX.</p>
+                    </div>
+                </div>
+
+
+                <!-- 2025 -->
+                <div class="history-flow-node">
+                    <div class="history-flow-dot"></div>
+                    <div class="history-flow-content nomura-card">
+                        <h3 class="font-cinzel text-gray-900 font-bold">2025 - Marghe</h3>
+                        <p class="it text-sm mt-1">Final Squad. Arriva Margherita. Party al completo, pronti per la Boss Fight finale.</p>
+                        <p class="en text-sm mt-1">Final Squad. Margherita arrives. Party complete, ready for the final Boss Fight.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. KH PROGRAM: Simple Dive -->
+    <section class="max-w-6xl mx-auto py-20 px-6" id="program">
+        <h2 class="font-cinzel text-4xl font-bold mb-16 text-center text-gray-900 uppercase">Command Menu (The Weekend)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="nomura-card p-6 flex flex-col items-center text-center">
+                <i class="fa-solid fa-pizza-slice text-3xl text-gray-400 mb-4"></i>
+                <h3 class="font-cinzel font-bold text-2xl mb-2"><span class="it">Venerdì 4</span><span class="en">Friday 4</span></h3>
+                <h4 class="text-gray-400 font-bold tracking-widest text-xs mb-4">Pizza Quest</h4>
+                <p class="it text-sm">Caricamento carboidrati (HP Up) con pizza e forno a legna nel prato.</p>
+                <p class="en text-sm">Carb loading (HP Up) with wood-fired pizza on the lawn.</p>
+            </div>
+            <div class="nomura-card p-6 flex flex-col items-center text-center" style="border-color: #ffd700;">
+                <i class="fa-solid fa-rings-wedding text-3xl text-khgold mb-4"></i>
+                <h3 class="font-cinzel font-bold text-2xl mb-2"><span class="it">Sabato 5</span><span class="en">Saturday 5</span></h3>
+                <h4 class="text-khgold font-bold tracking-widest text-xs mb-4">The Main Boss (Ceremony 15:00)</h4>
+                <p class="it text-sm font-bold">Promesse sul prato, brindisi, cena e balli sotto le stelle.</p>
+                <p class="en text-sm font-bold">Vows on the lawn, toasts, dinner, and dancing under the stars.</p>
+            </div>
+            <div class="nomura-card p-6 flex flex-col items-center text-center">
+                <i class="fa-solid fa-swimming-pool text-3xl text-gray-400 mb-4"></i>
+                <h3 class="font-cinzel font-bold text-2xl mb-2"><span class="it">Domenica 6</span><span class="en">Sunday 6</span></h3>
+                <h4 class="text-gray-400 font-bold tracking-widest text-xs mb-4">Save Point & Quit</h4>
+                <p class="it text-sm">Brunch sopravvissuti, piscina, tennis e yoga. Ripristino HP.</p>
+                <p class="en text-sm">Survivors brunch, pool, tennis, and yoga. HP restore.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. DRESS CODE (MGS Warning) -->
+    <section class="bg-gray-900 text-white py-16 px-6 border-y-8 border-gray-700">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <i class="fa-solid fa-triangle-exclamation text-red-500 text-7xl animate-pulse"></i>
+            <div>
+                <h2 class="font-cinzel text-3xl font-bold mb-4 uppercase">Equipment Check (Dress Code)</h2>
+                <p class="it text-lg">Prato e sassi toscani. Ignorare questo avviso = debuff agilità -100.</p>
+                <p class="en text-lg italic">Tuscan lawn and stones. Ignoring this warning = -100 agility debuff.</p>
+                <ul class="list-none space-y-3 font-bold text-md mt-4">
+                    <li class="flex items-center gap-3 text-red-400"><i class="fa-solid fa-ban"></i> Tacchi: Vietati.<span class="en">Heels: Forbidden.</span></li>
+                    <li class="flex items-center gap-3 text-khgold"><i class="fa-solid fa-shoe-prints"></i> Scarpe comode: Obbligatorie.<span class="en">Comfy shoes: Mandatory.</span></li>
+                    <li class="flex items-center gap-3 text-khblue"><i class="fa-solid fa-swimmer"></i> Costume: Nell'inventario.<span class="en">Swimsuit: In inventory.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 6. REGISTRY & RSVP (PERSONA Style, Light Edition) -->
+    <section class="max-w-6xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="nomura-card p-8 bg-gray-900 text-white" style="border-color: #ffd700;">
+            <h2 class="font-cinzel text-3xl mb-6 text-khgold uppercase border-b-2 border-gray-700 pb-2">Inventory (Lista Nozze)</h2>
+            <img src="https://images.unsplash.com/photo-1469522859142-b06297314275?auto=format&fit=crop&w=800&q=80" class="w-full h-40 object-cover border-2 border-white mb-6 grayscale">
+            <p class="font-garamond text-lg mb-4">
+                <span class="it">Aiutateci a sbloccare il livello finale: Luna di Miele in <strong>Nuova Zelanda</strong>!</span>
+                <span class="en">Help us unlock the final level: Honeymoon in <strong>New Zealand</strong>!</span>
+            </p>
+            <div class="bg-white text-gray-900 p-4 font-mono font-bold text-center border-2 border-dashed border-gray-700 text-sm">
+                IT00 A000 0000 0000 0000 0000 000<br>
+                <span class="text-xs">Ale & Tia - Nuova Zelanda</span>
+            </div>
+        </div>
+
+
+        <div class="nomura-card p-8">
+            <h2 class="font-cinzel text-3xl mb-6 text-gray-900 uppercase border-b-2 border-gray-200 pb-2">Save Point (RSVP)</h2>
+            <p class="font-garamond text-lg mb-6 font-bold text-red-600">
+                <span class="it">Deadline: Ottobre 2026</span>
+                <span class="en">Deadline: October 2026</span>
+            </p>
+            <form class="space-y-4 font-garamond">
+                <input type="text" placeholder="Nome Giocatore" class="w-full border-2 border-gray-200 p-3 bg-white outline-none focus:border-khgold" required>
+                <select class="w-full border-2 border-gray-200 p-3 bg-white outline-none focus:border-khgold" required>
+                    <option value="" disabled selected>Ci sarai?</option>
+                    <option>Sì, porto il costume!</option>
+                    <option>No, Game Over per me.</option>
+                </select>
+                <button type="button" onclick="alert('Salvataggio effettuato!')" class="w-full bg-gray-900 text-white font-bold text-xl py-4 border-2 border-black hover:bg-khgold hover:text-gray-900 transition-colors uppercase font-cinzel">
+                    Save Game
+                </button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="text-center py-12 border-t border-gray-100 bg-white/50 opacity-60">
+        <h2 class="font-cinzel text-3xl text-khgold">ALE & TIA</h2>
+        <p class="mb-4">2027 • TUSCANY CHIC EDITION</p>
+        <p class="font-script text-3xl text-gray-500">Game Saved.</p>
+    </footer>
+
+
+    <script>
+        function toggleLang() {
+            document.body.classList.toggle('lang-en');
+            document.body.classList.toggle('lang-it');
+        }
+    </script>
+</body>
+</html>
