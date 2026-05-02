@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ale & Tia - The Eternal Quest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tuscany: '#FDFCF0',
+                        gold: '#D4AF37',
+                        codec: '#556B2F',
+                        persona: '#D32F2F',
+                        khblue: '#00A3E0',
+                        mgsblack: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        garamond: ['Cormorant Garamond', 'serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body.lang-en .it { display: none; }
+        body.lang-it .en { display: none; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #FDFCF0; color: #1A1A1A; }
+        .zelda-hearts i { color: #D32F2F; text-shadow: 1px 1px 0 #000; }
+        .codec-box { border: 2px solid #556B2F; background: rgba(85, 107, 47, 0.05); position: relative; }
+        .codec-scanline { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent, transparent 50%, rgba(85,107,47,0.1) 50%); background-size: 100% 4px; pointer-events: none; }
+        .ffx-grid-node { width: 80px; height: 80px; border-radius: 50%; border: 4px solid #D4AF37; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); position: relative; z-index: 10; }
+        .kh-stained-glass { border-radius: 50% 50% 0 0; border: 4px solid #00A3E0; background: #fff; box-shadow: 0 10px 30px rgba(0, 163, 224, 0.1); }
+        .p5-card { background: #1A1A1A; color: #fff; transform: skew(-2deg) rotate(-1deg); border: 4px solid #D32F2F; box-shadow: 8px 8px 0 #D32F2F; }
+        .p5-title { background: #D32F2F; color: #fff; display: inline-block; padding: 5px 15px; transform: skew(-10deg); font-weight: 900; letter-spacing: 2px; }
+    </style>
+</head>
+<body class="lang-it font-garamond text-lg overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 bg-tuscany/90 backdrop-blur-md border-b-2 border-gold py-3 px-6 flex justify-between items-center">
+        <div class="font-cinzel font-bold text-xl text-mgsblack">ALE <span class="text-gold">&</span> TIA</div>
+        <button onclick="toggleLang()" class="font-mono border-2 border-mgsblack px-3 py-1 hover:bg-gold hover:text-white transition-colors text-sm font-bold shadow-[2px_2px_0_#1A1A1A]">
+            <span class="it">ENGLISH</span><span class="en">ITALIANO</span>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION (ZELDA) -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(253, 252, 240, 0.7), rgba(253, 252, 240, 0.85)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1920&q=80');">
+        <div class="z-10">
+            <h3 class="font-cinzel text-gold tracking-[0.3em] mb-4 text-sm font-bold"><span class="it">MAIN QUEST: IL MATRIMONIO</span><span class="en">MAIN QUEST: THE WEDDING</span></h3>
+            <h1 class="font-cinzel text-6xl md:text-8xl font-bold text-mgsblack mb-4">Ale & Tia</h1>
+            <div class="zelda-hearts text-3xl my-6 flex gap-2 justify-center">
+                <i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-regular fa-heart"></i>
+            </div>
+            <p class="font-cinzel text-xl tracking-widest uppercase">4-6 <span class="it">Giugno</span><span class="en">June</span> 2027</p>
+            <p class="italic text-xl mt-2 text-gray-600">Il Grande Prato â€¢ Castelfiorentino (FI)</p>
+        </div>
+    </section>
+
+    <!-- BRIEFING (MGS3) -->
+    <section class="max-w-5xl mx-auto py-16 px-6" id="codec">
+        <div class="codec-box p-6 md:p-10 font-mono">
+            <div class="codec-scanline"></div>
+            <div class="flex flex-col md:flex-row gap-8 items-center relative z-10">
+                <div class="text-center md:w-1/3">
+                    <i class="fa-solid fa-satellite-dish text-codec text-6xl mb-4 animate-pulse"></i>
+                    <p class="text-codec font-bold text-2xl">FREQ 140.96</p>
+                </div>
+                <div class="md:w-2/3 border-l-2 border-codec pl-8">
+                    <h2 class="text-2xl font-bold mb-4 text-mgsblack uppercase"><span class="it">> Briefing Missione</span><span class="en">> Mission Briefing</span></h2>
+                    <p class="it">"Ascolta Ale, ascolta Tia. Questo non Ã¨ un matrimonio formale. L'obiettivo Ã¨ riunire il party per un weekend leggendario in Toscana. Pizza party, piscina e zero stress. Equipaggiatevi e preparatevi."</p>
+                    <p class="en">"Listen Ale, listen Tia. This isn't a formal wedding. The goal is to gather the party for a legendary weekend in Tuscany. Pizza party, pool, and zero stress. Gear up and get ready."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORIA (FFX SPHERE GRID) -->
+    <section class="bg-gray-50 py-20 px-6 border-y-2 border-gold" id="story">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="font-cinzel text-4xl font-bold mb-16 text-mgsblack uppercase"><span class="it">Sferografia dell'Amore</span><span class="en">Sphere Grid of Love</span></h2>
+            <div class="relative grid grid-cols-1 md:grid-cols-4 gap-12 z-10">
+                <div class="flex flex-col items-center">
+                    <div class="ffx-grid-node mb-4 text-gold text-3xl"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="font-cinzel font-bold text-xl">2014</h3>
+                    <p class="it text-sm">Milanofiori. Tia faceva i caffÃ¨, Ale li beveva. Uniti per sempre grazie a Pikachu e ai videogiochi.</p>
+                    <p class="en text-sm">Milanofiori. Tia made coffee, Ale drank it. United forever thanks to Pikachu and gaming.</p>
+                </div>
+                <div class="flex flex-col items-center md:mt-16">
+                    <div class="ffx-grid-node mb-4 text-gold text-3xl"><i class="fa-solid fa-map"></i></div>
+                    <h3 class="font-cinzel font-bold text-xl">2019</h3>
+                    <p class="it text-sm">Nuova mappa sbloccata: Svizzera! Il party si trasferisce oltre confine.</p>
+                    <p class="en text-sm">New map unlocked: Switzerland! The party moves across the border.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="ffx-grid-node mb-4 text-gold text-3xl"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h3 class="font-cinzel font-bold text-xl">2022</h3>
+                    <p class="it text-sm">Inverno. Spawn della piccola Mati. Il party cresce di numero!</p>
+                    <p class="en text-sm">Winter. Little Mati spawns. The party is growing!</p>
+                </div>
+                <div class="flex flex-col items-center md:mt-16">
+                    <div class="ffx-grid-node mb-4 text-gold text-3xl"><i class="fa-solid fa-star"></i></div>
+                    <h3 class="font-cinzel font-bold text-xl">2025</h3>
+                    <p class="it text-sm">Primavera. Arriva Margherita. Party al completo e pronti per il Boss Finale: il matrimonio!</p>
+                    <p class="en text-sm">Spring. Margherita arrives. Party full and ready for the Final Boss: the wedding!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMMA (KINGDOM HEARTS) -->
+    <section class="max-w-6xl mx-auto py-20 px-6" id="program">
+        <h2 class="font-cinzel text-4xl font-bold mb-16 text-center text-mgsblack uppercase"><span class="it">Fasi della Missione</span><span class="en">Mission Phases</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="kh-stained-glass p-8 text-center flex flex-col border-khblue">
+                <h3 class="font-cinzel font-bold text-2xl mb-4">VenerdÃ¬ 4</h3>
+                <p class="it italic">Pizza Party al forno a legna. Caricamento carboidrati (HP Up).</p>
+                <p class="en italic">Wood-fired Pizza Party. Carb loading (HP Up).</p>
+            </div>
+            <div class="kh-stained-glass p-8 text-center flex flex-col border-persona" style="border-color: #D32F2F;">
+                <h3 class="font-cinzel font-bold text-2xl mb-4">Sabato 5</h3>
+                <p class="it font-bold">15:00. Cerimonia nel prato. Niente stress, solo festa e balli.</p>
+                <p class="en font-bold">3:00 PM. Ceremony on the lawn. No stress, just party and dance.</p>
+            </div>
+            <div class="kh-stained-glass p-8 text-center flex flex-col border-codec" style="border-color: #556B2F;">
+                <h3 class="font-cinzel font-bold text-2xl mb-4">Domenica 6</h3>
+                <p class="it italic">Brunch di recupero, piscina, yoga e tennis. Save & Quit.</p>
+                <p class="en italic">Recovery brunch, pool, yoga, and tennis. Save & Quit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DRESS CODE -->
+    <section class="bg-mgsblack text-white py-16 px-6 border-y-8 border-persona">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <i class="fa-solid fa-triangle-exclamation text-persona text-7xl animate-bounce"></i>
+            <div>
+                <h2 class="font-cinzel text-3xl font-bold mb-4 uppercase">Equipaggiamento (Dress Code)</h2>
+                <p class="it text-lg">Saremo su prato e sassi. I tacchi a spillo danno un malus di -100 agilitÃ . Portate scarpe comode e il costume da bagno nell'inventario!</p>
+                <p class="en text-lg italic">We'll be on grass and stones. Stilettos give a -100 agility debuff. Bring comfy shoes and a swimsuit in your inventory!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRY & RSVP (PERSONA 5) -->
+    <section class="max-w-6xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="p5-card p-8">
+            <h2 class="p5-title text-2xl mb-6 uppercase">Inventory (Lista Nozze)</h2>
+            <p class="it mb-6">Il nostro loot finale? Una luna di miele in <strong>Nuova Zelanda</strong>! Aiutateci a sbloccare questo DLC.</p>
+            <p class="en mb-6 italic">Our final loot? A honeymoon in <strong>New Zealand</strong>! Help us unlock this DLC.</p>
+            <div class="bg-white text-mgsblack p-4 font-mono font-bold text-center border-4 border-persona transform skew-y-1">
+                IT00 A000 0000 0000 0000 0000 000<br>
+                <span class="text-xs">Ale & Tia - Nuova Zelanda</span>
+            </div>
+        </div>
+        <div class="p5-card p-8 bg-white text-mgsblack" style="border-color: #1A1A1A; box-shadow: 8px 8px 0 #1A1A1A;">
+            <h2 class="p5-title text-2xl mb-6 uppercase" style="background: #1A1A1A;">Save Point (RSVP)</h2>
+            <p class="it font-bold text-persona mb-4 uppercase">Scadenza: Ottobre 2026</p>
+            <p class="en font-bold text-persona mb-4 uppercase italic">Deadline: October 2026</p>
+            <form class="space-y-4 font-mono">
+                <input type="text" placeholder="PLAYER NAME" class="w-full border-2 border-black p-2 bg-gray-50 outline-none" required>
+                <select class="w-full border-2 border-black p-2 bg-gray-50 outline-none" required>
+                    <option class="it">SÃ¬, porto il costume!</option>
+                    <option class="en">Yes, bringing my swimsuit!</option>
+                    <option class="it">Purtroppo Game Over per me.</option>
+                    <option class="en">Sadly, Game Over for me.</option>
+                </select>
+                <button type="button" onclick="alert('Dati Salvati!')" class="w-full bg-persona text-white font-bold py-3 border-4 border-black hover:bg-mgsblack transition-all">SALVA PARTITA / SAVE GAME</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-mgsblack text-white text-center py-10 font-mono border-t-4 border-gold">
+        <h2 class="font-cinzel text-2xl text-gold mb-2">ALE & TIA</h2>
+        <p class="text-xs opacity-50">2027 â€¢ TUSCANY EDITION â€¢ GAME SAVED</p>
+    </footer>
+
+    <script>
+        function toggleLang() {
+            document.body.classList.toggle('lang-en');
+            document.body.classList.toggle('lang-it');
+        }
+    </script>
+</body>
+</html>
