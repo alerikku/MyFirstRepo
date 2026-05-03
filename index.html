@@ -16,6 +16,7 @@
             --tuscan-wine: #722f37;
             --tuscan-olive: #556b2f;
             --kh-blue: #00a8ff;
+            --kh-dark: #050520;
             --gold: #f1c40f;
             --mgs-green: #33ff33;
             --ff-blue-top: #0000a0;
@@ -180,12 +181,31 @@
         .rsvp-form-mock { background: #111; padding: clamp(20px, 5vw, 40px); border: 4px double var(--p5-red); width: 100%; max-width: 600px; }
         .pixel-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
         .pixel-form label { font-size: clamp(0.5rem, 2vw, 0.6rem); color: var(--gold); line-height: 1.5; }
-        .pixel-form input, .pixel-form select, .pixel-form textarea { width: 100%; padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 1rem; border: 2px solid var(--p5-red); background: var(--tuscan-cream); border-radius: 0; }
+        .pixel-form input, .pixel-form select, .pixel-form textarea { width: 100%; padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 1rem; border: 2px solid var(--p5-red); background: var(--tuscan-cream); border-radius: 0; color: #000;}
         .pixel-btn-submit { background: var(--p5-red); color: white; font-size: clamp(0.7rem, 3vw, 1rem); padding: 15px; border: 4px solid white; cursor: pointer; box-shadow: 4px 4px 0px var(--tuscan-wine); margin-top: 10px; transition: 0.3s; }
         .pixel-btn-submit:hover { background: var(--kh-blue); transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--tuscan-wine); }
-        .iban-box { background: white; color: black; padding: clamp(10px, 3vw, 20px); font-family: monospace; font-size: clamp(0.8rem, 3vw, 1.2rem); margin-top: 20px; border-radius: 4px; word-break: break-all; border: 4px solid var(--kh-blue); }
-        .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
-        .form-row > div { flex: 1; min-width: 120px; }
+        
+        /* FORM LAYOUTS */
+        .form-row-inline { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+        .form-row-inline > label { flex-shrink: 0; }
+        .form-row-inline > select, .form-row-inline > input { flex-grow: 1; width: auto; }
+        .pixel-btn-small { background: var(--kh-blue); color: white; border: 2px solid white; font-family: 'Press Start 2P', cursive; font-size: 0.5rem; padding: 8px 12px; cursor: pointer; transition: 0.3s;}
+        .pixel-btn-small:hover { background: var(--gold); color: #000; }
+        #miniboss-section { border: 2px dashed #444; padding: 15px; background: rgba(0,0,0,0.5); }
+
+        /* --- KINGDOM HEARTS DLC --- */
+        .kh-dlc {
+            background: linear-gradient(135deg, #050520, #0a1930);
+            border: 4px solid var(--gold); border-radius: 10px; padding: clamp(20px, 5vw, 40px);
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.4); text-align: center; margin-top: 60px; width: 100%; max-width: 700px;
+        }
+        .kh-dlc h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: clamp(1.2rem, 4vw, 1.8rem); text-shadow: 2px 2px 0px var(--kh-blue); margin-bottom: 15px;}
+        .kh-dlc p { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #e0f7fa; }
+        .iban-box-kh { 
+            background: rgba(0, 168, 255, 0.1); color: var(--gold); padding: 15px; border: 2px dashed #00a8ff; 
+            font-family: 'Press Start 2P', monospace; font-size: clamp(0.7rem, 2.5vw, 1.1rem); 
+            margin: 20px auto; letter-spacing: 1px; word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -309,13 +329,15 @@
     <section id="directions" class="section">
         <div class="travel-info-container ctr-style">
             <div class="travel-text">
-                <h3 class="font-ctr" style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 15px;"><i class="fa-solid fa-flag-checkered"></i> COME ARRIVARE</h3>
-                <p><strong>🚗 Macchina (Go-Kart di Crash):</strong> Autostrada A1, uscita FI Scandicci. Prendi la Fi-Pi-Li, derapa fino all'uscita Empoli Ovest e usa il turbo verso Castelfiorentino (attenti alle casse TNT!).</p>
-                <p><strong>🚆 Treno (Hovercraft di Cortex):</strong> Regionale Empoli-Siena fino a Castelfiorentino. Da lì 10 min di taxi, sperando che Neo Cortex non abbia bloccato i binari!</p>
-                <p><strong>✈️ Aereo (L'Aereo di Coco):</strong> Firenze (FLR) o Pisa (PSA). Da lì noleggiate un kart e sfrecciate verso il Prato prima che scada il tempo della Reliquia!</p>
+                <h3 class="font-ctr" style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 10px;"><i class="fa-solid fa-flag-checkered"></i> COME ARRIVARE</h3>
+                <p style="color: #000; font-family: 'Montserrat', sans-serif; font-weight: bold; margin-bottom: 20px;">
+                    <i class="fa-solid fa-location-dot"></i> Via dei Renai, 11, 50051 Castelfiorentino (FI)
+                </p>
+                <p><strong>🚗 Macchina (Go-Kart di Crash):</strong> Autostrada A1, uscita FI Scandicci. Prendi la Fi-Pi-Li, derapa fino all'uscita <strong>Empoli Ovest</strong> e segui i cartelli per Castelfiorentino/Siena. Usa il turbo, mancano pochi km!</p>
+                <p><strong>🚆 Treno (Hovercraft di Cortex):</strong> Linea ferroviaria Empoli-Siena. Scendi alla stazione di <strong>Castelfiorentino</strong>. Da lì, il Save Point dista solo 10 minuti di taxi o navetta.</p>
+                <p><strong>✈️ Aereo (L'Aereo di Coco):</strong> Atterra ai gateway di Firenze (FLR) o Pisa (PSA). Entrambi i settori sono ottimi punti di spawn per noleggiare un kart e sfrecciare verso la Toscana!</p>
             </div>
-            <!-- Link Google Maps Aggiornato -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11559.88878508104!2d10.9634795!3d43.5863261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a6889eb20dc95%3A0xc069f52fbe2dd4f!2sIl%20Grande%20Prato!5e0!3m2!1sen!2sch!4v1716127110300!5m2!1sen!2sch" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.347596041793!2d10.95764021226759!3d43.57833067900142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a67c52baaf019%3A0x8e8eb4648719c1e7!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1716127110300!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <a href="#equipment" class="scroll-indicator" style="color: var(--ctr-orange);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
@@ -350,7 +372,7 @@
         <a href="#program" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- PROGRAMMA SECTION (Quest Log Vibe - ESPANSO) -->
+    <!-- PROGRAMMA SECTION (Quest Log Vibe) -->
     <section id="program" class="section">
         <h2 class="quest-title font-zelda"><i class="fa-solid fa-book-open"></i> QUEST LOG</h2>
         
@@ -385,37 +407,37 @@
             <h3 class="font-retro" style="color: var(--p5-red); margin-bottom: 10px; font-size: 1.2rem;">RSVP FORM</h3>
             <p style="color: #aaa; margin-bottom: 20px; font-size: clamp(0.7rem, 2vw, 0.9rem);">Compila i campi per registrare il tuo salvataggio nel database.</p>
             
-            <form class="pixel-form font-retro" action="https://formsubmit.co/aleetianoescape@gmail.com" method="POST">
+            <form id="wedding-form" class="pixel-form font-retro" action="https://formsubmit.co/aleetianoescape@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="Nuovo RSVP da Ale & Tia Wedding Quest!">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
+                
+                <!-- Campi nascosti calcolati in JS prima dell'invio -->
+                <input type="hidden" name="Totale_Bambini_Sotto_4_Anni" id="tot_under_4" value="0">
+                <input type="hidden" name="Totale_Bambini_Sopra_Uguale_4_Anni" id="tot_over_4" value="0">
 
                 <div><label>Nomi dei partecipanti principali:</label><input type="text" name="Nomi_Partecipanti" required placeholder="Es. Cloud e Aerith"></div>
                 
-                <div class="form-row">
-                    <div>
-                        <label>Numero Adulti:</label>
-                        <select name="Numero_Adulti" required>
-                            <option value="" disabled selected>Seleziona...</option>
-                            <option value="1 Adulto">1 Adulto</option>
-                            <option value="2 Adulti">2 Adulti</option>
-                            <option value="3 Adulti">3 Adulti</option>
-                            <option value="4+ Adulti">4+ Adulti</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Numero Mini-Boss (Bambini):</label>
-                        <select name="Numero_Bambini" required>
-                            <option value="" disabled selected>Seleziona...</option>
-                            <option value="0 Bambini">0 Bambini</option>
-                            <option value="1 Bambino">1 Bambino</option>
-                            <option value="2 Bambini">2 Bambini</option>
-                            <option value="3+ Bambini">3+ Bambini</option>
-                        </select>
-                    </div>
+                <!-- ADULTI IN LINEA -->
+                <div class="form-row-inline">
+                    <label>Numero Adulti:</label>
+                    <select name="Numero_Adulti" required>
+                        <option value="" disabled selected>Seleziona...</option>
+                        <option value="1">1 Adulto</option>
+                        <option value="2">2 Adulti</option>
+                        <option value="3">3 Adulti</option>
+                        <option value="4+">4+ Adulti</option>
+                    </select>
                 </div>
 
-                <div><label>Età dei Mini-Boss (se presenti):</label><input type="text" name="Eta_Bambini" placeholder="Es. 3 anni, 5 anni. Lascia vuoto se 0."></div>
+                <!-- MINI BOSS DINAMICI -->
+                <div id="miniboss-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <label style="margin:0;">Mini-Boss (Bambini)?</label>
+                        <button type="button" id="add-miniboss-btn" class="pixel-btn-small">+ AGGIUNGI</button>
+                    </div>
+                    <div id="mini-boss-list"></div>
+                </div>
 
                 <div><label>Confermi la presenza?</label>
                     <select name="Conferma_Presenza" required>
@@ -452,19 +474,23 @@
             </form>
         </div>
 
-        <div style="margin-top: 50px; text-align: center; max-width: 90vw;">
-            <h3 class="font-zelda" style="color: var(--gold); font-size: 1.5rem;"><i class="fa-solid fa-plane"></i> DLC: NUOVA ZELANDA</h3>
-            <p style="margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.6;">
-                La vostra presenza è già il drop più raro che potessimo sperare di lootare! <br>
-                Ma se proprio volete aiutarci a raccogliere abbastanza *Munny* per sbloccare l'espansione della nostra avventura nella Terra di Mezzo, potete usare questo Terminale:
+        <!-- KINGDOM HEARTS DLC SECTION -->
+        <div class="kh-dlc">
+            <h3 class="font-zelda" style="color: var(--gold); font-size: clamp(1.2rem, 4vw, 1.8rem); text-shadow: 2px 2px 0px var(--kh-blue);">
+                <i class="fa-solid fa-rocket"></i> GUMMI SHIP UPGRADE: NUOVA ZELANDA
+            </h3>
+            <p style="margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #e0f7fa;">
+                La vostra presenza al nostro save point è già il Drop più raro che potessimo desiderare! <br><br>
+                Ma se volete aiutarci a potenziare la nostra <strong>Gummi Ship</strong> per affrontare le rotte interdimensionali del viaggio di nozze verso la Terra di Mezzo, potete caricare i vostri <em>Munny</em> in questo Terminale:
             </p>
-            <div class="iban-box">IT99 X000 0000 0000 0000 0000 000</div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Intestato a: Ale & Tia</p>
+            <div class="iban-box-kh">IT99 X000 0000 0000 0000 0000 000</div>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #b3e5fc;">Intestato a: Ale & Tia</p>
         </div>
     </section>
 
-    <!-- JS ANIMAZIONE TESTO CODEC -->
+    <!-- JS SCRIPTS -->
     <script>
+        // Animazione Codec MGS
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -474,6 +500,53 @@
                 });
             }, { threshold: 0.5 });
             observer.observe(document.getElementById("dialogue-box"));
+        });
+
+        // Gestione Dinamica Mini-Boss e Calcolo Età
+        let childCounter = 0;
+        document.getElementById('add-miniboss-btn').addEventListener('click', () => {
+            childCounter++;
+            const container = document.getElementById('mini-boss-list');
+            const row = document.createElement('div');
+            row.className = 'form-row-inline';
+            row.style.marginTop = '10px';
+            
+            // Genera le opzioni per l'età (0-17 anni)
+            let ageOptions = '<option value="" disabled selected>Seleziona età...</option>';
+            for(let i = 0; i <= 17; i++) {
+                ageOptions += `<option value="${i}">${i} ${i === 1 ? 'anno' : 'anni'}</option>`;
+            }
+
+            row.innerHTML = `
+                <label style="font-size: 0.5rem; color: #ccc;">Età Mini-Boss:</label>
+                <select class="miniboss-age" name="Eta_MiniBoss_${childCounter}" required style="font-family:'Montserrat', sans-serif; padding:8px;">
+                    ${ageOptions}
+                </select>
+                <button type="button" onclick="this.parentElement.remove();" style="background: var(--p5-black); color: white; border: 2px solid var(--p5-red); padding: 8px; cursor: pointer; font-family: 'Press Start 2P'; font-size: 0.5rem;">X</button>
+            `;
+            container.appendChild(row);
+        });
+
+        // Intercetta il submit del form per calcolare i totali dei bambini
+        document.getElementById('wedding-form').addEventListener('submit', function(e) {
+            let under4 = 0;
+            let over4 = 0;
+            
+            // Cicla su tutti i menu a tendina delle età creati
+            document.querySelectorAll('.miniboss-age').forEach(select => {
+                let age = parseInt(select.value);
+                if(!isNaN(age)) {
+                    if(age < 4) {
+                        under4++;
+                    } else {
+                        over4++;
+                    }
+                }
+            });
+            
+            // Salva i totali nei campi nascosti prima che parta la mail
+            document.getElementById('tot_under_4').value = under4;
+            document.getElementById('tot_over_4').value = over4;
         });
     </script>
 </body>
