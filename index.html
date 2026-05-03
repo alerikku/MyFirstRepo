@@ -126,7 +126,7 @@
         .start-dialogue .line-3 { animation: typeReveal 0.5s forwards 4.5s; }
         @keyframes typeReveal { 100% { opacity: 1; transform: translateX(0); } }
 
-        /* --- LOCATION E MAPPA (Zelda Style) --- */
+        /* --- LOCATION E MAPPA (Zelda Vibe) --- */
         #location { background: #fff; }
         .zelda-title { font-size: clamp(2rem, 8vw, 3.5rem); color: #d4af37; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 0px #000; }
         .loc-image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; width: 100%; max-width: 900px; }
@@ -151,7 +151,7 @@
         .ctr-style .travel-text strong { color: #000; text-shadow: 2px 2px 0px #fff; font-size: 1.1em; }
         .ctr-style iframe { border: 6px dashed var(--ctr-orange) !important; border-radius: 10px; width: 100%; height: 100%; min-height: 300px;}
 
-        /* --- EQUIPAGGIAMENTO (Final Fantasy X Aeons Style) --- */
+        /* --- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Aeons Style) --- */
         #equipment { background-color: #0b0f19; color: white; }
         .ffx-grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; max-width: 1000px; margin-top: 20px; }
         @media (min-width: 768px) { .ffx-grid { grid-template-columns: 1fr 1fr; } }
@@ -163,14 +163,16 @@
         }
         .ffx-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, transparent, #88ccff, transparent); }
         .ffx-card h3 { font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 4vw, 1.5rem); color: #88ccff; margin-bottom: 15px; border-bottom: 1px solid rgba(136,204,255,0.3); padding-bottom: 10px; text-shadow: 2px 2px 0px #000; }
-        .ffx-card p { font-family: 'Montserrat', sans-serif; font-size: clamp(0.9rem, 3vw, 1rem); line-height: 1.6; }
+        .ffx-card p { font-family: 'Montserrat', sans-serif; font-size: clamp(0.9rem, 3vw, 1rem); line-height: 1.6; margin-bottom: 10px;}
         .ffx-card strong { color: var(--gold); }
 
         /* --- PROGRAMMA (Zelda/RPG Quest Log) --- */
         #program { background: var(--tuscan-olive); color: white; }
         .quest-title { font-size: clamp(1.5rem, 6vw, 3rem); text-align: center; margin-bottom: 40px; color: var(--gold); text-shadow: 3px 3px 0px #000; }
-        .quest-item { background: rgba(0,0,0,0.4); border-left: 10px solid var(--gold); padding: 20px; margin: 15px 0; width: 100%; max-width: 800px; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); }
-        .quest-item h3 { font-size: clamp(0.8rem, 3vw, 1.1rem); margin-bottom: 10px; color: var(--gold); line-height: 1.4; }
+        .quest-item { background: rgba(0,0,0,0.4); border-left: 10px solid var(--gold); padding: 30px; margin: 15px 0; width: 100%; max-width: 800px; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); }
+        .quest-item h3 { font-size: clamp(1rem, 4vw, 1.3rem); margin-bottom: 15px; color: var(--gold); line-height: 1.4; border-bottom: 1px dashed var(--gold); padding-bottom: 10px;}
+        .quest-item p { font-size: clamp(0.9rem, 3vw, 1.1rem); line-height: 1.6; margin-bottom: 10px; }
+        .quest-detail { font-family: 'Press Start 2P', cursive; font-size: 0.6rem; color: #aaa; margin-top: 15px; display: block; line-height: 1.5;}
 
         /* --- RSVP --- */
         #rsvp { background-color: var(--p5-black); color: white; }
@@ -182,6 +184,8 @@
         .pixel-btn-submit { background: var(--p5-red); color: white; font-size: clamp(0.7rem, 3vw, 1rem); padding: 15px; border: 4px solid white; cursor: pointer; box-shadow: 4px 4px 0px var(--tuscan-wine); margin-top: 10px; transition: 0.3s; }
         .pixel-btn-submit:hover { background: var(--kh-blue); transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--tuscan-wine); }
         .iban-box { background: white; color: black; padding: clamp(10px, 3vw, 20px); font-family: monospace; font-size: clamp(0.8rem, 3vw, 1.2rem); margin-top: 20px; border-radius: 4px; word-break: break-all; border: 4px solid var(--kh-blue); }
+        .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .form-row > div { flex: 1; min-width: 120px; }
     </style>
 </head>
 <body>
@@ -262,7 +266,7 @@
         <div class="codec-faces">
             <div class="codec-face">
                 <i class="fas fa-user-secret"></i>
-                <span>EVA</span>
+                <span>TIA</span>
             </div>
             <div class="codec-wave">
                 <div class="wave-line"></div>
@@ -271,13 +275,13 @@
             </div>
             <div class="codec-face">
                 <i class="fas fa-user-ninja"></i>
-                <span>SNAKE</span>
+                <span>ALE</span>
             </div>
         </div>
         <div class="codec-dialogue" id="dialogue-box">
-            <p class="line-1"><strong>EVA:</strong> Snake, sei arrivato al save point?</p>
-            <p class="line-2"><strong>SNAKE:</strong> Sono al Grande Prato. Qual è l'obiettivo della missione?</p>
-            <p class="line-3"><strong>EVA:</strong> Semplice. Rilassarsi e divertirsi tra amici per celebrare il nostro grande amore. Niente stealth questa volta, fai rumore.</p>
+            <p class="line-1"><strong>TIA:</strong> Ale, sei arrivato al save point?</p>
+            <p class="line-2"><strong>ALE:</strong> Sono al Grande Prato. Qual è l'obiettivo della missione?</p>
+            <p class="line-3"><strong>TIA:</strong> Semplice. Rilassarsi e divertirsi tra amici per celebrare il nostro grande amore. Niente stealth questa volta, fai rumore.</p>
         </div>
         <a href="#location" class="scroll-indicator" style="color: var(--mgs-green); position: relative; margin-top: 40px; left: 0; transform: none;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
@@ -310,12 +314,13 @@
                 <p><strong>🚆 Treno (Hovercraft di Cortex):</strong> Regionale Empoli-Siena fino a Castelfiorentino. Da lì 10 min di taxi, sperando che Neo Cortex non abbia bloccato i binari!</p>
                 <p><strong>✈️ Aereo (L'Aereo di Coco):</strong> Firenze (FLR) o Pisa (PSA). Da lì noleggiate un kart e sfrecciate verso il Prato prima che scada il tempo della Reliquia!</p>
             </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11565.31976211516!2d10.9572418!3d43.6062134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a6889eb20dc95%3A0xc069f52fbe2dd4f!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
+            <!-- Link Google Maps Aggiornato -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11559.88878508104!2d10.9634795!3d43.5863261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a6889eb20dc95%3A0xc069f52fbe2dd4f!2sIl%20Grande%20Prato!5e0!3m2!1sen!2sch!4v1716127110300!5m2!1sen!2sch" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <a href="#equipment" class="scroll-indicator" style="color: var(--ctr-orange);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- EQUIPAGGIAMENTO (Final Fantasy X Aeons Style) -->
+    <!-- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Aeons Style) -->
     <section id="equipment" class="section">
         <h2 class="ff-title font-retro"><i class="fa-solid fa-gem"></i> EQUIPAGGIAMENTO</h2>
         <div class="ffx-grid">
@@ -332,28 +337,44 @@
                 <p>Il terreno del raid è composto da erba e ciottoli. Scegliete <strong>scarpe eleganti ma comode</strong>. I tacchi a spillo sono severamente bannati (infliggono lo status <em>K.O. Caviglia</em> e -110 Agilità).</p>
             </div>
             <div class="ffx-card">
-                <h3><i class="fa-solid fa-water"></i> TORNEO DI BLITZBALL</h3>
+                <h3><i class="fa-solid fa-water"></i> BLITZBALL & RELAX</h3>
                 <p>L'area di gioco include un'ampia fase acquatica. Non dimenticate di mettere in inventario <strong>costume da bagno e ciabatte</strong> per rilassarvi nell'arena della piscina!</p>
+            </div>
+            <div class="ffx-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(160,0,160,0.8), rgba(48,0,48,0.9));">
+                <h3><i class="fa-solid fa-gamepad"></i> THE GOLD SAUCER (MINIGIOCHI E SPORT)</h3>
+                <p>Il Prato non è solo un save point, è un vero parco divertimenti! La tenuta dispone di <strong>campi da tennis e da basket</strong>: se volete, portate pure le vostre racchette. </p>
+                <p>C'è anche un'area tranquilla per chi vuole portarsi il <strong>tappetino da Yoga</strong> per ricaricare gli MP. </p>
+                <p>E preparate i pollici: sono altamente previsti <strong>tornei improvvisati alla Nintendo Switch</strong> per chi vuole sfidare la Gilda!</p>
             </div>
         </div>
         <a href="#program" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- PROGRAMMA SECTION (Quest Log Vibe) -->
+    <!-- PROGRAMMA SECTION (Quest Log Vibe - ESPANSO) -->
     <section id="program" class="section">
         <h2 class="quest-title font-zelda"><i class="fa-solid fa-book-open"></i> QUEST LOG</h2>
+        
         <div class="quest-item">
             <h3 class="font-retro"><i class="fa-solid fa-star"></i> VENERDÌ 4 GIUGNO: TUTORIAL</h3>
-            <p>Check-in in giornata. Nel pomeriggio: <strong>Pizza Party</strong>. Relax, piscina e primi calici di vino toscano.</p>
+            <p>L'arrivo al campo base. Prendetevi il vostro tempo per esplorare la mappa e fare il check-in nelle stanze.</p>
+            <p>Nel tardo pomeriggio il forno si accende: <strong>Pizza Party per tutta la Gilda!</strong> Inizieremo a testare l'inventario dei vini e a goderci la piscina.</p>
+            <span class="quest-detail">[!] OBIETTIVO: Rilassarsi e non consumare troppa stamina prima del giorno successivo.</span>
         </div>
+        
         <div class="quest-item">
             <h3 class="font-retro"><i class="fa-solid fa-crown"></i> SABATO 5 GIUGNO: MAIN QUEST</h3>
-            <p><strong>Ore 15:00:</strong> La Cerimonia. A seguire: Festa a oltranza. Raid di cibo toscano, musica e open bar.</p>
+            <p>Il giorno del Raid Finale. La mattina è a vostra disposizione per minigiochi (tennis, basket, Switch) o per farmare exp in piscina.</p>
+            <p><strong>Ore 15:00 - INIZIO CERIMONIA.</strong> Un evento breve ma intenso, per sancire la nostra alleanza eterna. Subito dopo, si passa alla fase cruciale: la festa! Vi attende un banchetto toscano di livello leggendario, musica e open bar fino a esaurimento MP.</p>
+            <span class="quest-detail">[!] LOOT PREVISTO: Quantità industriali di cibo, ricordi epici e zero ore di sonno.</span>
         </div>
+        
         <div class="quest-item">
             <h3 class="font-retro"><i class="fa-solid fa-mug-hot"></i> DOMENICA 6 GIUGNO: EPILOGO</h3>
-            <p><strong>Brunch</strong> di recupero HP. Saluti e log-out entro il pomeriggio.</p>
+            <p>Nessun limite di tempo. Ci sveglieremo con calma per un <strong>Brunch di Gilda</strong>, fondamentale per rimuovere i debuff della sera precedente e ripristinare gli HP.</p>
+            <p>Dopo il pranzo, potremo salutarci e procedere al log-out definitivo dalla struttura entro il pomeriggio, pronti a tornare ai rispettivi mondi.</p>
+            <span class="quest-detail">[!] STATUS PARTY: Esausti, ma incredibilmente felici.</span>
         </div>
+        
         <a href="#rsvp" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
@@ -369,7 +390,33 @@
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
 
-                <div><label>Nomi dei partecipanti:</label><input type="text" name="Partecipanti" required></div>
+                <div><label>Nomi dei partecipanti principali:</label><input type="text" name="Nomi_Partecipanti" required placeholder="Es. Cloud e Aerith"></div>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Numero Adulti:</label>
+                        <select name="Numero_Adulti" required>
+                            <option value="" disabled selected>Seleziona...</option>
+                            <option value="1 Adulto">1 Adulto</option>
+                            <option value="2 Adulti">2 Adulti</option>
+                            <option value="3 Adulti">3 Adulti</option>
+                            <option value="4+ Adulti">4+ Adulti</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Numero Mini-Boss (Bambini):</label>
+                        <select name="Numero_Bambini" required>
+                            <option value="" disabled selected>Seleziona...</option>
+                            <option value="0 Bambini">0 Bambini</option>
+                            <option value="1 Bambino">1 Bambino</option>
+                            <option value="2 Bambini">2 Bambini</option>
+                            <option value="3+ Bambini">3+ Bambini</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div><label>Età dei Mini-Boss (se presenti):</label><input type="text" name="Eta_Bambini" placeholder="Es. 3 anni, 5 anni. Lascia vuoto se 0."></div>
+
                 <div><label>Confermi la presenza?</label>
                     <select name="Conferma_Presenza" required>
                         <option value="" disabled selected>Seleziona...</option>
@@ -377,6 +424,7 @@
                         <option value="No">No, Game Over</option>
                     </select>
                 </div>
+                
                 <div><label>Pernottamento:</label>
                     <select name="Pernottamento" required>
                         <option value="" disabled selected>Seleziona...</option>
@@ -385,15 +433,31 @@
                         <option value="Nessuno">Nessun pernottamento</option>
                     </select>
                 </div>
-                <div><label>Allergie/Status Ailments:</label><input type="text" name="Allergie"></div>
-                <div><label>Mini-Boss (Bimbi/Età):</label><input type="text" name="Bambini"></div>
-                <div><label>Commenti per la Gilda:</label><textarea name="Messaggio" rows="3"></textarea></div>
+
+                <div><label>Condivisione Stanza:</label>
+                    <select name="Condivisione_Stanza" required>
+                        <option value="" disabled selected>Aperto a condividere?</option>
+                        <option value="Sì, con chiunque">Sì, nessun problema</option>
+                        <option value="Sì, ma solo con conoscenti">Sì, ma solo con amici/conoscenti</option>
+                        <option value="No">No, preferiamo stanza privata</option>
+                        <option value="N/A">Non applicabile (non pernotto)</option>
+                    </select>
+                </div>
+
+                <div><label>Allergie/Status Ailments:</label><input type="text" name="Allergie" placeholder="Es. Nessuna, celiachia..."></div>
+                
+                <div><label>Commenti per la Gilda:</label><textarea name="Messaggio" rows="3" placeholder="Vuoi specificare con chi condividere la stanza o altro?"></textarea></div>
+                
                 <button type="submit" class="pixel-btn-submit font-retro"><i class="fa-solid fa-check"></i> CONFIRM SELECTION</button>
             </form>
         </div>
 
         <div style="margin-top: 50px; text-align: center; max-width: 90vw;">
             <h3 class="font-zelda" style="color: var(--gold); font-size: 1.5rem;"><i class="fa-solid fa-plane"></i> DLC: NUOVA ZELANDA</h3>
+            <p style="margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.6;">
+                La vostra presenza è già il drop più raro che potessimo sperare di lootare! <br>
+                Ma se proprio volete aiutarci a raccogliere abbastanza *Munny* per sbloccare l'espansione della nostra avventura nella Terra di Mezzo, potete usare questo Terminale:
+            </p>
             <div class="iban-box">IT99 X000 0000 0000 0000 0000 000</div>
             <p style="margin-top: 10px; font-size: 0.8rem;">Intestato a: Ale & Tia</p>
         </div>
