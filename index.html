@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ale & Tia: Final Mix - Wedding Quest 2026</title>
+    <!-- Fonts: Retro Pixel, Elegant Tuscan, and Modern Clean -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --p5-red: #d32f2f;
+            --p5-black: #000000;
+            --tuscan-cream: #fdf6e3;
+            --tuscan-wine: #722f37;
+            --tuscan-olive: #556b2f;
+            --kh-blue: #00a8ff;
+            --gold: #f1c40f;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--p5-black);
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- STILI GENERALI --- */
+        .section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--tuscan-cream);
+        }
+
+        .pixel-text { font-family: 'Press Start 2P', cursive; text-transform: uppercase; }
+        .elegant-text { font-family: 'Playfair Display', serif; }
+
+        h2.section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            transform: rotate(-2deg);
+            background: var(--p5-red);
+            color: white;
+            padding: 10px 30px;
+            display: inline-block;
+            box-shadow: 10px 10px 0px var(--p5-black);
+        }
+
+        /* --- HERO SECTION (Kingdom Hearts Style) --- */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-piscina.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            text-shadow: 5px 5px 0px var(--p5-red);
+            margin-bottom: 20px;
+        }
+
+        .kh-menu {
+            list-style: none;
+            margin-top: 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+        }
+
+        .kh-menu li {
+            margin: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .kh-menu li:hover {
+            color: var(--kh-blue);
+            transform: translateX(10px);
+        }
+
+        .kh-menu a { text-decoration: none; color: inherit; }
+
+        /* --- STORY SECTION (Persona 5 Style) --- */
+        #story {
+            background-color: var(--p5-red);
+            color: white;
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+        }
+
+        .story-card {
+            background: var(--p5-black);
+            padding: 30px;
+            transform: skew(-2deg);
+            border: 4px solid white;
+        }
+
+        /* --- STATUS SCREEN (Stats) --- */
+        #stats {
+            background-color: var(--tuscan-cream);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .char-stat-box {
+            background: white;
+            border: 5px solid var(--p5-black);
+            padding: 20px;
+            box-shadow: 15px 15px 0px var(--tuscan-wine);
+        }
+
+        .stat-bar-container {
+            margin: 15px 0;
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-bar {
+            height: 15px;
+            background: #ddd;
+            width: 100%;
+            position: relative;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: var(--p5-red);
+        }
+
+        .master-tag {
+            color: gold;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* --- LOCATION SECTION --- */
+        #location {
+            background: #fff;
+        }
+
+        .loc-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .loc-image-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 4px solid var(--p5-black);
+        }
+
+        /* --- PROGRAMMA (Quest Log) --- */
+        #program {
+            background: var(--tuscan-olive);
+            color: white;
+        }
+
+        .quest-item {
+            background: rgba(0,0,0,0.3);
+            border-left: 10px solid var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* --- RSVP & FOOTER --- */
+        #rsvp {
+            background-color: var(--p5-black);
+            color: white;
+        }
+
+        .rsvp-form-mock {
+            background: #222;
+            padding: 40px;
+            border: 2px dashed var(--p5-red);
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .iban-box {
+            background: white;
+            color: black;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .story-grid, .stats-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem !important; }
+            h2.section-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="section">
+        <h1 class="pixel-text">Ale & Tia: Final Mix</h1>
+        <p class="elegant-text" style="font-size: 1.5rem;">4 - 5 - 6 Giugno 2026 | Castelfiorentino</p>
+        
+        <ul class="kh-menu">
+            <li><a href="#story">PROLOGO: LA NOSTRA STORIA</a></li>
+            <li><a href="#stats">STATUS SCREEN: SKILLS</a></li>
+            <li><a href="#location">WORLD MAP: IL GRANDE PRATO</a></li>
+            <li><a href="#program">QUEST LOG: IL PROGRAMMA</a></li>
+            <li><a href="#rsvp">JOIN PARTY: RSVP</a></li>
+        </ul>
+        <p style="margin-top: 50px; font-size: 0.7rem; opacity: 0.7;" class="pixel-text">♪ Playing: Face My Fears - Utada Hikaru ♪</p>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section id="story" class="section">
+        <h2 class="section-title pixel-text">The Story So Far</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <h3 class="pixel-text" style="color: var(--p5-red);">MILANO: IL CAFFÈ</h3>
+                <p>Lui al bar del palazzo, lei (Tia) cliente affezionata. Quel caffè era troppo buono per lasciarlo lì: Tia ha deciso di "lootare" il barista e portarselo a casa per sempre.</p>
+            </div>
+            <div class="story-card">
+                <h3 class="pixel-text" style="color: var(--p5-red);">SVIZZERA (2019)</h3>
+                <p>Nuova mappa sbloccata. Trasferimento oltre le Alpi. Abbiamo sconfitto il Boss "Covid" a distanza senza mai perdere un HP, tra neve, snowboard e laghi.</p>
+            </div>
+            <div class="story-card" style="grid-column: span 2;">
+                <h3 class="pixel-text" style="color: var(--p5-red);">NEW PARTY MEMBERS</h3>
+                <p>Novembre 2022: Nasce <strong>Matilde</strong>. Marzo 2025: Nasce <strong>Margherita</strong>. <br>
+                Da boss finali che ci tenevano svegli la notte a membri fondamentali della nostra Gilda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATUS SECTION -->
+    <section id="stats" class="section">
+        <h2 class="section-title pixel-text">Character Stats</h2>
+        <div class="stats-container">
+            <!-- ALE -->
+            <div class="char-stat-box">
+                <h3 class="pixel-text">ALE</h3>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>CUCINA</span><span>12</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>TECNOLOGIA <span class="master-tag">[MASTER]</span></span><span>97</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 97%; background: gold;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>GAMING</span><span>65</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 65%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>RES. VINO</span><span>80</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>FORZA</span><span>80</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>SORRISO</span><span>99</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 99%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>ORDINE</span><span>12</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
+                </div>
+            </div>
+
+            <!-- TIA -->
+            <div class="char-stat-box">
+                <h3 class="pixel-text">TIA</h3>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>CUCINA <span class="master-tag">[MASTER]</span></span><span>97</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 97%; background: gold;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>TECNOLOGIA</span><span>20</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 20%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>GAMING</span><span>70</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>RES. VINO</span><span>71</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 71%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>FORZA</span><span>87</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 87%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>SORRISO</span><span>60</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 60%;"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>ORDINE</span><span style="color:red">ERROR</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 100%; background: red;"></div></div>
+                </div>
+            </div>
+        </div>
+        <p class="pixel-text" style="margin-top: 30px; font-size: 0.5rem;">NOTE: Agilità 30-40 per entrambi causa polenta e formaggio.</p>
+    </section>
+
+    <!-- LOCATION SECTION -->
+    <section id="location" class="section">
+        <h2 class="section-title pixel-text">World Map</h2>
+        <div style="max-width: 900px; text-align: center;">
+            <p class="elegant-text" style="font-size: 2rem; color: var(--tuscan-wine);">Il Grande Prato</p>
+            <p style="margin-bottom: 20px;">Castelfiorentino (FI) - Un save point immerso nel verde.</p>
+            
+            <div class="loc-image-grid">
+                <img src="https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-esterno-1.jpg" alt="Il Grande Prato 1">
+                <img src="https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-piscina-1.jpg" alt="Il Grande Prato 2">
+                <img src="https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-salone.jpg" alt="Il Grande Prato 3">
+                <img src="https://www.ilgrandeprato.it/wp-content/uploads/2019/02/resort-toscana-sport.jpg" alt="Il Grande Prato 4">
+            </div>
+            
+            <div style="background: var(--tuscan-cream); padding: 20px; border: 2px solid var(--p5-black);">
+                <h3 class="pixel-text" style="font-size: 0.8rem;">Equipaggiamento consigliato</h3>
+                <p>Scarpe comode / Sneakers. I tacchi a spillo infliggono <strong>-110 AGILITÀ</strong> e danni da terreno.</p>
+                <p>Niente scarponi da sci (anche se sappiamo che li amate).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMMA SECTION -->
+    <section id="program" class="section">
+        <h2 class="section-title pixel-text">Quest Log</h2>
+        
+        <div class="quest-item">
+            <h3 class="pixel-text">VENERDÌ 4 GIUGNO: TUTORIAL</h3>
+            <p>Check-in in giornata. Nel pomeriggio: <strong>Pizza Party</strong>. Relax, piscina e primi calici di vino toscano.</p>
+        </div>
+        
+        <div class="quest-item">
+            <h3 class="pixel-text">SABATO 5 GIUGNO: THE MAIN QUEST</h3>
+            <p><strong>Ore 15:00:</strong> La Cerimonia. <br>
+            A seguire: Festa a oltranza. Raid di cibo toscano, musica e open bar.</p>
+        </div>
+        
+        <div class="quest-item">
+            <h3 class="pixel-text">DOMENICA 6 GIUGNO: EPILOGO</h3>
+            <p><strong>Brunch</strong> di recupero HP. Saluti e log-out entro il pomeriggio.</p>
+        </div>
+    </section>
+
+    <!-- RSVP & HONEYMOON SECTION -->
+    <section id="rsvp" class="section">
+        <h2 class="section-title pixel-text">Join the Party</h2>
+        
+        <div class="rsvp-form-mock">
+            <h3 class="pixel-text" style="color: var(--p5-red); margin-bottom: 20px;">RSVP</h3>
+            <p>Inviate un messaggio/mail a Ale o Tia indicando:</p>
+            <ul>
+                <li>Nome e Cognome dei partecipanti</li>
+                <li>Eventuali <strong>Status Ailments</strong> (Allergie/Intolleranze)</li>
+                <li>Presenza di piccoli Boss (Bambini) e la loro età</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; max-width: 700px;">
+            <h3 class="pixel-text">DLC: NUOVA ZELANDA</h3>
+            <p>Aiutateci a sbloccare la mappa segreta del nostro viaggio di nozze!</p>
+            <div class="iban-box">
+                IT99 X000 0000 0000 0000 0000 000
+            </div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Intestato a: Ale & Tia</p>
+        </div>
+        
+        <p style="margin-top: 100px; font-family: 'Press Start 2P'; font-size: 0.6rem;">© 2026 ALE & TIA | MAY YOUR HEART BE YOUR GUIDING KEY</p>
+    </section>
+
+</body>
+</html>
