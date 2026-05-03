@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ale & Tia: Final Mix - Wedding Quest 2026</title>
-    <!-- FONTS VIDEOLUDICI: Anton (P5), Bangers (CTR), Cinzel (Zelda), VT323 (MGS), Press Start 2P (Retro), Montserrat (Base) -->
+    <!-- FONTS VIDEOLUDICI -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -30,7 +30,7 @@
 
         .section {
             min-height: 100vh;
-            padding: clamp(40px, 10vw, 80px) clamp(15px, 5vw, 20px);
+            padding: clamp(60px, 10vw, 80px) clamp(15px, 5vw, 20px);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative; background-color: var(--tuscan-cream);
         }
@@ -55,18 +55,36 @@
             60% {transform: translate(-50%, -5px);}
         }
 
-        /* --- HERO SECTION (KH Style) --- */
+        /* --- HERO SECTION --- */
         #hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-piscina.jpg') center/cover;
             color: white; text-align: center;
         }
         #hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); text-shadow: 4px 4px 0px var(--p5-red); margin-bottom: 20px; }
-        .kh-menu { list-style: none; margin-top: 30px; font-size: clamp(0.5rem, 2vw, 0.8rem); line-height: 2; }
-        .kh-menu li { margin: 15px; cursor: pointer; transition: 0.3s; }
+        .kh-menu { list-style: none; margin-top: 30px; font-size: clamp(0.5rem, 2vw, 0.8rem); line-height: 2; display: flex; flex-direction: column; align-items: center; }
+        .kh-menu li { margin: 10px; cursor: pointer; transition: 0.3s; }
         .kh-menu li:hover { color: var(--kh-blue); transform: translateX(10px); }
         .kh-menu a { text-decoration: none; color: inherit; }
 
-        /* --- STORY SECTION (Persona 5 Style) --- */
+        /* --- STATUS SCREEN (FF Menu Vibe) --- */
+        #stats { background-color: var(--p5-black); color: white; }
+        .ff-title { font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom: 40px; text-shadow: 3px 3px 0px var(--kh-blue); text-align: center; }
+        .stats-container { display: grid; grid-template-columns: 1fr; gap: 40px; width: 100%; max-width: 1000px; }
+        @media (min-width: 768px) { .stats-container { grid-template-columns: 1fr 1fr; } }
+        
+        .ff-menu {
+            background: linear-gradient(to bottom right, var(--ff-blue-top), var(--ff-blue-bot));
+            border: 4px solid white; border-radius: 8px; padding: clamp(15px, 4vw, 20px);
+            box-shadow: 0 0 0 4px #0000a0, inset 0 0 0 2px #555, 10px 10px 15px rgba(0,0,0,0.8);
+        }
+        .ff-menu h3 { font-size: clamp(0.8rem, 3vw, 1.2rem); margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .stat-label { display: flex; justify-content: space-between; font-size: clamp(0.5rem, 2vw, 0.6rem); margin-bottom: 5px; text-shadow: 2px 2px 0px #000; }
+        .stat-bar { height: 12px; background: rgba(0,0,0,0.5); width: 100%; margin-bottom: 15px; border: 1px solid #555; }
+        .stat-fill { height: 100%; background: linear-gradient(to right, #00ff00, #00a8ff); }
+        .stat-fill.gold { background: linear-gradient(to right, #f1c40f, #ff9f43); }
+        .master-tag { color: var(--gold); text-shadow: 1px 1px 0 #000; }
+
+        /* --- STORY SECTION (Persona 5 Vibe) --- */
         #story { background-color: var(--p5-red); color: white; }
         .p5-title {
             font-size: clamp(2rem, 8vw, 4rem); background: var(--p5-black); color: white;
@@ -108,24 +126,6 @@
         .start-dialogue .line-3 { animation: typeReveal 0.5s forwards 4.5s; }
         @keyframes typeReveal { 100% { opacity: 1; transform: translateX(0); } }
 
-        /* --- STATUS SCREEN (Final Fantasy Menu Style) --- */
-        #stats { background-color: var(--p5-black); color: white; }
-        .ff-title { font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom: 40px; text-shadow: 3px 3px 0px var(--kh-blue); text-align: center; }
-        .stats-container { display: grid; grid-template-columns: 1fr; gap: 40px; width: 100%; max-width: 1000px; }
-        @media (min-width: 768px) { .stats-container { grid-template-columns: 1fr 1fr; } }
-        
-        .ff-menu {
-            background: linear-gradient(to bottom right, var(--ff-blue-top), var(--ff-blue-bot));
-            border: 4px solid white; border-radius: 8px; padding: clamp(15px, 4vw, 20px);
-            box-shadow: 0 0 0 4px #0000a0, inset 0 0 0 2px #555, 10px 10px 15px rgba(0,0,0,0.8);
-        }
-        .ff-menu h3 { font-size: clamp(0.8rem, 3vw, 1.2rem); margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
-        .stat-label { display: flex; justify-content: space-between; font-size: clamp(0.5rem, 2vw, 0.6rem); margin-bottom: 5px; text-shadow: 2px 2px 0px #000; }
-        .stat-bar { height: 12px; background: rgba(0,0,0,0.5); width: 100%; margin-bottom: 15px; border: 1px solid #555; }
-        .stat-fill { height: 100%; background: linear-gradient(to right, #00ff00, #00a8ff); }
-        .stat-fill.gold { background: linear-gradient(to right, #f1c40f, #ff9f43); }
-        .master-tag { color: var(--gold); text-shadow: 1px 1px 0 #000; }
-
         /* --- LOCATION E MAPPA (Zelda Style) --- */
         #location { background: #fff; }
         .zelda-title { font-size: clamp(2rem, 8vw, 3.5rem); color: #d4af37; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 0px #000; }
@@ -134,19 +134,37 @@
         .video-container { width: 100%; max-width: 900px; margin-bottom: 30px; }
         .video-container iframe { width: 100%; aspect-ratio: 16/9; border: 4px solid #d4af37; border-radius: 5px; }
 
-        /* --- TRAVEL INFO (Crash Team Racing Style) --- */
+        /* --- COME ARRIVARE (Crash Team Racing Style) --- */
+        #directions { background-color: white; }
         .ctr-style {
-            display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; max-width: 900px; text-align: left;
-            background-color: white !important; padding: clamp(15px, 4vw, 20px); border: 6px solid var(--ctr-orange) !important; 
-            margin-bottom: 20px; box-shadow: 8px 8px 0px #cc5200; border-radius: 10px;
+            display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; max-width: 1000px; text-align: left;
+            padding: clamp(15px, 4vw, 30px); border: 8px solid var(--ctr-orange) !important; 
+            margin-bottom: 20px; box-shadow: 10px 10px 0px #cc5200; border-radius: 15px;
+            background-image: radial-gradient(#ffe6cc 2px, transparent 2px); background-size: 20px 20px;
         }
         @media (min-width: 768px) { .ctr-style { grid-template-columns: 1fr 1fr; } }
         .ctr-style .travel-text p {
-            font-family: 'Bangers', cursive; font-size: clamp(1.1rem, 3vw, 1.4rem) !important; 
-            color: var(--ctr-orange); line-height: 1.4; margin-bottom: 15px; letter-spacing: 1px;
+            font-family: 'Bangers', cursive; font-size: clamp(1.2rem, 3vw, 1.6rem) !important; 
+            color: var(--ctr-orange); line-height: 1.4; margin-bottom: 20px; letter-spacing: 1px;
+            text-shadow: 1px 1px 0px #000;
         }
-        .ctr-style .travel-text strong { color: #000; text-shadow: 1px 1px 0px rgba(255, 102, 0, 0.3); }
-        .ctr-style iframe { border: 4px dashed var(--ctr-orange) !important; border-radius: 10px; }
+        .ctr-style .travel-text strong { color: #000; text-shadow: 2px 2px 0px #fff; font-size: 1.1em; }
+        .ctr-style iframe { border: 6px dashed var(--ctr-orange) !important; border-radius: 10px; width: 100%; height: 100%; min-height: 300px;}
+
+        /* --- EQUIPAGGIAMENTO (Final Fantasy X Aeons Style) --- */
+        #equipment { background-color: #0b0f19; color: white; }
+        .ffx-grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; max-width: 1000px; margin-top: 20px; }
+        @media (min-width: 768px) { .ffx-grid { grid-template-columns: 1fr 1fr; } }
+        .ffx-card {
+            background: linear-gradient(135deg, rgba(0,0,160,0.8), rgba(0,0,48,0.9));
+            border: 2px solid #88ccff; border-radius: 5px; padding: 25px;
+            box-shadow: inset 0 0 15px rgba(0,168,255,0.3), 5px 5px 15px rgba(0,0,0,0.8);
+            position: relative; overflow: hidden;
+        }
+        .ffx-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, transparent, #88ccff, transparent); }
+        .ffx-card h3 { font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 4vw, 1.5rem); color: #88ccff; margin-bottom: 15px; border-bottom: 1px solid rgba(136,204,255,0.3); padding-bottom: 10px; text-shadow: 2px 2px 0px #000; }
+        .ffx-card p { font-family: 'Montserrat', sans-serif; font-size: clamp(0.9rem, 3vw, 1rem); line-height: 1.6; }
+        .ffx-card strong { color: var(--gold); }
 
         /* --- PROGRAMMA (Zelda/RPG Quest Log) --- */
         #program { background: var(--tuscan-olive); color: white; }
@@ -170,19 +188,51 @@
 
     <!-- HERO SECTION (KH Vibe) -->
     <section id="hero" class="section">
-        <h1 class="font-retro"><i class="fa-solid fa-key" style="color: var(--gold);"></i> Ale & Tia <br>Final Mix</h1>
+        <h1 class="font-retro">Ale & Tia <br>Final Mix</h1>
         <p class="elegant-text" style="font-size: clamp(1rem, 4vw, 1.5rem); margin-top: 20px;">4 - 5 - 6 Giugno 2027 | Castelfiorentino</p>
         
         <ul class="kh-menu font-retro">
-            <li><a href="#story"><i class="fa-solid fa-book-journal-whills"></i> PROLOGO: LA STORIA</a></li>
-            <li><a href="#codec"><i class="fa-solid fa-walkie-talkie"></i> MISSION LOG: CODEC</a></li>
             <li><a href="#stats"><i class="fa-solid fa-chart-bar"></i> STATUS SCREEN</a></li>
+            <li><a href="#story"><i class="fa-solid fa-book-journal-whills"></i> LA STORIA</a></li>
+            <li><a href="#codec"><i class="fa-solid fa-walkie-talkie"></i> CODEC</a></li>
             <li><a href="#location"><i class="fa-solid fa-map-location-dot"></i> WORLD MAP</a></li>
+            <li><a href="#directions"><i class="fa-solid fa-flag-checkered"></i> COME ARRIVARE</a></li>
+            <li><a href="#equipment"><i class="fa-solid fa-shield-halved"></i> EQUIPAGGIAMENTO</a></li>
             <li><a href="#program"><i class="fa-solid fa-scroll"></i> QUEST LOG</a></li>
             <li><a href="#rsvp"><i class="fa-solid fa-envelope"></i> JOIN PARTY</a></li>
         </ul>
-        <p style="margin-top: 50px; font-size: clamp(0.5rem, 2vw, 0.7rem); opacity: 0.7;" class="font-retro">♪ Playing: Face My Fears - Utada Hikaru ♪</p>
+        <p style="margin-top: 40px; font-size: clamp(0.5rem, 2vw, 0.7rem); opacity: 0.7;" class="font-retro">♪ Playing: Face My Fears - Utada Hikaru ♪</p>
         
+        <a href="#stats" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+    </section>
+
+    <!-- STATUS SCREEN (FF Menu Vibe) -->
+    <section id="stats" class="section">
+        <h2 class="ff-title font-retro"><i class="fa-solid fa-hand-sparkles"></i> CHARACTER STATS</h2>
+        <div class="stats-container">
+            <!-- ALE -->
+            <div class="ff-menu">
+                <h3 class="font-retro">ALE <i class="fa-solid fa-user-astronaut" style="float: right;"></i></h3>
+                <div class="stat-label font-retro"><span>CUCINA</span><span>12/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
+                <div class="stat-label font-retro"><span>TECNOLOGIA <span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+                <div class="stat-label font-retro"><span>GAMING</span><span>65/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 65%;"></div></div>
+                <div class="stat-label font-retro"><span>RES. VINO</span><span>80/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 80%;"></div></div>
+                <div class="stat-label font-retro"><span>SORRISO<span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+                <div class="stat-label font-retro"><span>ORDINE</span><span>12/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
+            </div>
+
+            <!-- TIA -->
+            <div class="ff-menu">
+                <h3 class="font-retro">TIA <i class="fa-solid fa-user-astronaut" style="float: right;"></i></h3>
+                <div class="stat-label font-retro"><span>CUCINA <span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+                <div class="stat-label font-retro"><span>TECNOLOGIA</span><span>20/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 20%;"></div></div>
+                <div class="stat-label font-retro"><span>GAMING</span><span>70/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 70%;"></div></div>
+                <div class="stat-label font-retro"><span>RES. VINO</span><span>71/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 71%;"></div></div>
+                <div class="stat-label font-retro"><span>SORRISO</span><span>60/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 60%;"></div></div>
+                <div class="stat-label font-retro"><span>ORDINE<span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+            </div>
+        </div>
+        <p class="font-retro" style="margin-top: 30px; font-size: clamp(0.4rem, 2vw, 0.5rem); text-align: center;">STATUS AILMENT: Agilità limitata a 30 per eccesso di formaggio fuso.</p>
         <a href="#story" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
@@ -229,40 +279,10 @@
             <p class="line-2"><strong>SNAKE:</strong> Sono al Grande Prato. Qual è l'obiettivo della missione?</p>
             <p class="line-3"><strong>EVA:</strong> Semplice. Rilassarsi e divertirsi tra amici per celebrare il nostro grande amore. Niente stealth questa volta, fai rumore.</p>
         </div>
-        <a href="#stats" class="scroll-indicator" style="color: var(--mgs-green); position: relative; margin-top: 40px; left: 0; transform: none;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+        <a href="#location" class="scroll-indicator" style="color: var(--mgs-green); position: relative; margin-top: 40px; left: 0; transform: none;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- STATUS SCREEN (FF Menu Vibe) -->
-    <section id="stats" class="section">
-        <h2 class="ff-title font-retro"><i class="fa-solid fa-hand-sparkles"></i> CHARACTER STATS</h2>
-        <div class="stats-container">
-            <!-- ALE -->
-            <div class="ff-menu">
-                <h3 class="font-retro">ALE <i class="fa-solid fa-user-astronaut" style="float: right;"></i></h3>
-                <div class="stat-label font-retro"><span>CUCINA</span><span>12/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
-                <div class="stat-label font-retro"><span>TECNOLOGIA <span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
-                <div class="stat-label font-retro"><span>GAMING</span><span>65/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 65%;"></div></div>
-                <div class="stat-label font-retro"><span>RES. VINO</span><span>80/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 80%;"></div></div>
-                <div class="stat-label font-retro"><span>SORRISO<span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
-                <div class="stat-label font-retro"><span>ORDINE</span><span>12/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
-            </div>
-
-            <!-- TIA -->
-            <div class="ff-menu">
-                <h3 class="font-retro">TIA <i class="fa-solid fa-user-astronaut" style="float: right;"></i></h3>
-                <div class="stat-label font-retro"><span>CUCINA <span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
-                <div class="stat-label font-retro"><span>TECNOLOGIA</span><span>20/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 20%;"></div></div>
-                <div class="stat-label font-retro"><span>GAMING</span><span>70/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 70%;"></div></div>
-                <div class="stat-label font-retro"><span>RES. VINO</span><span>71/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 71%;"></div></div>
-                <div class="stat-label font-retro"><span>SORRISO</span><span>60/99</span></div><div class="stat-bar"><div class="stat-fill" style="width: 60%;"></div></div>
-                <div class="stat-label font-retro"><span>ORDINE<span class="master-tag">[MASTER]</span></span><span>99/99</span></div><div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
-            </div>
-        </div>
-        <p class="font-retro" style="margin-top: 30px; font-size: clamp(0.4rem, 2vw, 0.5rem); text-align: center;">STATUS AILMENT: Agilità limitata a 30 per eccesso di formaggio fuso.</p>
-        <a href="#location" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
-    </section>
-
-    <!-- LOCATION SECTION (Zelda + CTR Vibe) -->
+    <!-- LOCATION SECTION (Zelda Vibe) -->
     <section id="location" class="section">
         <h2 class="zelda-title font-zelda"><i class="fa-solid fa-mountain-sun"></i> IL GRANDE PRATO</h2>
         <p style="margin-bottom: 20px; font-family: 'Montserrat'; font-weight: bold;">Castelfiorentino (FI) - Un save point immerso nel verde.</p>
@@ -277,24 +297,46 @@
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/BQYxk04Xk-w" title="Il Grande Prato Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        
+        <a href="#directions" class="scroll-indicator" style="color: var(--p5-black);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+    </section>
 
-        <!-- TRAVEL INFO (Crash Team Racing Style) -->
+    <!-- COME ARRIVARE (Crash Team Racing Style) -->
+    <section id="directions" class="section">
         <div class="travel-info-container ctr-style">
             <div class="travel-text">
-                <h3 class="font-ctr" style="font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 15px;"><i class="fa-solid fa-flag-checkered"></i> COME ARRIVARE</h3>
+                <h3 class="font-ctr" style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 15px;"><i class="fa-solid fa-flag-checkered"></i> COME ARRIVARE</h3>
                 <p><strong>🚗 Macchina (Go-Kart di Crash):</strong> Autostrada A1, uscita FI Scandicci. Prendi la Fi-Pi-Li, derapa fino all'uscita Empoli Ovest e usa il turbo verso Castelfiorentino (attenti alle casse TNT!).</p>
                 <p><strong>🚆 Treno (Hovercraft di Cortex):</strong> Regionale Empoli-Siena fino a Castelfiorentino. Da lì 10 min di taxi, sperando che Neo Cortex non abbia bloccato i binari!</p>
                 <p><strong>✈️ Aereo (L'Aereo di Coco):</strong> Firenze (FLR) o Pisa (PSA). Da lì noleggiate un kart e sfrecciate verso il Prato prima che scada il tempo della Reliquia!</p>
             </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11565.31976211516!2d10.9572418!3d43.6062134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a6889eb20dc95%3A0xc069f52fbe2dd4f!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" width="100%" height="300" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11565.31976211516!2d10.9572418!3d43.6062134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a6889eb20dc95%3A0xc069f52fbe2dd4f!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        
-        <div style="background: var(--tuscan-cream); padding: 20px; border: 2px solid var(--p5-black); margin-top: 10px; text-align: center; width: 100%; max-width: 900px;">
-            <h3 class="font-retro" style="font-size: clamp(0.6rem, 2vw, 0.8rem);"><i class="fa-solid fa-shield-halved"></i> Equipaggiamento</h3>
-            <p style="margin-top: 10px;">Scarpe comode / Sneakers. I tacchi infliggono malus <strong>-110 AGILITÀ</strong>.</p>
+        <a href="#equipment" class="scroll-indicator" style="color: var(--ctr-orange);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+    </section>
+
+    <!-- EQUIPAGGIAMENTO (Final Fantasy X Aeons Style) -->
+    <section id="equipment" class="section">
+        <h2 class="ff-title font-retro"><i class="fa-solid fa-gem"></i> EQUIPAGGIAMENTO</h2>
+        <div class="ffx-grid">
+            <div class="ffx-card">
+                <h3><i class="fa-solid fa-snowflake"></i> LA GRAZIA DI SHIVA</h3>
+                <p>Il Dress Code della Gilda è <strong>Business Casual</strong>. Vogliamo vedervi eleganti per la cerimonia, ma senza rinunciare alla comodità e alla freschezza del Diamante Polvere!</p>
+            </div>
+            <div class="ffx-card">
+                <h3><i class="fa-solid fa-fire"></i> IL CALDO DI IFRIT</h3>
+                <p>Prevediamo che le fiamme infernali faranno salire le temperature verso i <strong>30 gradi</strong>. Equipaggiate abiti leggeri per non subire danni da calore continui.</p>
+            </div>
+            <div class="ffx-card">
+                <h3><i class="fa-solid fa-feather"></i> L'AGILITÀ DI VALEFOR</h3>
+                <p>Il terreno del raid è composto da erba e ciottoli. Scegliete <strong>scarpe eleganti ma comode</strong>. I tacchi a spillo sono severamente bannati (infliggono lo status <em>K.O. Caviglia</em> e -110 Agilità).</p>
+            </div>
+            <div class="ffx-card">
+                <h3><i class="fa-solid fa-water"></i> TORNEO DI BLITZBALL</h3>
+                <p>L'area di gioco include un'ampia fase acquatica. Non dimenticate di mettere in inventario <strong>costume da bagno e ciabatte</strong> per rilassarvi nell'arena della piscina!</p>
+            </div>
         </div>
-        
-        <a href="#program" class="scroll-indicator" style="color: var(--p5-black);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+        <a href="#program" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
     <!-- PROGRAMMA SECTION (Quest Log Vibe) -->
