@@ -182,6 +182,30 @@
             border: 4px solid var(--p5-black);
         }
 
+        /* Nuovi stili per la mappa e le info di viaggio */
+        .travel-info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            text-align: left;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            background: var(--tuscan-cream);
+            padding: 20px;
+            border: 2px solid var(--p5-black);
+        }
+
+        .travel-text p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
         /* --- PROGRAMMA (Quest Log) --- */
         #program {
             background: var(--tuscan-olive);
@@ -212,7 +236,6 @@
             max-width: 600px;
         }
 
-        /* Nuovi stili per il Form RSVP */
         .pixel-form {
             display: flex;
             flex-direction: column;
@@ -275,7 +298,7 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .story-grid, .stats-container { grid-template-columns: 1fr; }
+            .story-grid, .stats-container, .travel-info-container { grid-template-columns: 1fr; }
             h1 { font-size: 2rem !important; }
             h2.section-title { font-size: 1.5rem; }
             .pixel-form label { font-size: 0.5rem; }
@@ -387,7 +410,7 @@
     <!-- LOCATION SECTION -->
     <section id="location" class="section">
         <h2 class="section-title pixel-text">World Map</h2>
-        <div style="max-width: 900px; text-align: center;">
+        <div style="max-width: 900px; text-align: center; width: 100%;">
             <p class="elegant-text" style="font-size: 2rem; color: var(--tuscan-wine);">Il Grande Prato</p>
             <p style="margin-bottom: 20px;">Castelfiorentino (FI) - Un save point immerso nel verde.</p>
             
@@ -397,8 +420,26 @@
                 <img src="https://www.grandeprato.it/site/assets/img/camere_rett/1.jpg" alt="Il Grande Prato 3">
                 <img src="https://www.grandeprato.it/site/assets/img/camere_rett/10.jpg" alt="Il Grande Prato 4">
             </div>
+
+            <!-- NUOVA SEZIONE: COME ARRIVARE E MAPPA -->
+            <div class="travel-info-container">
+                <div class="travel-text">
+                    <h3 class="pixel-text" style="color: var(--p5-red); font-size: 1rem; margin-bottom: 15px;">COME ARRIVARE</h3>
+                    <p><strong>🚗 In Macchina:</strong> Autostrada A1, uscita Firenze Scandicci. Prendi la Fi-Pi-Li (direzione Pisa/Livorno), esci a Empoli Ovest e segui le indicazioni per Castelfiorentino.</p>
+                    <p><strong>🚆 Mezzi Pubblici:</strong> Treno regionale (linea Empoli-Siena) fino alla stazione di Castelfiorentino. Da lì la location dista circa 10 minuti di taxi.</p>
+                    <p><strong>✈️ Dall'Aeroporto:</strong> Aeroporti consigliati: Firenze (FLR) o Pisa (PSA). Entrambi sono collegati a Castelfiorentino tramite rete ferroviaria o auto a noleggio.</p>
+                </div>
+                <div class="travel-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.354674719266!2d10.9576402!3d43.5783307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a67c52baaf019%3A0x8e8eb4648719c1e7!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1715000000000!5m2!1sit!2sit" width="100%" height="250" style="border: 4px solid var(--p5-black);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <!-- NUOVA SEZIONE: YOUTUBE VIDEO -->
+            <div class="video-container">
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/BQYxk04Xk-w" title="Il Grande Prato Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border: 4px solid var(--p5-black);"></iframe>
+            </div>
             
-            <div style="background: var(--tuscan-cream); padding: 20px; border: 2px solid var(--p5-black);">
+            <div style="background: var(--tuscan-cream); padding: 20px; border: 2px solid var(--p5-black); margin-top: 30px;">
                 <h3 class="pixel-text" style="font-size: 0.8rem;">Equipaggiamento consigliato</h3>
                 <p>Scarpe comode / Sneakers. I tacchi a spillo infliggono <strong>-110 AGILITÀ</strong> e danni da terreno.</p>
                 <p>Niente scarponi da sci (anche se sappiamo che li amate).</p>
@@ -435,27 +476,31 @@
             <h3 class="pixel-text" style="color: var(--p5-red); margin-bottom: 10px;">RSVP FORM</h3>
             <p style="color: #aaa; margin-bottom: 30px; font-size: 0.9rem;">Compila i campi per registrare il tuo salvataggio nella nostra Gilda.</p>
             
-            <!-- FORM INIZIO -->
-            <!-- Inserisci l'URL fornito da Google Apps Script o Formspree nell'attributo action qui sotto -->
-            <form class="pixel-form" action="INSERISCI_QUI_URL_GOOGLE_SCRIPT" method="POST">
+            <!-- FORM INIZIO: Utilizza formsubmit.co per mandare i dati impaginati via mail -->
+            <form class="pixel-form" action="https://formsubmit.co/aleetianoescape@gmail.com" method="POST">
                 
+                <!-- Parametri di configurazione della mail -->
+                <input type="hidden" name="_subject" value="Nuovo RSVP da Ale & Tia Wedding Quest!">
+                <input type="hidden" name="_template" value="table"> <!-- Impagina i dati in una bella tabella -->
+                <input type="hidden" name="_captcha" value="false"> <!-- Disabilita il reCaptcha per gli utenti -->
+
                 <div>
                     <label for="nome">Nome e Cognome dei partecipanti:</label>
-                    <input type="text" id="nome" name="nome" required placeholder="Es. Cloud Strife e Aerith Gainsborough">
+                    <input type="text" id="nome" name="Partecipanti" required placeholder="Es. Cloud Strife e Aerith Gainsborough">
                 </div>
 
                 <div>
                     <label for="presenza">Confermi la presenza?</label>
-                    <select id="presenza" name="presenza" required>
+                    <select id="presenza" name="Conferma_Presenza" required>
                         <option value="" disabled selected>Seleziona un'opzione...</option>
-                        <option value="Si">Sì, equipaggiamento pronto!</option>
-                        <option value="No">No, Game Over (Non potremo esserci)</option>
+                        <option value="Sì, equipaggiamento pronto!">Sì, equipaggiamento pronto!</option>
+                        <option value="No, Game Over">No, Game Over (Non potremo esserci)</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="pernottamento">Pernottamento al Save Point:</label>
-                    <select id="pernottamento" name="pernottamento" required>
+                    <select id="pernottamento" name="Pernottamento" required>
                         <option value="" disabled selected>Seleziona i giorni di log-in...</option>
                         <option value="2 Notti (Ven + Sab)">2 Notti (Venerdì e Sabato)</option>
                         <option value="1 Notte (Solo Sabato)">1 Notte (Solo Sabato)</option>
@@ -465,17 +510,17 @@
 
                 <div>
                     <label for="allergie">Status Ailments (Allergie/Intolleranze):</label>
-                    <input type="text" id="allergie" name="allergie" placeholder="Es. Nessuna, Celiachia, Intolleranza al lattosio...">
+                    <input type="text" id="allergie" name="Allergie_Intolleranze" placeholder="Es. Nessuna, Celiachia, Intolleranza al lattosio...">
                 </div>
 
                 <div>
                     <label for="miniboss">Presenza di mini-Boss (Bambini) e la loro età:</label>
-                    <input type="text" id="miniboss" name="miniboss" placeholder="Es. 1 bimbo (3 anni) - Lascia vuoto se 0">
+                    <input type="text" id="miniboss" name="Bambini" placeholder="Es. 1 bimbo (3 anni) - Lascia vuoto se 0">
                 </div>
 
                 <div>
                     <label for="messaggio">Commenti / Messaggi per la Gilda:</label>
-                    <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi qui eventuali note aggiuntive o un saluto..."></textarea>
+                    <textarea id="messaggio" name="Messaggio" rows="4" placeholder="Scrivi qui eventuali note aggiuntive o un saluto..."></textarea>
                 </div>
 
                 <button type="submit" class="pixel-btn-submit">CONFIRM SELECTION</button>
