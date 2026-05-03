@@ -320,43 +320,74 @@
     <section id="rsvp">
         <h2 class="section-title p5-font">Join Party</h2>
         <div class="rsvp-form">
-            <form action="https://formsubmit.co/aleetianoescape@gmail.com" method="POST">
-                <input type="hidden" name="_template" value="table">
-                
-                <label class="pixel"><span class="it">NOMI PARTECIPANTI:</span><span class="en">PARTY MEMBERS NAMES:</span></label>
-                <input type="text" name="Nomi" required>
-                
-                <label class="pixel"><span class="it">CONFERMA PRESENZA:</span><span class="en">ATTENDANCE:</span></label>
-                <select name="Conferma" required>
-                    <option value="" disabled selected>---</option>
-                    <option value="Si" class="it">Sì, pronto per la Boss Fight!</option>
-                    <option value="Yes" class="en">Yes, ready for the Boss Fight!</option>
-                    <option value="No" class="it">No, Game Over</option>
-                    <option value="No" class="en">No, Game Over</option>
-                </select>
-                
-                <label class="pixel"><span class="it">PERNOTTAMENTO AL SAVE POINT:</span><span class="en">ACCOMMODATION AT SAVE POINT:</span></label>
-                <select name="Notti" required>
-                    <option value="" disabled selected>---</option>
-                    <option value="Ven e Sab" class="it">2 Notti (Ven e Sab)</option>
-                    <option value="Fri & Sat" class="en">2 Nights (Fri & Sat)</option>
-                    <option value="Solo Sab" class="it">1 Notte (Solo Sabato)</option>
-                    <option value="Sat Only" class="en">1 Night (Sat Only)</option>
-                    <option value="Nessuno" class="it">Nessun pernottamento</option>
-                    <option value="None" class="en">None</option>
-                </select>
-                
-                <label class="pixel"><span class="it">STATUS AILMENTS (ALLERGIE):</span><span class="en">STATUS AILMENTS (ALLERGIES):</span></label>
-                <input type="text" name="Allergie">
-                
-                <label class="pixel"><span class="it">MINI-BOSS (NUMERO BIMBI E ETÀ):</span><span class="en">MINI-BOSSES (KIDS COUNT AND AGE):</span></label>
-                <input type="text" name="Bimbi">
-                
-                <label class="pixel"><span class="it">CHEAT CODES, DUBBI SULLE QUEST O MESSAGGI PER LA GILDA:</span><span class="en">CHEAT CODES, QUEST DOUBTS OR MESSAGES FOR THE GUILD:</span></label>
-                <textarea name="Messaggio" rows="4"></textarea>
-                
-                <button type="submit" class="pixel-btn pixel"><span class="it">SUBMIT DATA</span><span class="en">SUBMIT DATA</span></button>
-            </form>
+            <!-- FORM INIZIO: RSVP CON OPZIONE TRANSFER -->
+<form class="pixel-form" action="https://formsubmit.co/aleetianoescape@gmail.com" method="POST">
+    
+    <input type="hidden" name="_subject" value="Nuovo RSVP da Ale & Tia Wedding Quest!">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+
+    <div>
+        <label class="pixel"><span class="it">NOMI PARTECIPANTI:</span><span class="en">PARTY MEMBERS NAMES:</span></label>
+        <input type="text" name="Partecipanti" required placeholder="Es: Cloud & Aerith">
+    </div>
+
+    <div>
+        <label class="pixel"><span class="it">CONFERMA PRESENZA:</span><span class="en">ATTENDANCE:</span></label>
+        <select name="Conferma_Presenza" required>
+            <option value="" disabled selected>---</option>
+            <option value="Sì" class="it">Sì, pronto per la Boss Fight!</option>
+            <option value="Yes" class="en">Yes, ready for the Boss Fight!</option>
+            <option value="No" class="it">No, Game Over</option>
+            <option value="No" class="en">No, Game Over</option>
+        </select>
+    </div>
+
+    <div>
+        <label class="pixel"><span class="it">PERNOTTAMENTO AL SAVE POINT:</span><span class="en">ACCOMMODATION AT SAVE POINT:</span></label>
+        <select name="Pernottamento" required>
+            <option value="" disabled selected>---</option>
+            <option value="2 Notti (Ven e Sab)" class="it">2 Notti (Venerdì e Sabato)</option>
+            <option value="2 Nights (Fri & Sat)" class="en">2 Nights (Fri & Sat)</option>
+            <option value="1 Notte (Solo Sabato)" class="it">1 Notte (Solo Sabato)</option>
+            <option value="1 Night (Sat Only)" class="en">1 Night (Sat Only)</option>
+            <option value="Nessuno" class="it">Nessun pernottamento</option>
+            <option value="None" class="en">None</option>
+        </select>
+    </div>
+
+    <!-- NUOVA SEZIONE TRANSFER -->
+    <div>
+        <label class="pixel"><span class="it">SERVIZIO TRANSFER:</span><span class="en">TRANSFER SERVICE:</span></label>
+        <select name="Transfer" required>
+            <option value="" disabled selected>---</option>
+            <option value="No" class="it">No, ho il mio Chocobo (Vengo autonomamente)</option>
+            <option value="No" class="en">No, I have my Chocobo (I'll come on my own)</option>
+            <option value="Sì, dall'Aeroporto" class="it">Sì, dall'Aeroporto (Glider Service)</option>
+            <option value="Yes, from Airport" class="en">Yes, from the Airport (Glider Service)</option>
+            <option value="Sì, dalla Stazione" class="it">Sì, dalla Stazione (Teleport Service)</option>
+            <option value="Yes, from Train Station" class="en">Yes, from the Train Station (Teleport Service)</option>
+        </select>
+    </div>
+
+    <div>
+        <label class="pixel"><span class="it">STATUS AILMENTS (ALLERGIE):</span><span class="en">STATUS AILMENTS (ALLERGIES):</span></label>
+        <input type="text" name="Allergie_Intolleranze" placeholder="Es: No Lattosio / No Lactose">
+    </div>
+
+    <div>
+        <label class="pixel"><span class="it">MINI-BOSS (NUMERO BIMBI E ETÀ):</span><span class="en">MINI-BOSSES (KIDS COUNT AND AGE):</span></label>
+        <input type="text" name="Bambini_Kids" placeholder="Es: 1 (4 anni / years old)">
+    </div>
+
+    <div>
+        <label class="pixel"><span class="it">CHEAT CODES, DUBBI O MESSAGGI PER LA GILDA:</span><span class="en">CHEAT CODES, QUEST DOUBTS OR MESSAGES:</span></label>
+        <textarea name="Messaggio" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="pixel-btn pixel"><span class="it">SUBMIT DATA</span><span class="en">SUBMIT DATA</span></button>
+
+</form>
         </div>
         <div style="margin-top:40px; text-align:center; max-width: 90vw;">
             <h3 class="pixel" style="color:var(--gold); font-size: clamp(0.8rem, 3vw, 1.2rem); line-height: 1.5;">
