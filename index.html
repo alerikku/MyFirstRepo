@@ -113,6 +113,10 @@
             background: linear-gradient(to bottom right, var(--ff-blue-top), var(--ff-blue-bot));
             border: 4px solid white; border-radius: 8px; padding: clamp(15px, 4vw, 20px);
             box-shadow: 0 0 0 4px #0000a0, inset 0 0 0 2px #555, 10px 10px 15px rgba(0,0,0,0.8);
+            position: relative; /* Per ospitare l'easter egg */
+            cursor: pointer;
+            overflow: hidden;
+            user-select: none;
         }
         .ff-menu h3 { font-size: clamp(0.8rem, 3vw, 1.2rem); margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
         .stat-label { display: flex; justify-content: space-between; font-size: clamp(0.5rem, 2vw, 0.6rem); margin-bottom: 5px; text-shadow: 2px 2px 0px #000; }
@@ -120,6 +124,25 @@
         .stat-fill { height: 100%; background: linear-gradient(to right, #00ff00, #00a8ff); }
         .stat-fill.gold { background: linear-gradient(to right, #f1c40f, #ff9f43); }
         .master-tag { color: var(--gold); text-shadow: 1px 1px 0 #000; }
+
+        /* EASTER EGG CSS */
+        .secret-egg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: blue;
+            border: 8px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .secret-egg.active {
+            opacity: 1;
+        }
 
         /* --- STORY SECTION (Persona 5 Vibe) --- */
         #story { background-color: var(--p5-red); color: white; }
@@ -170,23 +193,15 @@
         .loc-image-grid img { width: 100%; height: clamp(100px, 30vw, 200px); object-fit: cover; border: 3px solid #d4af37; border-radius: 5px; }
         .video-container { width: 100%; max-width: 900px; margin-bottom: 30px; }
         .video-container iframe { width: 100%; aspect-ratio: 16/9; border: 4px solid #d4af37; border-radius: 5px; }
-
-        /* --- COME ARRIVARE (Crash Team Racing Style) --- */
-        #directions { background-color: white; }
+        
         .ctr-style {
-            display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; max-width: 1000px; text-align: left;
-            padding: clamp(15px, 4vw, 30px); border: 8px solid var(--ctr-orange) !important; 
-            margin-bottom: 20px; box-shadow: 10px 10px 0px #cc5200; border-radius: 15px;
+            width: 100%; max-width: 900px; padding: clamp(15px, 4vw, 30px); 
+            border: 8px solid var(--ctr-orange) !important; 
+            box-shadow: 10px 10px 0px #cc5200; border-radius: 15px;
             background-image: radial-gradient(#ffe6cc 2px, transparent 2px); background-size: 20px 20px;
+            background-color: white;
+            text-align: center;
         }
-        @media (min-width: 768px) { .ctr-style { grid-template-columns: 1fr 1fr; } }
-        .ctr-style .travel-text p {
-            font-family: 'Bangers', cursive; font-size: clamp(1.2rem, 3vw, 1.6rem) !important; 
-            color: var(--ctr-orange); line-height: 1.4; margin-bottom: 20px; letter-spacing: 1px;
-            text-shadow: 1px 1px 0px #000;
-        }
-        .ctr-style .travel-text strong { color: #000; text-shadow: 2px 2px 0px #fff; font-size: 1.1em; }
-        .ctr-style iframe { border: 6px dashed var(--ctr-orange) !important; border-radius: 10px; width: 100%; height: 100%; min-height: 300px;}
 
         /* --- DOVE DORMIRE (Star Wars Style) --- */
         #accommodation {
@@ -296,18 +311,52 @@
         </p>
         
         <ul class="kh-menu font-retro">
+            <li><a href="#codec"><i class="fa-solid fa-walkie-talkie"></i> <span class="it">MISSIONE</span><span class="en">MISSION</span></a></li>
             <li><a href="#stats"><i class="fa-solid fa-hand-sparkles"></i> CHARACTER SCREEN</a></li>
             <li><a href="#story"><i class="fa-solid fa-book-journal-whills"></i> <span class="it">LA STORIA</span><span class="en">THE STORY</span></a></li>
-            <li><a href="#codec"><i class="fa-solid fa-walkie-talkie"></i> <span class="it">MISSIONE</span><span class="en">MISSION</span></a></li>
             <li><a href="#location"><i class="fa-solid fa-map-location-dot"></i> LOCATION</a></li>
-            <li><a href="#directions"><i class="fa-solid fa-flag-checkered"></i> <span class="it">COME ARRIVARE</span><span class="en">HOW TO ARRIVE</span></a></li>
             <li><a href="#accommodation"><i class="fa-solid fa-bed"></i> <span class="it">DOVE DORMIRE</span><span class="en">ACCOMMODATION</span></a></li>
             <li><a href="#equipment"><i class="fa-solid fa-shield-halved"></i> EQUIP</a></li>
             <li><a href="#program"><i class="fa-solid fa-scroll"></i> <span class="it">PROGRAMMA</span><span class="en">PROGRAM</span></a></li>
             <li><a href="#rsvp"><i class="fa-solid fa-envelope"></i> JOIN PARTY</a></li>
         </ul>
         
-        <a href="#stats" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+        <a href="#codec" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+    </section>
+
+    <!-- MGS3 CODEC SECTION (Spostata in cima) -->
+    <section id="codec" class="font-mgs">
+        <h2 class="codec-freq">FREQ 140.85</h2>
+        <div class="codec-faces">
+            <div class="codec-face">
+                <i class="fas fa-user-secret"></i>
+                <span>TIA</span>
+            </div>
+            <div class="codec-wave">
+                <div class="wave-line"></div>
+                <div class="wave-line" style="animation-delay: 0.2s; height: 3px;"></div>
+                <div class="wave-line" style="animation-delay: 0.4s;"></div>
+            </div>
+            <div class="codec-face">
+                <i class="fas fa-user-ninja"></i>
+                <span>ALE</span>
+            </div>
+        </div>
+        <div class="codec-dialogue" id="dialogue-box">
+            <p class="line-1"><strong>TIA:</strong> 
+                <span class="it">Ale, sei arrivata al Save point?</span>
+                <span class="en">Ale, did you reach the Save point?</span>
+            </p>
+            <p class="line-2"><strong>ALE:</strong> 
+                <span class="it">Sono al Grande Prato. Qual è l'obiettivo della missione?</span>
+                <span class="en">I'm at Il Grande Prato. What's the mission objective?</span>
+            </p>
+            <p class="line-3"><strong>TIA:</strong> 
+                <span class="it">Semplice. Rilassarsi e divertirsi tra amici per celebrare il nostro grande amore. Niente stealth né scatole in cui nascondersi questa volta, si fa casino!</span>
+                <span class="en">Simple. Relax and have fun with friends to celebrate our great love. No stealth or hiding in boxes this time, we're making some noise!</span>
+            </p>
+        </div>
+        <a href="#stats" class="scroll-indicator" style="color: var(--mgs-green); position: relative; margin-top: 40px; left: 0; transform: none;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
     <!-- STATUS SCREEN (FF Menu Vibe) -->
@@ -315,7 +364,8 @@
         <h2 class="ff-title font-retro"><i class="fa-solid fa-hand-sparkles"></i> CHARACTER STATS</h2>
         <div class="stats-container">
             <!-- ALE -->
-            <div class="ff-menu">
+            <div class="ff-menu" onclick="triggerSecret('ale')">
+                <div class="secret-egg" id="egg-ale">💩</div>
                 <h3 class="font-retro">ALE <i class="fa-solid fa-hat-wizard" style="float: right;"></i></h3>
                 <div class="stat-label font-retro">
                     <span class="it">CUCINA - include PASTA AL TONNO</span>
@@ -344,7 +394,8 @@
             </div>
 
             <!-- TIA -->
-            <div class="ff-menu">
+            <div class="ff-menu" onclick="triggerSecret('tia')">
+                <div class="secret-egg" id="egg-tia">🍕</div>
                 <h3 class="font-retro">TIA <i class="fa-solid fa-jedi" style="float: right;"></i></h3>
                 <div class="stat-label font-retro">
                     <span class="it">CUCINA <span class="master-tag">[MASTER]</span></span>
@@ -403,45 +454,10 @@
                 <p class="en">November 2022: <strong>Matilde</strong> is born. <br> March 2025: <strong>Margherita</strong> is born. <br>From mini-bosses to essential Party members.</p>
             </div>
         </div>
-        <a href="#codec" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+        <a href="#location" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- MGS3 CODEC SECTION -->
-    <section id="codec" class="font-mgs">
-        <h2 class="codec-freq">FREQ 140.85</h2>
-        <div class="codec-faces">
-            <div class="codec-face">
-                <i class="fas fa-user-secret"></i>
-                <span>TIA</span>
-            </div>
-            <div class="codec-wave">
-                <div class="wave-line"></div>
-                <div class="wave-line" style="animation-delay: 0.2s; height: 3px;"></div>
-                <div class="wave-line" style="animation-delay: 0.4s;"></div>
-            </div>
-            <div class="codec-face">
-                <i class="fas fa-user-ninja"></i>
-                <span>ALE</span>
-            </div>
-        </div>
-        <div class="codec-dialogue" id="dialogue-box">
-            <p class="line-1"><strong>TIA:</strong> 
-                <span class="it">Ale, sei arrivata al Save point?</span>
-                <span class="en">Ale, did you reach the Save point?</span>
-            </p>
-            <p class="line-2"><strong>ALE:</strong> 
-                <span class="it">Sono al Grande Prato. Qual è l'obiettivo della missione?</span>
-                <span class="en">I'm at Il Grande Prato. What's the mission objective?</span>
-            </p>
-            <p class="line-3"><strong>TIA:</strong> 
-                <span class="it">Semplice. Rilassarsi e divertirsi tra amici per celebrare il nostro grande amore. Niente stealth né scatole in cui nascondersi questa volta, si fa casino!</span>
-                <span class="en">Simple. Relax and have fun with friends to celebrate our great love. No stealth or hiding in boxes this time, we're making some noise!</span>
-            </p>
-        </div>
-        <a href="#location" class="scroll-indicator" style="color: var(--mgs-green); position: relative; margin-top: 40px; left: 0; transform: none;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
-    </section>
-
-    <!-- LOCATION SECTION (Zelda Vibe) -->
+    <!-- LOCATION E MAPPA SECTION (Zelda Vibe + CTR Map) -->
     <section id="location" class="section">
         <h2 class="zelda-title font-zelda"><i class="fa-solid fa-mountain-sun"></i> IL GRANDE PRATO</h2>
         <p style="margin-bottom: 20px; font-family: 'Montserrat'; font-weight: bold;">
@@ -460,36 +476,15 @@
             <iframe src="https://www.youtube.com/embed/BQYxk04Xk-w" title="Il Grande Prato Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         
-        <a href="#directions" class="scroll-indicator" style="color: var(--p5-black);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
-    </section>
-
-    <!-- COME ARRIVARE (Crash Team Racing Style) -->
-    <section id="directions" class="section">
-        <div class="travel-info-container ctr-style">
-            <div class="travel-text">
-                <h3 class="font-ctr" style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 10px;">
-                    <i class="fa-solid fa-flag-checkered"></i> 
-                    <span class="it">COME ARRIVARE</span><span class="en">HOW TO ARRIVE</span>
-                </h3>
-                <p style="color: #d9d8d7; font-family: 'Montserrat', sans-serif; font-weight: bold; margin-bottom: 20px;">
-                    <i class="fa-solid fa-location-dot"></i> Via dei Renai, 11, 50051 Castelfiorentino (FI)
-                </p>
-                
-                <div class="it">
-                    <p><strong>🚗 Macchina (Go-Kart di Crash):</strong> <br> Autostrada A1, uscita FI Scandicci. Prendi la Fi-Pi-Li, derapa fino all'uscita <strong>Empoli Ovest</strong> e segui i cartelli per Castelfiorentino/Siena. Usa il turbo, mancano pochi km!</p>
-                    <p><strong>🚆 Treno (Hovercraft di Cortex):</strong> <br>Linea ferroviaria Empoli-Siena. Scendi alla stazione di <strong>Castelfiorentino</strong>. Da lì, il Save Point dista solo 10 minuti di taxi o navetta.</p>
-                    <p><strong>✈️ Aereo (L'Aereo di Coco):<br></strong> Atterra ai gateway di  <strong>Firenze (FLR) o Pisa (PSA)</strong>. <br>Entrambi i settori sono ottimi punti di spawn per noleggiare un kart e sfrecciare verso la Toscana!</p>
-                </div>
-                <div class="en">
-                    <p><strong>🚗 Car (Crash's Go-Kart):</strong> <br> A1 Highway, exit FI Scandicci. Take the Fi-Pi-Li, drift until the <strong>Empoli Ovest</strong> exit and follow the signs for Castelfiorentino/Siena. Use your turbo, just a few km left!</p>
-                    <p><strong>🚆 Train (Cortex's Hovercraft):</strong> <br>Empoli-Siena railway line. Get off at <strong>Castelfiorentino</strong> station. From there, the Save Point is only 10 minutes away by taxi or shuttle.</p>
-                    <p><strong>✈️ Plane (Coco's Plane):<br></strong> Land at the <strong>Florence (FLR) or Pisa (PSA)</strong> gateways. <br>Both sectors are great spawn points to rent a kart and speed towards Tuscany!</p>
-                </div>
-
-            </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.4514292696645!2d10.99463027701418!3d43.61796237110375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a41c09003781b%3A0xa72a389d6f14dd03!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1777836829156!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="ctr-style">
+            <p class="font-ctr" style="font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--ctr-orange); letter-spacing: 1px; text-shadow: 1px 1px 0px #000;">
+                <span class="it">Che tu arrivi in kart con Crash o in aereo con Cortex, trova qui come arrivare aprendo la mappa e calcolando il percorso!</span>
+                <span class="en">Whether you arrive by kart with Crash or by plane with Cortex, find out how to get here by opening the map and calculating the route!</span>
+            </p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.4514292696645!2d10.99463027701418!3d43.61796237110375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a41c09003781b%3A0xa72a389d6f14dd03!2sIl%20Grande%20Prato!5e0!3m2!1sit!2sit!4v1777836829156!5m2!1sit!2sit" width="100%" height="400" style="border: 6px dashed var(--ctr-orange); border-radius: 10px; margin-top: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <a href="#accommodation" class="scroll-indicator" style="color: var(--ctr-orange);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
+
+        <a href="#accommodation" class="scroll-indicator" style="color: var(--p5-black);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
     <!-- DOVE DORMIRE (Star Wars Style) -->
@@ -515,7 +510,7 @@
         <a href="#equipment" class="scroll-indicator" style="color: var(--sw-yellow);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Aeons Style) -->
+    <!-- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Aeons Style - SEMPLIFICATO) -->
     <section id="equipment" class="section">
         <h2 class="ff-title font-retro">
             <i class="fa-solid fa-gem"></i> 
@@ -523,34 +518,32 @@
         </h2>
         <div class="ffx-grid">
             <div class="ffx-card">
-                <h3><i class="fa-solid fa-snowflake"></i> <span class="it">LA GRAZIA DI SHIVA</span><span class="en">SHIVA'S GRACE</span></h3>
-                <p class="it">Il Dress Code è <strong>Business Casual</strong>. Vogliamo vedervi eleganti per la cerimonia, ma senza rinunciare alla comodità, colori, fantasie e alla freschezza!</p>
-                <p class="en">The Dress Code is <strong>Business Casual</strong>. We want to see you elegant for the ceremony, but without sacrificing comfort, colors, patterns, and freshness!</p>
+                <h3><i class="fa-solid fa-vest"></i> <span class="it">STYLE & AGILITY</span><span class="en">STYLE & AGILITY</span></h3>
+                <p class="it">Il Dress Code è <strong>Business Casual</strong>. Vogliamo vedervi eleganti per la cerimonia, ma senza rinunciare a comodità, colori e freschezza!</p>
+                <p class="it" style="color: #aaa; font-style: italic; font-size: 0.85rem;">(N.B. Il matrimonio NON è a tema videogiochi, quello è solo il sito!)</p>
+                <p class="it" style="margin-top: 10px;">Il terreno del raid è composto da erba e ciottoli. Scegliete <strong>scarpe comode</strong> ed evitate i tacchi a spillo (bannati!).</p>
+                
+                <p class="en">The Dress Code is <strong>Business Casual</strong>. We want to see you elegant for the ceremony, but without sacrificing comfort, colors, and freshness!</p>
+                <p class="en" style="color: #aaa; font-style: italic; font-size: 0.85rem;">(N.B. The wedding is NOT videogame-themed, just the website!)</p>
+                <p class="en" style="margin-top: 10px;">The raid terrain is grass and pebbles. Choose <strong>comfortable shoes</strong> and avoid stilettos (banned!).</p>
             </div>
             <div class="ffx-card">
-                <h3><i class="fa-solid fa-fire"></i> <span class="it">IL CALDO DI IFRIT</span><span class="en">IFRIT'S HEAT</span></h3>
-                <p class="it">Prevediamo che le fiamme infernali faranno salire le temperature verso i <strong>30 gradi</strong>. Equipaggiate abiti leggeri per non subire danni da calore continui.</p>
-                <p class="en">We anticipate the hellfire will push temperatures to <strong>30 degrees</strong>. Equip light clothing to avoid continuous heat damage.</p>
-            </div>
-            <div class="ffx-card">
-                <h3><i class="fa-solid fa-feather"></i> <span class="it">L'AGILITÀ DI VALEFOR</span><span class="en">VALEFOR'S AGILITY</span></h3>
-                <p class="it">Il terreno del raid è composto da erba e ciottoli. Scegliete <strong>scarpe eleganti ma comode</strong>. I tacchi a spillo sono severamente bannati (infliggono lo status <em>K.O. Caviglia</em> e -10 Agilità da brilli).</p>
-                <p class="en">The raid terrain is grass and pebbles. Choose <strong>elegant but comfortable shoes</strong>. Stiletto heels are strictly banned (inflicts <em>K.O. Ankle</em> status and -10 Agility when tipsy).</p>
-            </div>
-            <div class="ffx-card">
-                <h3><i class="fa-solid fa-water"></i> BLITZBALL & RELAX</h3>
-                <p class="it">Non dimenticate di mettere in inventario <strong>costume da bagno e ciabatte</strong> per rilassarvi nell'arena della piscina!</p>
-                <p class="en">Don't forget to put your <strong>swimsuit and flip-flops</strong> in your inventory to relax in the pool arena!</p>
+                <h3><i class="fa-solid fa-fire-water"></i> <span class="it">HEAT & BLITZBALL</span><span class="en">HEAT & BLITZBALL</span></h3>
+                <p class="it">Prevediamo che le temperature saliranno verso i <strong>30 gradi</strong>. Equipaggiate abiti leggeri per non subire danni da calore continui.</p>
+                <p class="it" style="margin-top: 10px;">Inoltre, non dimenticate di mettere in inventario <strong>costume da bagno e ciabatte</strong> per rilassarvi liberamente nell'arena della piscina!</p>
+
+                <p class="en">We anticipate temperatures will push towards <strong>30 degrees</strong>. Equip light clothing to avoid continuous heat damage.</p>
+                <p class="en" style="margin-top: 10px;">Also, don't forget to put your <strong>swimsuit and flip-flops</strong> in your inventory to freely relax in the pool arena!</p>
             </div>
             <div class="ffx-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(160,0,160,0.8), rgba(48,0,48,0.9));">
                 <h3><i class="fa-solid fa-gamepad"></i> THE GOLD SAUCER <span class="it">(MINIGIOCHI E SPORT)</span><span class="en">(MINIGAMES & SPORTS)</span></h3>
                 <div class="it">
-                    <p>Il Grande Prato è un vero parco divertimenti! <br>La tenuta dispone di <strong>campi da tennis e una palestra</strong>: se volete, portate le vostre racchette. </p>
+                    <p>Il Grande Prato è un vero parco divertimenti! La tenuta dispone di <strong>campi da tennis e una palestra</strong>: se volete, portate le vostre racchette. </p>
                     <p>C'è anche un'area tranquilla per chi vuole portarsi il <strong>tappetino da Yoga</strong> per ricaricare gli MP. </p>
                     <p>E preparate i pollici: sono altamente previsti <strong>tornei improvvisati alla Nintendo Switch e card game</strong> per chi vuole sfidare la Gilda!</p>
                 </div>
                 <div class="en">
-                    <p>Il Grande Prato is a true amusement park! <br>The estate features <strong>tennis courts and a gym</strong>: bring your rackets if you like. </p>
+                    <p>Il Grande Prato is a true amusement park! The estate features <strong>tennis courts and a gym</strong>: bring your rackets if you like. </p>
                     <p>There is also a quiet area for those who want to bring a <strong>Yoga mat</strong> to recharge their MP. </p>
                     <p>And prep your thumbs: impromptu <strong>Nintendo Switch and card game tournaments</strong> are highly expected for those brave enough to challenge the Guild!</p>
                 </div>
@@ -760,6 +753,34 @@
                 document.getElementById('btn-en').classList.add('active');
                 document.getElementById('btn-it').classList.remove('active');
             }
+        }
+
+        // Easter Egg Logic per il Character Screen
+        let clicksAle = 0;
+        let clicksTia = 0;
+        
+        function triggerSecret(character) {
+            if (character === 'ale') {
+                clicksAle++;
+                if (clicksAle === 3) {
+                    showEgg('egg-ale');
+                    clicksAle = 0; // reset
+                }
+            } else if (character === 'tia') {
+                clicksTia++;
+                if (clicksTia === 3) {
+                    showEgg('egg-tia');
+                    clicksTia = 0; // reset
+                }
+            }
+        }
+
+        function showEgg(id) {
+            const eggElement = document.getElementById(id);
+            eggElement.classList.add('active');
+            setTimeout(() => {
+                eggElement.classList.remove('active');
+            }, 2000);
         }
 
         // Animazione Codec MGS
