@@ -97,7 +97,7 @@
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://www.ilgrandeprato.it/wp-content/uploads/2019/02/matrimoni-toscana-piscina.jpg') center/cover;
             color: white; text-align: center;
         }
-        #hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); text-shadow: 4px 4px 0px var(--p5-red); margin-bottom: 20px; }
+        #hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); text-shadow: 4px 4px 0px var(--p5-red); margin-bottom: 20px; user-select: none; }
         .kh-menu { list-style: none; margin-top: 30px; font-size: clamp(0.5rem, 2vw, 0.8rem); line-height: 2; display: flex; flex-direction: column; align-items: center; }
         .kh-menu li { margin: 10px; cursor: pointer; transition: 0.3s; }
         .kh-menu li:hover { color: var(--kh-blue); transform: translateX(10px); }
@@ -125,24 +125,48 @@
         .stat-fill.gold { background: linear-gradient(to right, #f1c40f, #ff9f43); }
         .master-tag { color: var(--gold); text-shadow: 1px 1px 0 #000; }
 
-        /* EASTER EGG CSS */
+        /* EASTER EGG CSS BASE */
         .secret-egg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: blue;
-            border: 8px solid white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 5rem;
-            z-index: 50;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease-in-out;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: blue; border: 8px solid white; display: flex;
+            justify-content: center; align-items: center; font-size: 5rem;
+            z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.2s ease-in-out;
         }
-        .secret-egg.active {
-            opacity: 1;
+        .secret-egg.active { opacity: 1; }
+
+        /* --- NUOVI EASTER EGGS CSS --- */
+        .miniboss-tooltip { position: relative; cursor: help; border-bottom: 2px dotted var(--p5-red); }
+        .miniboss-tooltip::after {
+            content: attr(data-stats); position: absolute; bottom: 120%; left: 50%;
+            transform: translateX(-50%); background: var(--p5-black); color: var(--mgs-green);
+            font-family: 'Press Start 2P', monospace; font-size: 0.5rem; padding: 10px;
+            border: 2px solid var(--gold); white-space: nowrap; opacity: 0; pointer-events: none;
+            transition: 0.3s; z-index: 100; box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
         }
+        .miniboss-tooltip:hover::after { opacity: 1; bottom: 150%; }
+
+        .lootable { color: var(--gold); cursor: pointer; transition: 0.2s; }
+        .lootable:hover { text-shadow: 2px 2px 0px var(--p5-red); transform: scale(1.1); display: inline-block; }
+
+        .floating-loot {
+            position: absolute; color: var(--mgs-green); font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem; pointer-events: none; animation: floatUp 1s forwards; z-index: 9999;
+            text-shadow: 1px 1px 0 #000;
+        }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-50px); opacity: 0; } }
+
+        .zelda-secret { cursor: pointer; transition: 0.3s; }
+        .zelda-secret:hover { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+
+        .missingno {
+            position: fixed; bottom: 10px; right: 10px; width: 25px; height: 25px;
+            background: repeating-linear-gradient(45deg, #000 0, #000 2px, #fff 2px, #fff 4px, #f0f 4px, #f0f 6px);
+            cursor: pointer; opacity: 0.3; transition: 0.2s; z-index: 9999; border: 1px solid #000;
+        }
+        .missingno:hover { opacity: 1; transform: scale(1.2); }
+
+        body.god-mode { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important; }
+        body.god-mode h1, body.god-mode h2, body.god-mode h3 { font-family: 'Comic Sans MS', sans-serif !important; text-transform: none; }
 
         /* --- STORY SECTION (Persona 5 Vibe) --- */
         #story { background-color: var(--p5-red); color: white; }
@@ -304,7 +328,7 @@
 
     <!-- HERO SECTION (KH Vibe) -->
     <section id="hero" class="section">
-        <h1 class="font-retro">Ale & Tia <br>WEDDING<br>Final Mix</h1>
+        <h1 id="hero-title" class="font-retro">Ale & Tia <br>WEDDING<br>Final Mix</h1>
         <p class="elegant-text" style="font-size: clamp(1rem, 4vw, 1.5rem); margin-top: 20px;">
             <span class="it">4 - 5 - 6 Giugno 2027 | Castelfiorentino</span>
             <span class="en">June 4 - 5 - 6, 2027 | Castelfiorentino</span>
@@ -368,8 +392,8 @@
                 <div class="secret-egg" id="egg-ale">💩</div>
                 <h3 class="font-retro">ALE <i class="fa-solid fa-hat-wizard" style="float: right;"></i></h3>
                 <div class="stat-label font-retro">
-                    <span class="it">CUCINA - include PASTA AL TONNO</span>
-                    <span class="en">COOKING - includes TUNA PASTA</span>
+                    <span class="it">CUCINA - include <span class="lootable" id="loot-tonno">PASTA AL TONNO</span></span>
+                    <span class="en">COOKING - includes <span class="lootable" id="loot-tonno-en">TUNA PASTA</span></span>
                     <span>23/99</span>
                 </div><div class="stat-bar"><div class="stat-fill" style="width: 23%;"></div></div>
                 <div class="stat-label font-retro">
@@ -450,8 +474,8 @@
             </div>
             <div class="story-card">
                 <h3 class="font-p5">NEW PARTY MEMBERS</h3>
-                <p class="it">Novembre 2022: Nasce <strong>Matilde</strong>. <br> Marzo 2025: Nasce <strong>Margherita</strong>. <br>Da mini-boss a membri fondamentali del Party.</p>
-                <p class="en">November 2022: <strong>Matilde</strong> is born. <br> March 2025: <strong>Margherita</strong> is born. <br>From mini-bosses to essential Party members.</p>
+                <p class="it">Novembre 2022: Nasce <strong class="miniboss-tooltip" data-stats="HP: 9999 | ATK: MAX | Debolezza: Gelato">Matilde</strong>. <br> Marzo 2025: Nasce <strong class="miniboss-tooltip" data-stats="HP: 9999 | MP: 999 | Special: Urlo Sonico">Margherita</strong>. <br>Da mini-boss a membri fondamentali del Party.</p>
+                <p class="en">November 2022: <strong class="miniboss-tooltip" data-stats="HP: 9999 | ATK: MAX | Weakness: Ice Cream">Matilde</strong> is born. <br> March 2025: <strong class="miniboss-tooltip" data-stats="HP: 9999 | MP: 999 | Special: Sonic Scream">Margherita</strong> is born. <br>From mini-bosses to essential Party members.</p>
             </div>
         </div>
         <a href="#location" class="scroll-indicator" style="color: white;"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
@@ -459,7 +483,7 @@
 
     <!-- LOCATION E MAPPA SECTION (Zelda Vibe + CTR Map) -->
     <section id="location" class="section">
-        <h2 class="zelda-title font-zelda"><i class="fa-solid fa-mountain-sun"></i> IL GRANDE PRATO</h2>
+        <h2 class="zelda-title font-zelda"><i id="zelda-icon" class="fa-solid fa-mountain-sun zelda-secret"></i> IL GRANDE PRATO</h2>
         <p style="margin-bottom: 20px; font-family: 'Montserrat'; font-weight: bold;">
             <span class="it">Castelfiorentino (FI) - Un save point immerso nel verde.</span>
             <span class="en">Castelfiorentino (FI) - A save point surrounded by nature.</span>
@@ -510,7 +534,7 @@
         <a href="#equipment" class="scroll-indicator" style="color: var(--sw-yellow);"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-down" style="margin-top: -10px;"></i></a>
     </section>
 
-    <!-- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Aeons Style - SEMPLIFICATO) -->
+    <!-- EQUIPAGGIAMENTO E MINIGIOCHI (Final Fantasy X Style) -->
     <section id="equipment" class="section">
         <h2 class="ff-title font-retro">
             <i class="fa-solid fa-gem"></i> 
@@ -662,7 +686,7 @@
                 <div>
                     <label class="it">Confermi la presenza?</label>
                     <label class="en">Confirm presence?</label>
-                    <select name="Conferma_Presenza" required>
+                    <select id="presenza-select" name="Conferma_Presenza" required>
                         <option class="it" value="" disabled selected>Seleziona...</option>
                         <option class="en" value="" disabled selected>Select...</option>
                         <option class="it" value="Sì">Sì, party pronto!</option>
@@ -738,6 +762,9 @@
         </div>
     </section>
 
+    <!-- MissingNo Easter Egg (Posizionato fisso in basso a destra) -->
+    <div id="missingno" class="missingno" title="???"></div>
+
     <!-- JS SCRIPTS -->
     <script>
         // Language Toggle System
@@ -755,7 +782,9 @@
             }
         }
 
-        // Easter Egg Logic per il Character Screen
+        // --- EASTER EGGS LOGIC ---
+
+        // 1. Easter Egg Character Screen (3 click)
         let clicksAle = 0;
         let clicksTia = 0;
         
@@ -764,13 +793,13 @@
                 clicksAle++;
                 if (clicksAle === 3) {
                     showEgg('egg-ale');
-                    clicksAle = 0; // reset
+                    clicksAle = 0;
                 }
             } else if (character === 'tia') {
                 clicksTia++;
                 if (clicksTia === 3) {
                     showEgg('egg-tia');
-                    clicksTia = 0; // reset
+                    clicksTia = 0;
                 }
             }
         }
@@ -782,6 +811,98 @@
                 eggElement.classList.remove('active');
             }, 2000);
         }
+
+        // 2. Konami Code (Desktop) & Multi-Tap (Mobile)
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateGodMode();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        let tapCount = 0;
+        let tapTimeout;
+        document.getElementById('hero-title').addEventListener('click', () => {
+            tapCount++;
+            clearTimeout(tapTimeout);
+            if (tapCount === 7) {
+                activateGodMode();
+                tapCount = 0;
+            }
+            tapTimeout = setTimeout(() => { tapCount = 0; }, 500); 
+        });
+
+        function activateGodMode() {
+            document.body.classList.toggle('god-mode');
+            alert(document.body.classList.contains('god-mode') 
+                ? "GOD MODE ENABLED: Malus 'Comic Sans' attivato per eccesso di cheat." 
+                : "GOD MODE DISABLED: Ritorno alla normalità.");
+        }
+
+        // 3. MGS Game Over (RSVP Form)
+        const presenzaSelect = document.getElementById('presenza-select');
+        presenzaSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'No') {
+                alert("Snake? Rispondi! Snake? SNAAAAAAAKE!\n\n(Ci dispiace che tu non possa venire! GAME OVER)");
+            }
+        });
+
+        // 4. Looting Inventario (Pasta al Tonno)
+        function lootItem(e) {
+            // Crea il numerino fluttuante
+            const floatingText = document.createElement('div');
+            floatingText.classList.add('floating-loot');
+            floatingText.innerText = "+1 Item Looted!";
+            floatingText.style.left = e.pageX + 'px';
+            floatingText.style.top = e.pageY + 'px';
+            document.body.appendChild(floatingText);
+            
+            // Rimuove l'elemento dopo l'animazione
+            setTimeout(() => { floatingText.remove(); }, 1000);
+            
+            alert("Hai lootato 1x Pasta al Tonno!\nHP e MP completamente ripristinati.");
+        }
+        document.getElementById('loot-tonno').addEventListener('click', (e) => { e.stopPropagation(); lootItem(e); });
+        if(document.getElementById('loot-tonno-en')) {
+            document.getElementById('loot-tonno-en').addEventListener('click', (e) => { e.stopPropagation(); lootItem(e); });
+        }
+
+        // 5. Zelda Secret Sound
+        document.getElementById('zelda-icon').addEventListener('click', (e) => {
+            const zeldaSound = new Audio('https://www.myinstants.com/media/sounds/zelda-secret-sound-effect.mp3');
+            zeldaSound.volume = 0.5;
+            zeldaSound.play().catch(err => console.log("Audio bloccato, l'animazione parte comunque!"));
+            
+            const heart = document.createElement('div');
+            heart.classList.add('floating-loot');
+            heart.innerHTML = '❤️ Secret Found!';
+            heart.style.left = e.pageX + 'px';
+            heart.style.top = (e.pageY - 20) + 'px';
+            heart.style.color = '#ff0000';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 1500);
+        });
+
+        // 6. MissingNo Glitch (Teletrasporto)
+        document.getElementById('missingno').addEventListener('click', () => {
+            document.body.style.filter = "invert(100%) hue-rotate(90deg)";
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                alert("A wild MissingNo appeared! Fuga riuscita.");
+                document.body.style.filter = "none";
+            }, 300);
+        });
+
+        // --- FINE EASTER EGGS LOGIC ---
+
 
         // Animazione Codec MGS
         document.addEventListener("DOMContentLoaded", function() {
