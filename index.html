@@ -125,11 +125,13 @@
         .stat-fill.gold { background: linear-gradient(to right, #f1c40f, #ff9f43); }
         .master-tag { color: var(--gold); text-shadow: 1px 1px 0 #000; }
 
-        /* EASTER EGG CSS BASE */
+        /* EASTER EGG CSS BASE - FIXATO PER MOBILE */
         .secret-egg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-color: blue; border: 8px solid white; display: flex;
-            justify-content: center; align-items: center; font-size: 5rem;
+            flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            font-size: clamp(1.5rem, 6vw, 4rem); /* Ridimensionamento fluido tra mobile e desktop */
+            line-height: 1.2; padding: 15px;
             z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.2s ease-in-out;
         }
         .secret-egg.active { opacity: 1; }
@@ -424,7 +426,7 @@
         <div class="stats-container">
             <!-- ALE -->
             <div class="ff-menu" onclick="triggerSecret('ale')">
-                <div class="secret-egg" id="egg-ale">💩<br> Scemo chi legge </div>
+                <div class="secret-egg" id="egg-ale">💩<br> <span class="it">Scemo chi legge</span><span class="en">Gotcha!</span> </div>
                 <h3 class="font-retro">ALE <i class="fa-solid fa-hat-wizard" style="float: right;"></i></h3>
                 <div class="stat-label font-retro" id="tonno-container">
                     <span class="it">CUCINA - include <span class="lootable" id="loot-tonno">PASTA AL TONNO</span></span>
@@ -454,7 +456,7 @@
 
             <!-- TIA -->
             <div class="ff-menu" onclick="triggerSecret('tia')">
-                <div class="secret-egg" id="egg-tia">🏎️ <br> Brrrrrrrrum</div>
+                <div class="secret-egg" id="egg-tia">🏎️ <br> <span class="it">Brrrrrrrrum</span><span class="en">Vroooom</span></div>
                 <h3 class="font-retro">TIA <i class="fa-solid fa-jedi" style="float: right;"></i></h3>
                 <div class="stat-label font-retro">
                     <span class="it">CUCINA <span class="master-tag">[MASTER]</span></span>
@@ -898,15 +900,15 @@
         function activateGodMode() {
             document.body.classList.toggle('god-mode');
             alert(document.body.classList.contains('god-mode') 
-                ? "GOD MODE ENABLED: Malus 'Comic Sans' attivato per eccesso di cheat." 
-                : "GOD MODE DISABLED: Ritorno alla normalità.");
+                ? "GOD MODE ENABLED: 'Comic Sans' debuff activated due to excessive cheating." 
+                : "GOD MODE DISABLED: Returning to normal.");
         }
 
         // 3. MGS Game Over (RSVP Form)
         const presenzaSelect = document.getElementById('presenza-select');
         presenzaSelect.addEventListener('change', (e) => {
             if (e.target.value === 'No') {
-                alert("Snake? Rispondi! Snake? SNAAAAAAAKE!\n\n(Ci dispiace che tu non possa venire! GAME OVER)");
+                alert("Snake? Respond! Snake? SNAAAAAAAKE!\n\n(We're sorry you can't make it! GAME OVER)");
             }
         });
 
@@ -940,7 +942,7 @@
             
             // Alert ritardato per non bloccare l'animazione
             setTimeout(() => {
-                alert("Hai lootato 1x Pasta al Tonno!\nHP e MP completamente ripristinati.");
+                alert("You looted 1x Tuna Pasta!\nHP and MP fully restored.");
             }, 100);
         }
 
@@ -975,7 +977,7 @@
         document.getElementById('zelda-icon').addEventListener('click', (e) => {
             const zeldaSound = new Audio('https://www.myinstants.com/media/sounds/zelda-secret-sound-effect.mp3');
             zeldaSound.volume = 0.5;
-            zeldaSound.play().catch(err => console.log("Audio bloccato, l'animazione parte comunque!"));
+            zeldaSound.play().catch(err => console.log("Audio blocked, animation will play anyway!"));
             
             const heart = document.createElement('div');
             heart.classList.add('floating-loot');
@@ -992,7 +994,7 @@
             document.body.style.filter = "invert(100%) hue-rotate(90deg)";
             setTimeout(() => {
                 window.scrollTo({ top: 0, behavior: 'instant' });
-                alert("A wild MissingNo appeared! Fuga riuscita.");
+                alert("A wild MissingNo appeared! Got away safely.");
                 document.body.style.filter = "none";
             }, 300);
         });
@@ -1047,7 +1049,7 @@
             storySection.classList.add('p5-flash');
             
             setTimeout(() => {
-                alert("✉️ CALLING CARD:\n\nSirs & Madams,\nSiamo pronti a rubarvi il cuore il 5 Giugno!\n\n- The Phantom Thieves");
+                alert("✉️ CALLING CARD:\n\nSirs & Madams,\nWe are ready to take your hearts on June 5th!\n\n- The Phantom Thieves");
             }, 200);
         });
 
@@ -1098,7 +1100,7 @@
             
             // Alert ritardato per far vedere l'animazione
             setTimeout(() => {
-                alert("✨ LEVEL UP!\nAle's Cooking Skill increased by 1!\n\nHai sbloccato: [Ricettario senza Tonno]");
+                alert("✨ LEVEL UP!\nAle's Cooking Skill increased by 1!\n\nYou unlocked: [Tuna-free Recipe Book]");
             }, 100);
         }
 
@@ -1124,12 +1126,12 @@
 
         // Fast Travel Tax (Card 3)
         document.getElementById('fast-travel').addEventListener('click', () => {
-            alert("✈️ FAST TRAVEL EFFECTUATO!\n\nHai attraversato il confine Svizzero.\n-500 Munny scalati per tasse doganali.");
+            alert("✈️ FAST TRAVEL COMPLETED!\n\nYou crossed the Swiss border.\n-500 Munny deducted for customs taxes.");
         });
 
         // Zelda Song of Time (Domenica)
         document.getElementById('song-of-time').addEventListener('click', () => {
-            alert("🎵 ▶ 🔽 🔼 ▶ 🔽 🔼\n\nHai suonato la Canzone del Tempo...\nRitorno all'Alba del Primo Giorno!");
+            alert("🎵 ▶ 🔽 🔼 ▶ 🔽 🔼\n\nYou played the Song of Time...\nReturning to the Dawn of the First Day!");
             document.getElementById('friday-quest').scrollIntoView({ behavior: 'smooth' });
         });
         
@@ -1140,7 +1142,7 @@
             this.classList.add('spin-anim');
             
             setTimeout(() => {
-                alert("🌊 TIRO JECHT!\n\nHai sbloccato l'abilità suprema di Blitzball per il pool party!\n[MP COST: 0 | DMG: 9999]");
+                alert("🌊 JECHT SHOT!\n\nYou unlocked the ultimate Blitzball ability for the pool party!\n[MP COST: 0 | DMG: 9999]");
             }, 300);
         });
 
@@ -1163,7 +1165,7 @@
             setTimeout(() => {
                 swContainer.style.boxShadow = "0 0 20px rgba(255, 232, 31, 0.4)"; // Torna al bagliore giallo base
                 swContainer.style.borderColor = "var(--sw-yellow)";
-                alert("✨ \"Questi non sono gli sposi che state cercando... ah no aspetta, sono proprio loro!\"");
+                alert("✨ \"These are not the newlyweds you're looking for... oh wait, yes they are!\"");
             }, 600);
         });
 
