@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ale & Tia: Final Mix - Wedding Quest 2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Caveat:wght@700&family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --p5-red: #d32f2f;
+            --p5-black: #000000;
+            --tuscan-cream: #fdf6e3;
+            --tuscan-wine: #722f37;
+            --tuscan-olive: #556b2f;
+            --kh-blue: #00a8ff;
+            --gold: #f1c40f;
+            --mgs-green: #33ff33;
+            --ff-blue-top: #0000a0;
+            --ff-blue-bot: #000030;
+            --ctr-orange: #ff6600;
+            --sw-yellow: #ffe81f;
+            --pixel-blue: #4bb0ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+        body { background-color: var(--p5-black); color: #333; font-family: 'Montserrat', sans-serif; }
+
+        /* LANGUAGE SYSTEM */
+        body.lang-it .en { display: none !important; }
+        body.lang-en .it { display: none !important; }
+
+        .lang-switcher {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            display: flex; gap: 10px; background: rgba(0, 0, 0, 0.8);
+            padding: 8px; border: 2px solid var(--gold); border-radius: 5px;
+        }
+        .lang-btn {
+            background: none; border: none; color: white;
+            font-family: 'Press Start 2P', cursive; font-size: 0.6rem;
+            cursor: pointer; opacity: 0.5; transition: 0.3s;
+        }
+        .lang-btn.active { color: var(--gold); opacity: 1; }
+
+        .section {
+            min-height: 100vh; padding: 80px 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; background-color: var(--tuscan-cream);
+        }
+
+        /* FONTS */
+        .font-retro { font-family: 'Press Start 2P', cursive; text-transform: uppercase; }
+        .font-p5 { font-family: 'Anton', sans-serif; font-style: italic; letter-spacing: 2px; text-transform: uppercase; }
+        .font-mgs { font-family: 'VT323', monospace; }
+        .font-zelda { font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .font-ctr { font-family: 'Bangers', cursive; }
+        .font-brush { font-family: 'Caveat', cursive; text-transform: none; }
+
+        /* HERO SECTION AGGIORNATA */
+        #hero {
+            background-color: var(--pixel-blue);
+            background-image: url('bg-hero.png');
+            background-size: cover; background-position: center;
+            color: white; text-align: center; justify-content: flex-start;
+            padding-top: clamp(60px, 10vh, 100px);
+        }
+        #hero h1 { font-size: clamp(4rem, 15vw, 8.5rem); text-shadow: 3px 3px 0px rgba(0,0,0,0.2); line-height: 0.9; }
+        .hero-subtitle { font-size: clamp(2rem, 8vw, 4rem); color: var(--ff-blue-top); margin-top: -10px; }
+        
+        .kh-menu-container {
+            background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 15px;
+            border: 4px dashed var(--ff-blue-top); margin-top: 20px; backdrop-filter: blur(5px);
+            width: 100%; max-width: 500px;
+        }
+        .kh-menu { list-style: none; font-size: 0.7rem; line-height: 2.2; }
+        .kh-menu a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .kh-menu li:hover { color: var(--pixel-blue); transform: translateX(5px); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite; color: var(--ff-blue-top); font-size: 1.5rem;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);} 40% {transform: translate(-50%, -10px);} }
+
+        /* CODEC SECTION */
+        #codec { background-color: #050a05; color: var(--mgs-green); padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--mgs-green); }
+        .codec-faces { display: flex; justify-content: center; align-items: center; gap: 30px; margin: 30px 0; }
+        .codec-face { border: 2px solid var(--mgs-green); padding: 10px; width: 100px; background: rgba(51, 255, 51, 0.1); }
+        .codec-dialogue { border: 2px solid var(--mgs-green); padding: 20px; max-width: 600px; margin: 0 auto; background: rgba(0,20,0,0.6); }
+
+        /* STATUS SCREEN */
+        #stats { background-color: #000; color: #fff; }
+        .ff-menu {
+            background: linear-gradient(to bottom right, var(--ff-blue-top), var(--ff-blue-bot));
+            border: 3px solid #fff; padding: 20px; width: 100%; max-width: 450px; margin: 10px;
+            box-shadow: 8px 8px 0px #000; position: relative; cursor: pointer;
+        }
+        .stat-bar { height: 10px; background: #333; width: 100%; margin: 8px 0 15px; border: 1px solid #fff; }
+        .stat-fill { height: 100%; background: #00ff00; }
+        .stat-fill.gold { background: var(--gold); }
+
+        /* STORY SECTION */
+        #story { background-color: var(--p5-red); color: white; }
+        .p5-card { background: #000; border: 3px solid #fff; padding: 20px; transform: skew(-2deg); margin: 15px; max-width: 500px; }
+
+        /* RSVP */
+        #rsvp { background: #000; color: #fff; }
+        .pixel-form input, .pixel-form select, .pixel-form textarea {
+            width: 100%; padding: 12px; margin: 10px 0; border: 2px solid var(--p5-red); background: #eee;
+        }
+        .pixel-btn-submit {
+            background: var(--p5-red); color: #fff; padding: 15px; border: 3px solid #fff;
+            width: 100%; cursor: pointer; font-family: 'Press Start 2P';
+        }
+
+        /* UTILS */
+        .secret-egg { position: absolute; top:0; left:0; width:100%; height:100%; background:blue; display:none; align-items:center; justify-content:center; font-size:3rem; z-index:10; }
+        .secret-egg.active { display: flex; }
+    </style>
+</head>
+<body class="lang-it">
+
+    <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-it" onclick="setLang('it')">ITA</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">ENG</button>
+    </div>
+
+    <section id="hero" class="section">
+        <h1 class="font-brush">Ale & Tia</h1>
+        <h2 class="hero-subtitle font-brush">wedding final mix</h2>
+        <p class="font-retro" style="font-size: 0.8rem; text-shadow: 2px 2px #000; margin-top: 10px;">
+            <span class="it">4-5-6 GIUGNO 2027 @ IL GRANDE PRATO</span>
+            <span class="en">JUNE 4-5-6, 2027 @ IL GRANDE PRATO</span>
+        </p>
+        <div class="kh-menu-container">
+            <ul class="kh-menu font-retro">
+                <li><a href="#codec">MISSION</a></li>
+                <li><a href="#stats">CHARACTERS</a></li>
+                <li><a href="#story">STORY</a></li>
+                <li><a href="#rsvp">JOIN PARTY</a></li>
+            </ul>
+        </div>
+        <a href="#codec" class="scroll-indicator"><i class="fas fa-chevron-down"></i></a>
+    </section>
+
+    <section id="codec" class="font-mgs">
+        <h2 class="font-retro" style="font-size: 1.5rem;">FREQ 140.85</h2>
+        <div class="codec-faces">
+            <div class="codec-face"><i class="fas fa-user-secret fa-3x"></i><br>TIA</div>
+            <div style="font-size: 2rem;">>>>></div>
+            <div class="codec-face"><i class="fas fa-user-ninja fa-3x"></i><br>ALE</div>
+        </div>
+        <div class="codec-dialogue">
+            <p><strong>TIA:</strong> <span class="it">Sei pronta? Niente stealth, solo festa!</span><span class="en">Ready? No stealth, just party!</span></p>
+        </div>
+    </section>
+
+    <section id="stats" class="section">
+        <h2 class="font-retro" style="margin-bottom: 30px;">PARTY STATUS</h2>
+        <div class="ff-menu" onclick="triggerSecret('ale')">
+            <div class="secret-egg" id="egg-ale">💩</div>
+            <h3 class="font-retro">ALE [TECH WIZARD]</h3>
+            <div class="font-retro" style="font-size: 0.5rem; margin-top:10px;">GAMING 85/99</div>
+            <div class="stat-bar"><div class="stat-fill" style="width: 85%;"></div></div>
+            <div class="font-retro" style="font-size: 0.5rem;">SMILE 99/99</div>
+            <div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+        </div>
+        <div class="ff-menu" onclick="triggerSecret('tia')">
+            <div class="secret-egg" id="egg-tia">🏎️</div>
+            <h3 class="font-retro">TIA [MASTER CHEF]</h3>
+            <div class="font-retro" style="font-size: 0.5rem; margin-top:10px;">COOKING 99/99</div>
+            <div class="stat-bar"><div class="stat-fill gold" style="width: 100%;"></div></div>
+            <div class="font-retro" style="font-size: 0.5rem;">WINE RES 65/99</div>
+            <div class="stat-bar"><div class="stat-fill" style="width: 65%;"></div></div>
+        </div>
+    </section>
+
+    <section id="story" class="section">
+        <h2 class="font-p5" style="font-size: 3rem; background: #000; padding: 10px;">THE STORY</h2>
+        <div class="p5-card">
+            <h3 class="font-p5" style="color: var(--p5-red);">THE ENCOUNTER</h3>
+            <p>Tia al bar, Ale cliente. Un caffè galeotto e il primo "loot" è servito.</p>
+        </div>
+    </section>
+
+    <section id="rsvp" class="section">
+        <h2 class="font-retro">JOIN THE PARTY</h2>
+        <div style="width: 100%; max-width: 500px; background: #222; padding: 20px; border: 4px double var(--p5-red);">
+            <form class="pixel-form font-retro" style="font-size: 0.6rem;">
+                <label>NAME/NOME</label>
+                <input type="text" placeholder="Es. Cloud Strife">
+                <label>PRESENCE/PRESENZA</label>
+                <select id="presenza-select">
+                    <option value="Sì">SÌ, PARTY READY!</option>
+                    <option value="No">NO, GAME OVER</option>
+                </select>
+                <button type="button" class="pixel-btn-submit" onclick="alert('Saving data...')">CONFIRM</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="missingno" style="position:fixed; bottom:10px; right:10px; width:20px; height:20px; background: grey; cursor:pointer; opacity: 0.5;"></div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+
+        function triggerSecret(char) {
+            const egg = document.getElementById('egg-' + char);
+            egg.classList.add('active');
+            setTimeout(() => egg.classList.remove('active'), 1500);
+        }
+
+        document.getElementById('presenza-select').addEventListener('change', function() {
+            if(this.value === 'No') alert("SNAKE? SNAAAAAAAKE! (Game Over)");
+        });
+
+        document.getElementById('missingno').onclick = function() {
+            document.body.style.filter = "invert(1)";
+            setTimeout(() => { document.body.style.filter = "none"; window.scrollTo(0,0); }, 500);
+        };
+    </script>
+</body>
+</html>
