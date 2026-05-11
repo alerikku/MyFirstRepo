@@ -106,18 +106,19 @@
         }
         
         #hero h1 { 
-            font-size: clamp(4rem, 15vw, 8rem); 
+            /* DIMENSIONI TITOLO RIDOTTE PER ADATTARSI AL FONT RETRO */
+            font-size: clamp(2rem, 8vw, 4.5rem); 
             color: white; 
             text-shadow: 3px 3px 0px rgba(0,0,0,0.15); 
             margin-bottom: 0; 
-            line-height: 1; 
+            line-height: 1.2; 
             user-select: none; 
         }
         
         .hero-subtitle {
             color: var(--ff-blue-top);
             font-size: clamp(2.5rem, 8vw, 4rem);
-            margin-top: -10px;
+            margin-top: 10px;
             margin-bottom: 20px;
             text-shadow: 2px 2px 0px rgba(255,255,255,0.3);
         }
@@ -133,8 +134,9 @@
             max-width: 600px;
         }
 
-        .kh-menu { list-style: none; font-size: clamp(0.5rem, 2vw, 0.8rem); line-height: 2; display: flex; flex-direction: column; align-items: center; }
-        .kh-menu li { margin: 10px; cursor: pointer; transition: 0.3s; }
+        /* MENU INGRANDITO */
+        .kh-menu { list-style: none; font-size: clamp(0.8rem, 3vw, 1.2rem); line-height: 2; display: flex; flex-direction: column; align-items: center; }
+        .kh-menu li { margin: 15px; cursor: pointer; transition: 0.3s; }
         .kh-menu li:hover { color: var(--pixel-blue); transform: translateX(10px); }
         .kh-menu a { text-decoration: none; color: inherit; }
 
@@ -388,7 +390,8 @@
     </div>
 
     <section id="hero" class="section">
-        <h1 id="hero-title" class="font-brush">Ale & Tia</h1>
+        <!-- TITOLO MODIFICATO CON CLASSE font-retro -->
+        <h1 id="hero-title" class="font-retro">Ale & Tia</h1>
         <h2 class="hero-subtitle font-brush">wedding final mix</h2>
         
         <p class="font-retro" style="font-size: clamp(0.7rem, 3vw, 1.2rem); margin-top: 10px; line-height: 1.8; text-shadow: 2px 2px 0px #000;">
