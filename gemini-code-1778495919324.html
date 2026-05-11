@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ale & Tia: Final Mix - Wedding Quest 2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Caveat:wght@700&family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --p5-red: #d32f2f;
+            --p5-black: #000000;
+            --tuscan-cream: #fdf6e3;
+            --tuscan-wine: #722f37;
+            --tuscan-olive: #556b2f;
+            --kh-blue: #00a8ff;
+            --kh-dark: #050520;
+            --gold: #f1c40f;
+            --mgs-green: #33ff33;
+            --ff-blue-top: #0000a0;
+            --ff-blue-bot: #000030;
+            --ctr-orange: #ff6600;
+            --sw-yellow: #ffe81f;
+            --pixel-blue: #4bb0ff;
+        }
+
+        /* --- RESET E FIX MOBILE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+        body { background-color: var(--p5-black); color: #333; font-family: 'Montserrat', sans-serif; }
+
+        /* --- LANGUAGE TOGGLE SYSTEM --- */
+        body.lang-it .en { display: none !important; }
+        body.lang-en .it { display: none !important; }
+
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px;
+            border: 2px solid var(--gold);
+            border-radius: 5px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+        .lang-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.3s;
+            padding: 5px;
+        }
+        .lang-btn.active {
+            color: var(--gold);
+            opacity: 1;
+            text-shadow: 1px 1px 0px #000;
+        }
+        .lang-btn:hover { opacity: 1; }
+
+        .section {
+            min-height: 100vh;
+            padding: clamp(60px, 10vw, 80px) clamp(15px, 5vw, 20px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; background-color: var(--tuscan-cream);
+        }
+
+        /* --- CLASSI FONT TEMATICI --- */
+        .font-retro { font-family: 'Press Start 2P', cursive; text-transform: uppercase; }
+        .font-p5 { font-family: 'Anton', sans-serif; font-style: italic; letter-spacing: 2px; text-transform: uppercase; }
+        .font-mgs { font-family: 'VT323', monospace; }
+        .font-zelda { font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .font-ctr { font-family: 'Bangers', cursive; letter-spacing: 1px; }
+        .font-brush { font-family: 'Caveat', cursive; text-transform: none; }
+
+        /* --- FRECCE DI SCROLL --- */
+        .scroll-indicator {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+            color: inherit; text-decoration: none; animation: bounce 2s infinite; z-index: 10;
+        }
+        .scroll-indicator i { font-size: 1.5rem; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);}
+            40% {transform: translate(-50%, -10px);}
+            60% {transform: translate(-50%, -5px);}
+        }
+
+        /* --- HERO SECTION AGGIORNATA (Girasoli Pixel Art) --- */
+        #hero {
+            /* Colore di fallback */
+            background-color: var(--pixel-blue);
+            
+            /* Utilizzo dell'asset ottimizzato */
+            background-image: url('bg-hero.png');
+            
+            /* Impostazioni per coprire proporzionalmente lo schermo senza deformarsi */
+            background-size: cover; 
+            background-position: center;
+            
+            color: white; 
+            text-align: center;
+            position: relative;
+            justify-content: flex-start; /* Alza il testo verso l'alto per non coprire i girasoli */
+            padding-top: clamp(80px, 15vw, 120px);
+        }
+        
+        #hero h1 { 
+            font-size: clamp(4rem, 15vw, 8rem); 
+            color: white; 
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.15); 
+            margin-bottom: 0; 
+            line-height: 1; 
+            user-select: none; 
+        }
+        
+        .hero-subtitle {
+            color: var(--ff-blue-top); /* Blu scuro per contrasto */
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-top: -10px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.3);
+        }
+
+        /* Box per il menu, così si legge bene sopra i girasoli */
+        .kh-menu-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: clamp(15px, 4vw, 25px);
+            border-radius: 12px;
+            border: 4px dashed var(--ff-blue-top);
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .kh-menu { list-style: none; font-size: clamp(0.5rem, 2vw, 0.8rem); line-height: 2; display: flex; flex-direction: column; align-items: center; }
+        .kh-menu li { margin: 10px; cursor: pointer; transition: 0.3s; }
+        .kh-menu li:hover { color: var(--pixel-blue); transform: translateX(10px); }
+        .kh-menu a { text-decoration: none; color: inherit; }
+
+        /* --- STATUS SCREEN (FF Menu Vibe) --- */
+        #stats { background-color: var(--p5-black); color: white; }
+        /* ... resto del CSS esistente ... */
