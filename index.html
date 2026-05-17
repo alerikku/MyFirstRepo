@@ -41,10 +41,23 @@
         .lang-btn.active { color: var(--gold); opacity: 1; text-shadow: 1px 1px 0px #000; }
         .lang-btn:hover { opacity: 1; }
 
+        /* --- HUD ESTERNI (TRACKER & BGM) --- */
+        .hud-bottom {
+            position: fixed; bottom: 15px; left: 15px; right: 15px;
+            display: flex; justify-content: space-between; z-index: 1000; pointer-events: none;
+        }
+        .hud-item {
+            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--gold); border-radius: 5px;
+            padding: clamp(6px, 1.5vh, 10px) clamp(10px, 2vw, 15px); color: white; font-family: 'Press Start 2P', cursive; font-size: clamp(0.5rem, 2vw, 0.7rem);
+            pointer-events: auto; box-shadow: 2px 2px 0px rgba(0,0,0,0.5); cursor: pointer; text-shadow: 1px 1px 0 #000;
+            transition: 0.3s; user-select: none; display: flex; align-items: center; gap: 8px;
+        }
+        .hud-item:hover { transform: scale(1.05); border-color: white; }
+
         /* --- SECTIONS --- */
         .section {
             min-height: 100svh;
-            padding: clamp(40px, 6vh, 80px) clamp(10px, 5vw, 20px) clamp(30px, 5vh, 60px);
+            padding: clamp(40px, 6vh, 80px) clamp(10px, 5vw, 20px) clamp(50px, 8vh, 80px);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative; background-color: var(--tuscan-cream); overflow: hidden;
         }
@@ -56,7 +69,7 @@
         .font-ctr { font-family: 'Bangers', cursive; letter-spacing: 1px; }
         .font-brush { font-family: 'Caveat', cursive; text-transform: none; }
 
-        .scroll-indicator { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; color: inherit; text-decoration: none; animation: bounce 2s infinite; z-index: 10; }
+        .scroll-indicator { position: absolute; bottom: clamp(30px, 5vh, 40px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; color: inherit; text-decoration: none; animation: bounce 2s infinite; z-index: 10; }
         .scroll-indicator i { font-size: clamp(1.5rem, 4vh, 2rem); filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);} 40% {transform: translate(-50%, -8px);} 60% {transform: translate(-50%, -4px);} }
 
@@ -215,6 +228,8 @@
             .form-row-inline > select, .form-row-inline > input { width: 100%; }
             
             .ffx-card { grid-column: auto !important; background: linear-gradient(135deg, rgba(0,0,160,0.8), rgba(0,0,48,0.9)) !important; }
+            
+            .hud-bottom { bottom: 5px; left: 5px; right: 5px; }
         }
         .quest-grid { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
         .location-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; align-items: center; }
@@ -227,6 +242,21 @@
         <button class="lang-btn active" id="btn-it" onclick="setLang('it')">ITA</button>
         <button class="lang-btn" id="btn-en" onclick="setLang('en')">ENG</button>
     </div>
+
+    <!-- HUD OVERLAY (TRACKER & BGM) -->
+    <div class="hud-bottom">
+        <div class="hud-item" id="egg-tracker" title="Fai doppio click per resettare i progressi">
+            🥚 0/13
+        </div>
+        <div class="hud-item" id="bgm-toggle" title="Riproduci Colonna Sonora">
+            <i class="fa-solid fa-music"></i> BGM: OFF
+        </div>
+    </div>
+    
+    <!-- AUDIO TRACK - DEARLY BELOVED 8-BIT GBA -->
+    <audio id="bgm-audio" loop>
+        <source src="https://vgmsite.com/soundtracks/kingdom-hearts-chain-of-memories-gba/szexxofk/01.%20Dearly%20Beloved.mp3" type="audio/mpeg">
+    </audio>
 
     <section id="hero" class="section">
         <h1 id="hero-title" class="font-retro">Ale & Tia</h1>
@@ -251,10 +281,10 @@
             
             <hr style="border: 1px dashed var(--ff-blue-top); margin: 20px 0; opacity: 0.6;">
             
-            <!-- EASTER EGG TEXT SPOSTATO QUI DENTRO -->
+            <!-- EASTER EGG TESTO -->
             <p class="font-retro" style="font-size: clamp(0.6rem, 1.8vw, 0.8rem); color: var(--gold); text-shadow: 2px 2px 0px #000; letter-spacing: 1px; text-align: center; line-height: 1.6; margin: 0 auto;">
-                <span class="it"><i class="fa-solid fa-star" style="color: white;"></i> Ci sono 12 Easter Egg nel sito, catturali tutti!</span>
-                <span class="en"><i class="fa-solid fa-star" style="color: white;"></i> There are 12 Easter Eggs on the site, catch 'em all!</span>
+                <span class="it"><i class="fa-solid fa-star" style="color: white;"></i> Ci sono 13 Easter Egg nel sito, catturali tutti!</span>
+                <span class="en"><i class="fa-solid fa-star" style="color: white;"></i> There are 13 Easter Eggs on the site, catch 'em all!</span>
             </p>
         </div>
         
@@ -417,7 +447,7 @@
     </section>
 
     <section id="location" class="section">
-        <h2 class="zelda-title font-zelda"><i id="zelda-icon" class="fa-solid fa-mountain-sun zelda-secret"></i> IL GRANDE PRATO</h2>
+        <h2 class="zelda-title font-zelda"><i id="zelda-icon" class="fa-solid fa-mountain-sun zelda-secret interactive-icon"></i> IL GRANDE PRATO</h2>
         <p style="margin-bottom: clamp(15px, 3vh, 30px); font-family: 'Montserrat'; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: bold; text-align: center;">
             <span class="it">Castelfiorentino (FI) - Un save point immerso nel verde.</span>
             <span class="en">Castelfiorentino (FI) - A save point surrounded by nature.</span>
@@ -686,24 +716,228 @@
             }
         }
 
+        // --- BGM AUDIO SYSTEM ---
+        const bgmAudio = document.getElementById('bgm-audio');
+        const bgmToggle = document.getElementById('bgm-toggle');
+        let isBgmPlaying = false;
+
+        bgmToggle.addEventListener('click', () => {
+            if (isBgmPlaying) {
+                bgmAudio.pause();
+                bgmToggle.innerHTML = '<i class="fa-solid fa-music"></i> BGM: OFF';
+                bgmToggle.style.borderColor = "var(--gold)";
+                isBgmPlaying = false;
+            } else {
+                bgmAudio.volume = 0.3; // Volume chill
+                bgmAudio.play().then(() => {
+                    bgmToggle.innerHTML = '<i class="fa-solid fa-music" style="color:var(--mgs-green)"></i> BGM: ON';
+                    bgmToggle.style.borderColor = "var(--mgs-green)";
+                    isBgmPlaying = true;
+                }).catch((err) => {
+                    alert("Ops! Il tuo browser sta bloccando l'audio in autoplay. Riprova!");
+                });
+            }
+        });
+
+        // --- EASTER EGG TRACKER SYSTEM ---
+        const totalEggs = 13;
+        let foundEggs = JSON.parse(localStorage.getItem('khWeddingEggs')) || [];
+
+        function updateTrackerUI() {
+            const tracker = document.getElementById('egg-tracker');
+            tracker.innerHTML = `🥚 ${foundEggs.length}/${totalEggs}`;
+            if(foundEggs.length === totalEggs) {
+                tracker.style.color = "var(--mgs-green)";
+                tracker.style.borderColor = "var(--mgs-green)";
+            } else {
+                tracker.style.color = "white";
+                tracker.style.borderColor = "var(--gold)";
+            }
+        }
+
+        // Init UI on load
+        document.addEventListener("DOMContentLoaded", () => { updateTrackerUI(); });
+
+        // Double click to reset tracker
+        document.getElementById('egg-tracker').addEventListener('dblclick', () => {
+            if(confirm("Vuoi resettare i progressi degli Easter Egg?")) {
+                foundEggs = [];
+                localStorage.removeItem('khWeddingEggs');
+                updateTrackerUI();
+            }
+        });
+
+        function discoverEgg(eggId) {
+            if (!foundEggs.includes(eggId)) {
+                foundEggs.push(eggId);
+                localStorage.setItem('khWeddingEggs', JSON.stringify(foundEggs));
+                updateTrackerUI();
+                
+                // Traguardo raggiunto
+                if (foundEggs.length === totalEggs) {
+                    setTimeout(() => {
+                        alert("🏆 TRAGUARDO SBLOCCATO: 13/13!\n\nBravo, hai trovato tutti gli easter egg nascosti!\n\n13... proprio come gli anni che Ale e Tia hanno passato insieme! ❤️\n\nCi vediamo al matrimonio!");
+                    }, 800);
+                }
+            }
+        }
+
         // Smash Bros Audio
         function playSelectSound() {
             const beep = new Audio('https://www.myinstants.com/media/sounds/menu-select.mp3');
-            beep.volume = 0.2;
-            beep.play().catch(()=>{}); 
+            beep.volume = 0.2; beep.play().catch(()=>{}); 
         }
 
-        // EASTER EGGS
+        // --- LE 13 SIDE QUEST (EASTER EGGS) ---
+
+        // 1 & 2. Ale & Tia Cards
         let clicksAle = 0, clicksTia = 0;
         function triggerSecret(char) {
-            if (char === 'ale') { clicksAle++; if (clicksAle === 3) { showEgg('egg-ale'); clicksAle = 0; } } 
-            else if (char === 'tia') { clicksTia++; if (clicksTia === 3) { showEgg('egg-tia'); clicksTia = 0; } }
-        }
-        function showEgg(id) {
-            const egg = document.getElementById(id); egg.classList.add('active');
-            setTimeout(() => { egg.classList.remove('active'); }, 2000);
+            if (char === 'ale') { 
+                clicksAle++; 
+                if (clicksAle === 3) { 
+                    const egg = document.getElementById('egg-ale'); egg.classList.add('active');
+                    setTimeout(() => { egg.classList.remove('active'); }, 2000);
+                    discoverEgg('egg-ale'); // <--- TRACK
+                    clicksAle = 0; 
+                } 
+            } else if (char === 'tia') { 
+                clicksTia++; 
+                if (clicksTia === 3) { 
+                    const egg = document.getElementById('egg-tia'); egg.classList.add('active');
+                    setTimeout(() => { egg.classList.remove('active'); }, 2000);
+                    discoverEgg('egg-tia'); // <--- TRACK
+                    clicksTia = 0; 
+                } 
+            }
         }
 
+        // 3. Loot Tonno
+        function triggerLootItem(e, container) {
+            let x = e.pageX, y = e.pageY;
+            if (e.type === 'touchend') { x = e.changedTouches[0].pageX; y = e.changedTouches[0].pageY; } 
+            else if (x === undefined) {
+                const rect = container.getBoundingClientRect(); x = rect.left + window.scrollX + rect.width / 2; y = rect.top + window.scrollY + rect.height / 2;
+            }
+            const floatingText = document.createElement('div'); floatingText.classList.add('floating-loot'); floatingText.innerText = "+1 Item Looted!";
+            floatingText.style.left = x + 'px'; floatingText.style.top = y + 'px'; floatingText.style.color = '#00ff00';
+            document.body.appendChild(floatingText);
+            setTimeout(() => { floatingText.remove(); }, 1000);
+            setTimeout(() => { alert("You looted 1x Tuna Pasta!\nHP and MP fully restored."); }, 100);
+            discoverEgg('egg-tonno'); // <--- TRACK
+        }
+        const tonnoContainer = document.getElementById('tonno-container');
+        document.getElementById('loot-tonno').addEventListener('click', (e) => { e.stopPropagation(); triggerLootItem(e, tonnoContainer); });
+
+        // 4. Zelda Secret
+        document.getElementById('zelda-icon').addEventListener('click', (e) => {
+            new Audio('https://www.myinstants.com/media/sounds/zelda-secret-sound-effect.mp3').play().catch(()=>{});
+            const heart = document.createElement('div'); heart.classList.add('floating-loot'); heart.innerHTML = '❤️ Secret Found!';
+            heart.style.left = e.pageX + 'px'; heart.style.top = (e.pageY - 20) + 'px'; heart.style.color = '#ff0000';
+            document.body.appendChild(heart); setTimeout(() => { heart.remove(); }, 1500);
+            discoverEgg('egg-zelda'); // <--- TRACK
+        });
+
+        // 5. MissingNo
+        document.getElementById('missingno').addEventListener('click', () => {
+            document.body.style.filter = "invert(100%) hue-rotate(90deg)";
+            setTimeout(() => { 
+                window.scrollTo({ top: 0, behavior: 'instant' }); 
+                alert("A wild MissingNo appeared! Got away safely."); 
+                document.body.style.filter = "none"; 
+                discoverEgg('egg-missingno'); // <--- TRACK
+            }, 300);
+        });
+
+        // 6. Mei Ling Codec
+        let codecTaps = 0, codecTimeout;
+        const freqText = document.getElementById('codec-freq-text');
+        freqText.addEventListener('click', () => {
+            codecTaps++; clearTimeout(codecTimeout);
+            if (codecTaps === 3) {
+                freqText.innerText = "FREQ 140.96"; freqText.style.color = "#00a8ff"; 
+                const originalHTML = document.getElementById('dialogue-box').innerHTML;
+                document.getElementById('dialogue-box').innerHTML = `
+                    <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>MEI LING:</strong> Ciao! Sono Mei Ling. Non dimenticare di salvare la data!</p>
+                    <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>SNAKE:</strong> Ricevuto. RSVP in compilazione.</p>
+                `;
+                discoverEgg('egg-codec'); // <--- TRACK
+                setTimeout(() => { freqText.innerText = "FREQ 140.85"; freqText.style.color = ""; document.getElementById('dialogue-box').innerHTML = originalHTML; }, 7000);
+                codecTaps = 0;
+            }
+            codecTimeout = setTimeout(() => { codecTaps = 0; }, 400);
+        });
+
+        // 7. P5 Mask
+        document.getElementById('p5-mask').addEventListener('click', function() {
+            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
+            const story = document.getElementById('story'); story.classList.remove('p5-flash'); void story.offsetWidth; story.classList.add('p5-flash');
+            setTimeout(() => { 
+                alert("✉️ CALLING CARD:\n\nWe are ready to take your hearts on June 5th!\n- The Phantom Thieves"); 
+                discoverEgg('egg-p5'); // <--- TRACK
+            }, 200);
+        });
+
+        // 8. Coffee Boost
+        document.getElementById('coffee-boost').addEventListener('click', (e) => {
+            const card = document.getElementById('card-coffee'); card.classList.remove('shake-card'); void card.offsetWidth; card.classList.add('shake-card');
+            const buff = document.createElement('div'); buff.classList.add('floating-loot'); buff.innerHTML = '⚡ +100 SPEED!';
+            buff.style.left = e.pageX + 'px'; buff.style.top = e.pageY + 'px'; buff.style.color = '#f1c40f'; document.body.appendChild(buff); 
+            setTimeout(() => { buff.remove(); }, 1000);
+            discoverEgg('egg-coffee'); // <--- TRACK
+        });
+
+        // 9. Recipe Unlock
+        document.getElementById('recipe-unlock').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const level = document.createElement('div'); level.classList.add('floating-loot'); level.innerHTML = '⬆️ LEVEL UP!';
+            level.style.left = e.pageX + 'px'; level.style.top = e.pageY + 'px'; level.style.color = '#00ff00'; document.body.appendChild(level);
+            setTimeout(() => { level.remove(); }, 1000); 
+            setTimeout(() => { 
+                alert("✨ LEVEL UP!\nAle's Cooking Skill increased by 1!\n\nYou unlocked: [Tuna-free Recipe Book]"); 
+                discoverEgg('egg-recipe'); // <--- TRACK
+            }, 100);
+        });
+
+        // 10. Fast Travel
+        document.getElementById('fast-travel').addEventListener('click', () => { 
+            alert("✈️ FAST TRAVEL COMPLETED!\nYou crossed the Swiss border.\n-500 Munny for customs."); 
+            discoverEgg('egg-fasttravel'); // <--- TRACK
+        });
+
+        // 11. Song of Time
+        document.getElementById('song-of-time').addEventListener('click', () => {
+            alert("🎵 ▶ 🔽 🔼 ▶ 🔽 🔼\nYou played the Song of Time...\nReturning to the Dawn of the First Day!");
+            document.getElementById('friday-quest').scrollIntoView({ behavior: 'smooth' });
+            discoverEgg('egg-time'); // <--- TRACK
+        });
+        
+        // 12. Blitzball
+        document.getElementById('blitzball-icon').addEventListener('click', function() {
+            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
+            setTimeout(() => { 
+                alert("🌊 JECHT SHOT!\nYou unlocked the ultimate Blitzball ability!\n[MP COST: 0 | DMG: 9999]"); 
+                discoverEgg('egg-blitzball'); // <--- TRACK
+            }, 300);
+        });
+
+        // 13. Jedi Icon
+        document.getElementById('jedi-icon').addEventListener('click', function(e) {
+            const swContainer = document.querySelector('.sw-container'); swContainer.style.boxShadow = "0 0 30px #00a8ff"; swContainer.style.borderColor = "#00a8ff";
+            const force = document.createElement('div'); force.classList.add('floating-loot'); force.innerHTML = '⚔️ THE FORCE IS STRONG!';
+            force.style.left = (e.pageX || e.changedTouches[0].pageX) + 'px'; force.style.top = (e.pageY || e.changedTouches[0].pageY) + 'px'; force.style.color = '#00a8ff';
+            document.body.appendChild(force); setTimeout(() => { force.remove(); }, 1500);
+            setTimeout(() => { 
+                swContainer.style.boxShadow = "0 0 20px rgba(255, 232, 31, 0.4)"; swContainer.style.borderColor = "var(--sw-yellow)"; 
+                alert("✨ \"These are not the newlyweds you're looking for... oh wait, yes they are!\""); 
+                discoverEgg('egg-jedi'); // <--- TRACK
+            }, 600);
+        });
+
+
+        // --- EXTRA UN-TRACKED SECRETS (BONUS) ---
+
+        // Konami Code God Mode (Extra, not tracked)
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         document.addEventListener('keydown', (e) => {
@@ -712,6 +946,7 @@
             } else { konamiIndex = 0; }
         });
 
+        // Title Tap God Mode (Extra, not tracked)
         let tapCount = 0, tapTimeout;
         document.getElementById('hero-title').addEventListener('click', () => {
             tapCount++; clearTimeout(tapTimeout);
@@ -724,94 +959,12 @@
             alert(document.body.classList.contains('god-mode') ? "GOD MODE ENABLED: 'Comic Sans' debuff activated." : "GOD MODE DISABLED: Returning to normal.");
         }
 
+        // Snake Game Over (Extra, not tracked)
         document.getElementById('presenza-select').addEventListener('change', (e) => {
             if (e.target.value === 'No') { alert("Snake? Respond! Snake? SNAAAAAAAKE!\n\n(We're sorry you can't make it! GAME OVER)"); }
         });
 
-        function triggerLootItem(e, container) {
-            let x = e.pageX, y = e.pageY;
-            if (e.type === 'touchend') { x = e.changedTouches[0].pageX; y = e.changedTouches[0].pageY; } 
-            else if (x === undefined) {
-                const rect = container.getBoundingClientRect(); x = rect.left + window.scrollX + rect.width / 2; y = rect.top + window.scrollY + rect.height / 2;
-            }
-            const floatingText = document.createElement('div'); floatingText.classList.add('floating-loot'); floatingText.innerText = "+1 Item Looted!";
-            floatingText.style.left = x + 'px'; floatingText.style.top = y + 'px'; floatingText.style.color = '#00ff00';
-            document.body.appendChild(floatingText);
-            setTimeout(() => { floatingText.remove(); }, 1000);
-            setTimeout(() => { alert("You looted 1x Tuna Pasta!\nHP and MP fully restored."); }, 100);
-        }
-
-        const tonnoContainer = document.getElementById('tonno-container');
-        document.getElementById('loot-tonno').addEventListener('click', (e) => { e.stopPropagation(); triggerLootItem(e, tonnoContainer); });
-        if(document.getElementById('loot-tonno-en')) document.getElementById('loot-tonno-en').addEventListener('click', (e) => { e.stopPropagation(); triggerLootItem(e, tonnoContainer); });
-
-        document.getElementById('zelda-icon').addEventListener('click', (e) => {
-            new Audio('https://www.myinstants.com/media/sounds/zelda-secret-sound-effect.mp3').play().catch(()=>{});
-            const heart = document.createElement('div'); heart.classList.add('floating-loot'); heart.innerHTML = '❤️ Secret Found!';
-            heart.style.left = e.pageX + 'px'; heart.style.top = (e.pageY - 20) + 'px'; heart.style.color = '#ff0000';
-            document.body.appendChild(heart); setTimeout(() => { heart.remove(); }, 1500);
-        });
-
-        document.getElementById('missingno').addEventListener('click', () => {
-            document.body.style.filter = "invert(100%) hue-rotate(90deg)";
-            setTimeout(() => { window.scrollTo({ top: 0, behavior: 'instant' }); alert("A wild MissingNo appeared! Got away safely."); document.body.style.filter = "none"; }, 300);
-        });
-
-        let codecTaps = 0, codecTimeout;
-        const freqText = document.getElementById('codec-freq-text');
-        freqText.addEventListener('click', () => {
-            codecTaps++; clearTimeout(codecTimeout);
-            if (codecTaps === 3) {
-                freqText.innerText = "FREQ 140.96"; freqText.style.color = "#00a8ff"; 
-                const originalHTML = document.getElementById('dialogue-box').innerHTML;
-                document.getElementById('dialogue-box').innerHTML = `
-                    <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>MEI LING:</strong> Ciao! Sono Mei Ling. Non dimenticare di salvare la data!</p>
-                    <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>SNAKE:</strong> Ricevuto. RSVP in compilazione.</p>
-                `;
-                setTimeout(() => { freqText.innerText = "FREQ 140.85"; freqText.style.color = ""; document.getElementById('dialogue-box').innerHTML = originalHTML; }, 7000);
-                codecTaps = 0;
-            }
-            codecTimeout = setTimeout(() => { codecTaps = 0; }, 400);
-        });
-
-        document.getElementById('p5-mask').addEventListener('click', function() {
-            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
-            const story = document.getElementById('story'); story.classList.remove('p5-flash'); void story.offsetWidth; story.classList.add('p5-flash');
-            setTimeout(() => { alert("✉️ CALLING CARD:\n\nWe are ready to take your hearts on June 5th!\n- The Phantom Thieves"); }, 200);
-        });
-
-        document.getElementById('coffee-boost').addEventListener('click', (e) => {
-            const card = document.getElementById('card-coffee'); card.classList.remove('shake-card'); void card.offsetWidth; card.classList.add('shake-card');
-            const buff = document.createElement('div'); buff.classList.add('floating-loot'); buff.innerHTML = '⚡ +100 SPEED!';
-            buff.style.left = e.pageX + 'px'; buff.style.top = e.pageY + 'px'; buff.style.color = '#f1c40f'; document.body.appendChild(buff); setTimeout(() => { buff.remove(); }, 1000);
-        });
-
-        document.getElementById('recipe-unlock').addEventListener('click', (e) => {
-            e.stopPropagation();
-            const level = document.createElement('div'); level.classList.add('floating-loot'); level.innerHTML = '⬆️ LEVEL UP!';
-            level.style.left = e.pageX + 'px'; level.style.top = e.pageY + 'px'; level.style.color = '#00ff00'; document.body.appendChild(level);
-            setTimeout(() => { level.remove(); }, 1000); setTimeout(() => { alert("✨ LEVEL UP!\nAle's Cooking Skill increased by 1!\n\nYou unlocked: [Tuna-free Recipe Book]"); }, 100);
-        });
-
-        document.getElementById('fast-travel').addEventListener('click', () => { alert("✈️ FAST TRAVEL COMPLETED!\nYou crossed the Swiss border.\n-500 Munny for customs."); });
-
-        document.getElementById('song-of-time').addEventListener('click', () => {
-            alert("🎵 ▶ 🔽 🔼 ▶ 🔽 🔼\nYou played the Song of Time...\nReturning to the Dawn of the First Day!");
-            document.getElementById('friday-quest').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        document.getElementById('blitzball-icon').addEventListener('click', function() {
-            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
-            setTimeout(() => { alert("🌊 JECHT SHOT!\nYou unlocked the ultimate Blitzball ability!\n[MP COST: 0 | DMG: 9999]"); }, 300);
-        });
-
-        document.getElementById('jedi-icon').addEventListener('click', function(e) {
-            const swContainer = document.querySelector('.sw-container'); swContainer.style.boxShadow = "0 0 30px #00a8ff"; swContainer.style.borderColor = "#00a8ff";
-            const force = document.createElement('div'); force.classList.add('floating-loot'); force.innerHTML = '⚔️ THE FORCE IS STRONG!';
-            force.style.left = (e.pageX || e.changedTouches[0].pageX) + 'px'; force.style.top = (e.pageY || e.changedTouches[0].pageY) + 'px'; force.style.color = '#00a8ff';
-            document.body.appendChild(force); setTimeout(() => { force.remove(); }, 1500);
-            setTimeout(() => { swContainer.style.boxShadow = "0 0 20px rgba(255, 232, 31, 0.4)"; swContainer.style.borderColor = "var(--sw-yellow)"; alert("✨ \"These are not the newlyweds you're looking for... oh wait, yes they are!\""); }, 600);
-        });
+        // --- SYSTEM UTILS ---
 
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
