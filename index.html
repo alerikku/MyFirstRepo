@@ -6,6 +6,10 @@
     <title>Ale & Tia: Final Mix - Wedding Quest 2027</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Caveat:wght@700&family=Cinzel:wght@700&family=Montserrat:wght@300;400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Libreria leggerissima per i coriandoli -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
         :root {
             --p5-red: #d32f2f;
@@ -69,17 +73,17 @@
         .font-ctr { font-family: 'Bangers', cursive; letter-spacing: 1px; }
         .font-brush { font-family: 'Caveat', cursive; text-transform: none; }
 
-        .scroll-indicator { position: absolute; bottom: clamp(30px, 5vh, 40px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; color: inherit; text-decoration: none; animation: bounce 2s infinite; z-index: 10; }
-        .scroll-indicator i { font-size: clamp(1.5rem, 4vh, 2rem); filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
+        .scroll-indicator { position: absolute; bottom: clamp(15px, 3vh, 30px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; color: inherit; text-decoration: none; animation: bounce 2s infinite; z-index: 10; }
+        .scroll-indicator i { font-size: clamp(1.2rem, 3vh, 1.8rem); filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);} 40% {transform: translate(-50%, -8px);} 60% {transform: translate(-50%, -4px);} }
 
-        /* --- HERO SECTION --- */
-        #hero { justify-content: flex-start; padding-top: clamp(40px, 10vh, 120px); background-color: var(--pixel-blue); background-image: url('bg-hero.png'); background-size: cover; background-position: center; color: white; text-align: center; }
-        #hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); color: white; text-shadow: 3px 3px 0px rgba(0,0,0,0.15); margin-bottom: 0; line-height: 1.2; user-select: none; }
-        .hero-subtitle { color: var(--ff-blue-top); font-size: clamp(2.2rem, 7vw, 4.5rem); margin-top: 5px; margin-bottom: clamp(10px, 2vh, 25px); text-shadow: 2px 2px 0px rgba(255,255,255,0.3); }
-        .kh-menu-container { background: rgba(0, 0, 0, 0.4); padding: clamp(15px, 3vh, 30px); border-radius: 12px; border: 4px dashed var(--ff-blue-top); margin-top: clamp(10px, 2vh, 20px); backdrop-filter: blur(5px); width: 100%; max-width: 650px; }
-        .kh-menu { list-style: none; font-size: clamp(0.8rem, 2.5vw, 1.3rem); line-height: 1.6; display: flex; flex-direction: column; align-items: center; }
-        .kh-menu li { margin: clamp(6px, 1.5vh, 12px); cursor: pointer; transition: 0.3s; }
+        /* --- HERO SECTION (Ottimizzata per stare senza scroll) --- */
+        #hero { justify-content: center; padding-top: clamp(20px, 5vh, 40px); padding-bottom: clamp(20px, 5vh, 40px); background-color: var(--pixel-blue); background-image: url('bg-hero.png'); background-size: cover; background-position: center; color: white; text-align: center; }
+        #hero h1 { font-size: clamp(2.2rem, 7vw, 4.5rem); color: white; text-shadow: 3px 3px 0px rgba(0,0,0,0.15); margin-bottom: 0; line-height: 1.1; user-select: none; }
+        .hero-subtitle { color: var(--ff-blue-top); font-size: clamp(2rem, 6vw, 4rem); margin-top: 0; margin-bottom: clamp(5px, 1vh, 15px); text-shadow: 2px 2px 0px rgba(255,255,255,0.3); }
+        .kh-menu-container { background: rgba(0, 0, 0, 0.4); padding: clamp(10px, 2vh, 20px); border-radius: 12px; border: 4px dashed var(--ff-blue-top); margin-top: 5px; backdrop-filter: blur(5px); width: 100%; max-width: 600px; }
+        .kh-menu { list-style: none; font-size: clamp(0.75rem, 2.2vw, 1.2rem); line-height: 1.4; display: flex; flex-direction: column; align-items: center; }
+        .kh-menu li { margin: clamp(4px, 1vh, 8px); cursor: pointer; transition: 0.3s; }
         .kh-menu li:hover { color: var(--pixel-blue); transform: translateX(10px); }
         .kh-menu a { text-decoration: none; color: inherit; }
 
@@ -161,14 +165,21 @@
         .sw-container p { font-family: 'Montserrat', sans-serif; font-size: clamp(1.1rem, 3.5vw, 1.4rem); line-height: 1.6; margin-bottom: 15px; }
         .sw-container strong { color: #fff; }
 
-        /* --- EQUIPMENT --- */
-        #equipment { background-color: #0b0f19; color: white; }
+        /* --- EQUIPMENT & MISSINGNO --- */
+        #equipment { background-color: #0b0f19; color: white; position: relative; }
         .ffx-grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; max-width: 1000px; margin-top: 15px; }
         @media (min-width: 768px) { .ffx-grid { grid-template-columns: 1fr 1fr; } }
         .ffx-card { background: linear-gradient(135deg, rgba(0,0,160,0.8), rgba(0,0,48,0.9)); border: 2px solid #88ccff; border-radius: 5px; padding: clamp(20px, 4vh, 30px); box-shadow: inset 0 0 15px rgba(0,168,255,0.3), 3px 3px 10px rgba(0,0,0,0.8); position: relative; overflow: hidden; }
         .ffx-card h3 { font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 4vw, 1.8rem); color: #88ccff; margin-bottom: 15px; border-bottom: 1px solid rgba(136,204,255,0.3); padding-bottom: 8px; text-shadow: 2px 2px 0px #000; }
         .ffx-card p { font-family: 'Montserrat', sans-serif; font-size: clamp(1.05rem, 3.8vw, 1.25rem); line-height: 1.6; margin-bottom: 8px;}
         .ffx-card strong { color: var(--gold); }
+        
+        .missingno-glitch {
+            position: absolute; bottom: 20px; right: 20px; width: 30px; height: 30px;
+            background: repeating-linear-gradient(45deg, #000, #000 5px, #fff 5px, #fff 10px, #f0f 10px, #f0f 15px);
+            cursor: pointer; opacity: 0.3; transition: 0.3s; z-index: 50;
+        }
+        .missingno-glitch:hover { opacity: 1; transform: scale(1.2); }
 
         /* --- PROGRAM --- */
         #program { background: var(--tuscan-olive); color: white; }
@@ -202,7 +213,7 @@
         .floating-loot { position: absolute; color: var(--mgs-green); font-family: 'Press Start 2P', monospace; font-size: 1rem; pointer-events: none; animation: floatUp 1s forwards; z-index: 9999; text-shadow: 2px 2px 0 #000; }
         @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-60px); opacity: 0; } }
         .interactive-icon { cursor: pointer; color: white; transition: 0.2s; display: inline-block; }
-        .interactive-icon:hover { text-shadow: 0 0 10px white; }
+        .interactive-icon:hover { text-shadow: 0 0 10px white; transform: scale(1.1); }
         .spin-anim { animation: spin 0.6s ease-in-out; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .shake-card { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
@@ -253,9 +264,9 @@
         </div>
     </div>
     
-    <!-- AUDIO TRACK - DEARLY BELOVED 8-BIT GBA -->
-    <audio id="bgm-audio" loop>
-        <source src="https://vgmsite.com/soundtracks/kingdom-hearts-chain-of-memories-gba/szexxofk/01.%20Dearly%20Beloved.mp3" type="audio/mpeg">
+    <!-- AUDIO TRACK - DEARLY BELOVED 8-BIT GBA (ARCHIVE.ORG) -->
+    <audio id="bgm-audio" loop preload="none">
+        <source src="https://ia800504.us.archive.org/33/items/KingdomHeartsChainOfMemoriesGbaMusic/01%20Dearly%20Beloved.mp3" type="audio/mpeg">
     </audio>
 
     <section id="hero" class="section">
@@ -279,12 +290,12 @@
                 <li><a href="#rsvp"><i class="fa-solid fa-envelope"></i> JOIN PARTY</a></li>
             </ul>
             
-            <hr style="border: 1px dashed var(--ff-blue-top); margin: 20px 0; opacity: 0.6;">
+            <hr style="border: 1px dashed var(--ff-blue-top); margin: 15px 0; opacity: 0.6;">
             
             <!-- EASTER EGG TESTO -->
-            <p class="font-retro" style="font-size: clamp(0.6rem, 1.8vw, 0.8rem); color: var(--gold); text-shadow: 2px 2px 0px #000; letter-spacing: 1px; text-align: center; line-height: 1.6; margin: 0 auto;">
-                <span class="it"><i class="fa-solid fa-star" style="color: white;"></i> Ci sono 13 Easter Egg nel sito, catturali tutti!</span>
-                <span class="en"><i class="fa-solid fa-star" style="color: white;"></i> There are 13 Easter Eggs on the site, catch 'em all!</span>
+            <p class="font-retro" style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); color: var(--gold); text-shadow: 2px 2px 0px #000; letter-spacing: 1px; text-align: center; line-height: 1.6; margin: 0 auto;">
+                <span class="it"><i class="fa-solid fa-star" style="color: white;"></i> Ci sono Easter Egg nel sito, catturali tutti!</span>
+                <span class="en"><i class="fa-solid fa-star" style="color: white;"></i> There are Easter Eggs on the site, catch 'em all!</span>
             </p>
         </div>
         
@@ -447,7 +458,7 @@
     </section>
 
     <section id="location" class="section">
-        <h2 class="zelda-title font-zelda"><i id="zelda-icon" class="fa-solid fa-mountain-sun zelda-secret interactive-icon"></i> IL GRANDE PRATO</h2>
+        <h2 class="zelda-title font-zelda"><i id="zelda-icon" class="fa-solid fa-mountain-sun interactive-icon"></i> IL GRANDE PRATO</h2>
         <p style="margin-bottom: clamp(15px, 3vh, 30px); font-family: 'Montserrat'; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: bold; text-align: center;">
             <span class="it">Castelfiorentino (FI) - Un save point immerso nel verde.</span>
             <span class="en">Castelfiorentino (FI) - A save point surrounded by nature.</span>
@@ -469,6 +480,7 @@
                 <p class="font-ctr" style="font-size: clamp(1.2rem, 3.5vw, 2rem); color: var(--ctr-orange); letter-spacing: 1px; text-shadow: 1px 1px 0px #000;">
                     <span class="it">Arrivi in kart o in aereo? Usa la mappa per calcolare il percorso!</span>
                     <span class="en">Kart or plane? Find out how to get here using the map!</span>
+                    <i class="fa-solid fa-car-side interactive-icon" id="crash-kart" style="margin-left: 10px; color: var(--ctr-orange); text-shadow: none;"></i>
                 </p>
                 <iframe src="https://maps.google.com/maps?q=il+grande+prato+castelfiorentino&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border: 4px dashed var(--ctr-orange); border-radius: 10px; margin-top: 15px; flex-grow: 1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -500,6 +512,9 @@
     </section>
 
     <section id="equipment" class="section">
+        <!-- MissingNo Egg Nascosto -->
+        <div id="missingno" class="missingno-glitch" title="???"></div>
+
         <h2 class="ff-title font-retro">
             <i class="fa-solid fa-gem"></i> 
             <span class="it">EQUIPAGGIAMENTO</span><span class="en">EQUIPMENT</span>
@@ -688,7 +703,7 @@
 
             <div class="kh-dlc" style="display: flex; flex-direction: column; justify-content: center;">
                 <h3 class="font-zelda" style="color: var(--gold); font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 2px 2px 0px var(--kh-blue);">
-                    <i class="fa-solid fa-rocket"></i> GUMMI SHIP DLC
+                    <i class="fa-solid fa-rocket interactive-icon" id="gummi-ship" title="Gummi Ship Ready!"></i> GUMMI SHIP DLC
                 </h3>
                 <p class="it" style="margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: clamp(1.05rem, 3.5vw, 1.25rem); line-height: 1.6; color: #e0f7fa;">
                     La vostra presenza è il Drop più raro! Ma se volete aiutarci ad arrivare alle Destiny Islands per la luna di miele, potete caricare i vostri <em>Munny</em> qui: <br><br> Causale: "Regalo nozze Alessandra Padovani e Mattia Belletti"
@@ -701,8 +716,6 @@
             </div>
         </div>
     </section>
-
-    <div id="missingno" class="missingno" title="???"></div>
 
     <script>
         // Language Toggle System
@@ -734,19 +747,23 @@
                     bgmToggle.style.borderColor = "var(--mgs-green)";
                     isBgmPlaying = true;
                 }).catch((err) => {
-                    alert("Ops! Il tuo browser sta bloccando l'audio in autoplay. Riprova!");
+                    alert("Ops! Il tuo browser sta bloccando l'audio in autoplay. Clicca di nuovo o alza il volume!");
+                    console.error(err);
                 });
             }
         });
 
         // --- EASTER EGG TRACKER SYSTEM ---
-        const totalEggs = 13;
+        const winThreshold = 13;
         let foundEggs = JSON.parse(localStorage.getItem('khWeddingEggs')) || [];
 
         function updateTrackerUI() {
             const tracker = document.getElementById('egg-tracker');
-            tracker.innerHTML = `🥚 ${foundEggs.length}/${totalEggs}`;
-            if(foundEggs.length === totalEggs) {
+            // Mostriamo massimo "13/13" anche se ne trovano 14 o 15
+            let displayCount = Math.min(foundEggs.length, winThreshold);
+            tracker.innerHTML = `🥚 ${displayCount}/${winThreshold}`;
+            
+            if(foundEggs.length >= winThreshold) {
                 tracker.style.color = "var(--mgs-green)";
                 tracker.style.borderColor = "var(--mgs-green)";
             } else {
@@ -755,10 +772,8 @@
             }
         }
 
-        // Init UI on load
         document.addEventListener("DOMContentLoaded", () => { updateTrackerUI(); });
 
-        // Double click to reset tracker
         document.getElementById('egg-tracker').addEventListener('dblclick', () => {
             if(confirm("Vuoi resettare i progressi degli Easter Egg?")) {
                 foundEggs = [];
@@ -773,22 +788,35 @@
                 localStorage.setItem('khWeddingEggs', JSON.stringify(foundEggs));
                 updateTrackerUI();
                 
-                // Traguardo raggiunto
-                if (foundEggs.length === totalEggs) {
-                    setTimeout(() => {
-                        alert("🏆 TRAGUARDO SBLOCCATO: 13/13!\n\nBravo, hai trovato tutti gli easter egg nascosti!\n\n13... proprio come gli anni che Ale e Tia hanno passato insieme! ❤️\n\nCi vediamo al matrimonio!");
-                    }, 800);
+                // Traguardo raggiunto! (Vittoria solo quando ne raggiungi esattamente 13)
+                if (foundEggs.length === winThreshold) {
+                    triggerWin();
                 }
             }
         }
 
-        // Smash Bros Audio
-        function playSelectSound() {
-            const beep = new Audio('https://www.myinstants.com/media/sounds/menu-select.mp3');
-            beep.volume = 0.2; beep.play().catch(()=>{}); 
+        function triggerWin() {
+            // Effetto coriandoli
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            setTimeout(() => {
+                alert("🏆 TRAGUARDO SBLOCCATO: 13/13!\n\nBravo, hai trovato 13 Easter Egg!\n\n13... proprio come gli anni che Ale e Tia hanno passato insieme! ❤️\n\nCi vediamo al matrimonio!");
+            }, 800);
         }
 
-        // --- LE 13 SIDE QUEST (EASTER EGGS) ---
+        // --- GLI EASTER EGG (Side Quests) ---
 
         // 1 & 2. Ale & Tia Cards
         let clicksAle = 0, clicksTia = 0;
@@ -798,16 +826,14 @@
                 if (clicksAle === 3) { 
                     const egg = document.getElementById('egg-ale'); egg.classList.add('active');
                     setTimeout(() => { egg.classList.remove('active'); }, 2000);
-                    discoverEgg('egg-ale'); // <--- TRACK
-                    clicksAle = 0; 
+                    discoverEgg('egg-ale'); clicksAle = 0; 
                 } 
             } else if (char === 'tia') { 
                 clicksTia++; 
                 if (clicksTia === 3) { 
                     const egg = document.getElementById('egg-tia'); egg.classList.add('active');
                     setTimeout(() => { egg.classList.remove('active'); }, 2000);
-                    discoverEgg('egg-tia'); // <--- TRACK
-                    clicksTia = 0; 
+                    discoverEgg('egg-tia'); clicksTia = 0; 
                 } 
             }
         }
@@ -816,15 +842,12 @@
         function triggerLootItem(e, container) {
             let x = e.pageX, y = e.pageY;
             if (e.type === 'touchend') { x = e.changedTouches[0].pageX; y = e.changedTouches[0].pageY; } 
-            else if (x === undefined) {
-                const rect = container.getBoundingClientRect(); x = rect.left + window.scrollX + rect.width / 2; y = rect.top + window.scrollY + rect.height / 2;
-            }
+            else if (x === undefined) { const rect = container.getBoundingClientRect(); x = rect.left + window.scrollX + rect.width / 2; y = rect.top + window.scrollY + rect.height / 2; }
             const floatingText = document.createElement('div'); floatingText.classList.add('floating-loot'); floatingText.innerText = "+1 Item Looted!";
             floatingText.style.left = x + 'px'; floatingText.style.top = y + 'px'; floatingText.style.color = '#00ff00';
-            document.body.appendChild(floatingText);
-            setTimeout(() => { floatingText.remove(); }, 1000);
+            document.body.appendChild(floatingText); setTimeout(() => { floatingText.remove(); }, 1000);
             setTimeout(() => { alert("You looted 1x Tuna Pasta!\nHP and MP fully restored."); }, 100);
-            discoverEgg('egg-tonno'); // <--- TRACK
+            discoverEgg('egg-tonno');
         }
         const tonnoContainer = document.getElementById('tonno-container');
         document.getElementById('loot-tonno').addEventListener('click', (e) => { e.stopPropagation(); triggerLootItem(e, tonnoContainer); });
@@ -835,7 +858,7 @@
             const heart = document.createElement('div'); heart.classList.add('floating-loot'); heart.innerHTML = '❤️ Secret Found!';
             heart.style.left = e.pageX + 'px'; heart.style.top = (e.pageY - 20) + 'px'; heart.style.color = '#ff0000';
             document.body.appendChild(heart); setTimeout(() => { heart.remove(); }, 1500);
-            discoverEgg('egg-zelda'); // <--- TRACK
+            discoverEgg('egg-zelda');
         });
 
         // 5. MissingNo
@@ -845,7 +868,7 @@
                 window.scrollTo({ top: 0, behavior: 'instant' }); 
                 alert("A wild MissingNo appeared! Got away safely."); 
                 document.body.style.filter = "none"; 
-                discoverEgg('egg-missingno'); // <--- TRACK
+                discoverEgg('egg-missingno');
             }, 300);
         });
 
@@ -861,7 +884,7 @@
                     <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>MEI LING:</strong> Ciao! Sono Mei Ling. Non dimenticare di salvare la data!</p>
                     <p style="color:#00a8ff; opacity:1; transform:translateX(0); margin-bottom:15px;"><strong>SNAKE:</strong> Ricevuto. RSVP in compilazione.</p>
                 `;
-                discoverEgg('egg-codec'); // <--- TRACK
+                discoverEgg('egg-codec');
                 setTimeout(() => { freqText.innerText = "FREQ 140.85"; freqText.style.color = ""; document.getElementById('dialogue-box').innerHTML = originalHTML; }, 7000);
                 codecTaps = 0;
             }
@@ -874,7 +897,7 @@
             const story = document.getElementById('story'); story.classList.remove('p5-flash'); void story.offsetWidth; story.classList.add('p5-flash');
             setTimeout(() => { 
                 alert("✉️ CALLING CARD:\n\nWe are ready to take your hearts on June 5th!\n- The Phantom Thieves"); 
-                discoverEgg('egg-p5'); // <--- TRACK
+                discoverEgg('egg-p5');
             }, 200);
         });
 
@@ -884,7 +907,7 @@
             const buff = document.createElement('div'); buff.classList.add('floating-loot'); buff.innerHTML = '⚡ +100 SPEED!';
             buff.style.left = e.pageX + 'px'; buff.style.top = e.pageY + 'px'; buff.style.color = '#f1c40f'; document.body.appendChild(buff); 
             setTimeout(() => { buff.remove(); }, 1000);
-            discoverEgg('egg-coffee'); // <--- TRACK
+            discoverEgg('egg-coffee');
         });
 
         // 9. Recipe Unlock
@@ -895,21 +918,21 @@
             setTimeout(() => { level.remove(); }, 1000); 
             setTimeout(() => { 
                 alert("✨ LEVEL UP!\nAle's Cooking Skill increased by 1!\n\nYou unlocked: [Tuna-free Recipe Book]"); 
-                discoverEgg('egg-recipe'); // <--- TRACK
+                discoverEgg('egg-recipe');
             }, 100);
         });
 
         // 10. Fast Travel
         document.getElementById('fast-travel').addEventListener('click', () => { 
             alert("✈️ FAST TRAVEL COMPLETED!\nYou crossed the Swiss border.\n-500 Munny for customs."); 
-            discoverEgg('egg-fasttravel'); // <--- TRACK
+            discoverEgg('egg-fasttravel'); 
         });
 
         // 11. Song of Time
         document.getElementById('song-of-time').addEventListener('click', () => {
             alert("🎵 ▶ 🔽 🔼 ▶ 🔽 🔼\nYou played the Song of Time...\nReturning to the Dawn of the First Day!");
             document.getElementById('friday-quest').scrollIntoView({ behavior: 'smooth' });
-            discoverEgg('egg-time'); // <--- TRACK
+            discoverEgg('egg-time');
         });
         
         // 12. Blitzball
@@ -917,7 +940,7 @@
             this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
             setTimeout(() => { 
                 alert("🌊 JECHT SHOT!\nYou unlocked the ultimate Blitzball ability!\n[MP COST: 0 | DMG: 9999]"); 
-                discoverEgg('egg-blitzball'); // <--- TRACK
+                discoverEgg('egg-blitzball');
             }, 300);
         });
 
@@ -930,41 +953,33 @@
             setTimeout(() => { 
                 swContainer.style.boxShadow = "0 0 20px rgba(255, 232, 31, 0.4)"; swContainer.style.borderColor = "var(--sw-yellow)"; 
                 alert("✨ \"These are not the newlyweds you're looking for... oh wait, yes they are!\""); 
-                discoverEgg('egg-jedi'); // <--- TRACK
+                discoverEgg('egg-jedi');
             }, 600);
         });
 
-
-        // --- EXTRA UN-TRACKED SECRETS (BONUS) ---
-
-        // Konami Code God Mode (Extra, not tracked)
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++; if (konamiIndex === konamiCode.length) { activateGodMode(); konamiIndex = 0; }
-            } else { konamiIndex = 0; }
+        // 14. Crash Kart
+        document.getElementById('crash-kart').addEventListener('click', function() {
+            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
+            setTimeout(() => { 
+                alert("OOGA BOOGA! 🎭\n\nHai trovato la maschera di Aku Aku!\nProtezione massima durante il viaggio verso Il Grande Prato sbloccata."); 
+                discoverEgg('egg-crash');
+            }, 300);
         });
 
-        // Title Tap God Mode (Extra, not tracked)
-        let tapCount = 0, tapTimeout;
-        document.getElementById('hero-title').addEventListener('click', () => {
-            tapCount++; clearTimeout(tapTimeout);
-            if (tapCount === 7) { activateGodMode(); tapCount = 0; }
-            tapTimeout = setTimeout(() => { tapCount = 0; }, 500); 
+        // 15. Gummi Ship
+        document.getElementById('gummi-ship').addEventListener('click', function() {
+            this.classList.remove('spin-anim'); void this.offsetWidth; this.classList.add('spin-anim');
+            setTimeout(() => { 
+                alert("🚀 GUMMI SHIP PRONTA AL DECOLLO!\n\nI motori sono carichi. Destinazione: Destiny Islands per la Luna di Miele!"); 
+                discoverEgg('egg-gummi');
+            }, 300);
         });
 
-        function activateGodMode() {
-            document.body.classList.toggle('god-mode');
-            alert(document.body.classList.contains('god-mode') ? "GOD MODE ENABLED: 'Comic Sans' debuff activated." : "GOD MODE DISABLED: Returning to normal.");
+        // --- SYSTEM UTILS (AUDIO SMASH BROS, MGS CODEC SCROLL, FORM) ---
+        function playSelectSound() {
+            const beep = new Audio('https://www.myinstants.com/media/sounds/menu-select.mp3');
+            beep.volume = 0.2; beep.play().catch(()=>{}); 
         }
-
-        // Snake Game Over (Extra, not tracked)
-        document.getElementById('presenza-select').addEventListener('change', (e) => {
-            if (e.target.value === 'No') { alert("Snake? Respond! Snake? SNAAAAAAAKE!\n\n(We're sorry you can't make it! GAME OVER)"); }
-        });
-
-        // --- SYSTEM UTILS ---
 
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
