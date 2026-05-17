@@ -45,10 +45,10 @@
         .lang-btn.active { color: var(--gold); opacity: 1; text-shadow: 1px 1px 0px #000; }
         .lang-btn:hover { opacity: 1; }
 
-        /* --- HUD ESTERNI (TRACKER & BGM) --- */
+        /* --- HUD ESTERNO (TRACKER) --- */
         .hud-bottom {
-            position: fixed; bottom: 15px; left: 15px; right: 15px;
-            display: flex; justify-content: space-between; z-index: 1000; pointer-events: none;
+            position: fixed; bottom: 15px; left: 15px;
+            display: flex; z-index: 1000; pointer-events: none;
         }
         .hud-item {
             background: rgba(0, 0, 0, 0.85); border: 2px solid var(--gold); border-radius: 5px;
@@ -255,13 +255,10 @@
         <button class="lang-btn" id="btn-en" onclick="setLang('en')">ENG</button>
     </div>
 
-    <!-- HUD OVERLAY (TRACKER & BGM) -->
+    <!-- HUD OVERLAY (TRACKER) -->
     <div class="hud-bottom">
         <div class="hud-item" id="egg-tracker" title="Fai doppio click per resettare i progressi">
             🥚 0/13
-        </div>
-        <div class="hud-item" id="bgm-toggle" title="Riproduci Colonna Sonora">
-            <i class="fa-solid fa-music"></i> BGM: OFF
         </div>
     </div>
 
@@ -477,7 +474,6 @@
                     <span class="it">Arrivi in kart o in aereo? Usa la mappa per calcolare il percorso!</span>
                     <span class="en">Kart or plane? Find out how to get here using the map!</span>
                     <br>
-                    <!-- CRASH KART EASTER EGG ORA BEN VISIBILE E SU DUE RIGHE -->
                     <i class="fa-solid fa-car-side interactive-icon" id="crash-kart" style="font-size: 2.5rem; color: #ffcc00; text-shadow: 2px 2px 0px #000; margin-top: 15px;"></i>
                 </p>
                 <iframe src="https://maps.google.com/maps?q=il+grande+prato+castelfiorentino&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border: 4px dashed var(--ctr-orange); border-radius: 10px; margin-top: 15px; flex-grow: 1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -700,7 +696,6 @@
 
             <div class="kh-dlc" style="display: flex; flex-direction: column; justify-content: center;">
                 <h3 class="font-zelda" style="color: var(--gold); font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 2px 2px 0px var(--kh-blue);">
-                    <!-- GUMMI SHIP EASTER EGG IN ROSSO E BEN VISIBILE -->
                     <i class="fa-solid fa-rocket interactive-icon" id="gummi-ship" title="Gummi Ship Ready!" style="color: #ff6666;"></i> GUMMI SHIP DLC
                 </h3>
                 <p class="it" style="margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: clamp(1.05rem, 3.5vw, 1.25rem); line-height: 1.6; color: #e0f7fa;">
@@ -726,39 +721,6 @@
                 document.getElementById('btn-en').classList.add('active'); document.getElementById('btn-it').classList.remove('active');
             }
         }
-
-        // --- BGM AUDIO SYSTEM GENERATA VIA JS PER EVITARE BLOCCHI MOBILE ---
-        const bgmToggle = document.getElementById('bgm-toggle');
-        let bgmAudio = null;
-        let isBgmPlaying = false;
-
-        bgmToggle.addEventListener('click', () => {
-            // Creiamo l'audio solo al primo click, tecnica per aggirare l'autoplay block di iOS
-            if (!bgmAudio) {
-                bgmAudio = new Audio('https://archive.org/download/KingdomHeartsChainOfMemoriesGbaMusic/01%20Dearly%20Beloved.mp3');
-                bgmAudio.loop = true;
-                bgmAudio.volume = 0.3;
-            }
-
-            if (isBgmPlaying) {
-                bgmAudio.pause();
-                bgmToggle.innerHTML = '<i class="fa-solid fa-music"></i> BGM: OFF';
-                bgmToggle.style.borderColor = "var(--gold)";
-                isBgmPlaying = false;
-            } else {
-                let playPromise = bgmAudio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        bgmToggle.innerHTML = '<i class="fa-solid fa-music" style="color:var(--mgs-green)"></i> BGM: ON';
-                        bgmToggle.style.borderColor = "var(--mgs-green)";
-                        isBgmPlaying = true;
-                    }).catch(error => {
-                        console.error(error);
-                        alert("Ops! Sembra che il tuo browser blocchi ancora l'audio o che la connessione sia lenta. Prova a cliccare di nuovo!");
-                    });
-                }
-            }
-        });
 
         // --- EASTER EGG TRACKER SYSTEM ---
         const winThreshold = 13;
@@ -865,7 +827,7 @@
             discoverEgg('egg-zelda');
         });
 
-        // 5. MissingNo (Ora è inline sul titolo Equipaggiamento)
+        // 5. MissingNo 
         document.getElementById('missingno').addEventListener('click', () => {
             document.body.style.filter = "invert(100%) hue-rotate(90deg)";
             setTimeout(() => { 
